@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Как начать играть | VisualVertexRP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #8a2be2;
+            --secondary: #4169e1;
+            --dark: #0d0a1a;
+            --darker: #070510;
+            --light: #f0f4ff;
+            --accent: #00ffff;
+            --gray: #8a8ca5;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(13, 10, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+            padding: 1.2rem 0;
+            position: sticky;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a.active {
+            color: var(--accent);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.4);
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 6rem 0 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(0, 255, 255, 0.05));
+            margin-bottom: 3rem;
+        }
+
+        .page-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Content */
+        .content-section {
+            padding: 2rem 0 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--light);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .step {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            background: rgba(13, 10, 26, 0.7);
+            border-radius: 15px;
+            padding: 2.5rem;
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            transition: all 0.3s;
+        }
+
+        .step:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .step-content p {
+            color: var(--gray);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .step-content ul {
+            color: var(--gray);
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .step-content li {
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+        }
+
+        .code-block {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+
+        /* Requirements */
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .requirement-card {
+            background: rgba(13, 10, 26, 0.7);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            transition: all 0.3s;
+        }
+
+        .requirement-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .requirement-icon {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .requirement-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+
+        .requirement-card p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--darker);
+            padding: 4rem 0 2rem;
+            border-top: 1px solid rgba(138, 43, 226, 0.3);
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .footer-links {
+            flex: 2;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-column h3 {
+            color: var(--light);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            text-align: center;
+            color: var(--gray);
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .step {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .step-number {
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .step {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">VV</div>
+                    <div class="logo-text">VisualVertexRP</div>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="how-to-play.html" class="active">Как играть</a></li>
+                    <li><a href="rules.html">Правила</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="tech-support.html">Поддержка</a></li>
+                </ul>
+                <a href="index.html#home" class="btn">На главную</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Как начать играть</h1>
+            <p class="page-subtitle">Пошаговое руководство по подключению к серверу VisualVertexRP и началу вашего RolePlay приключения</p>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <div class="container">
+        <section class="content-section">
+            <h2 class="section-title">Пошаговое руководство</h2>
+            
+            <div class="steps-container">
+                <!-- Шаг 1 -->
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Установите Minecraft</h3>
+                        <p>Для начала вам потребуется лицензионная версия Minecraft Java Edition. Если у вас её нет, вы можете приобрести её на официальном сайте:</p>
+                        <ul>
+                            <li>Перейдите на <a href="https://www.minecraft.net" style="color: var(--accent);">minecraft.net</a></li>
+                            <li>Создайте аккаунт Mojang/Microsoft</li>
+                            <li>Приобретите и скачайте Minecraft Java Edition</li>
+                        </ul>
+                        <p><strong>Версия игры:</strong> Наш сервер работает на версии <strong>1.21.1 Neoforge</strong> и выше.</p>
+                    </div>
+                </div>
+
+                <!-- Шаг 2 -->
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Запустите Minecraft и добавьте сервер</h3>
+                        <p>После установки игры выполните следующие действия:</p>
+                        <ul>
+                            <li>Запустите Minecraft Launcher и войдите в свой аккаунт</li>
+                            <li>В главном меню выберите "Мультиплеер" (Multiplayer)</li>
+                            <li>Нажмите "Добавить сервер" (Add Server)</li>
+                            <li>В поле "Адрес сервера" введите:</li>
+                        </ul>
+                        <div class="code-block">visualvertexrp.wellduck.org</div>
+                        <p>В поле "Имя сервера" вы можете ввести "VisualVertexRP" или любое другое удобное название.</p>
+                    </div>
+                </div>
+
+                <!-- Шаг 3 -->
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Подключитесь к серверу</h3>
+                        <p>После добавления сервера в список:</p>
+                        <ul>
+                            <li>Выберите "VisualVertexRP" в списке серверов</li>
+                            <li>Нажмите "Подключиться" (Join Server)</li>
+                            <li>Дождитесь загрузки мира (это может занять несколько минут при первом подключении)</li>
+                        </ul>
+                        <p>При первом входе вы автоматически получите начальный набор для выживания и инструкции по началу игры.</p>
+                    </div>
+                </div>
+
+                <!-- Шаг 4 -->
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Создайте своего персонажа</h3>
+                        <p>После подключения к серверу:</p>
+                        <ul>
+                            <li>Воспользуйтесь командой <code>/spawn</code> для телепортации на спавн</li>
+                            <li>Прочитайте правила сервера, которые отобразятся автоматически</li>
+                            <li>Выберите профессию для своего персонажа из доступных вариантов</li>
+                            <li>Начните своё приключение, выполняя квесты или строя свой дом</li>
+                        </ul>
+                        <p>Для связи с другими игроками используйте локальный чат (по умолчанию) или глобальный чат (префикс ! перед сообщением).</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title">Системные требования</h2>
+            <p style="color: var(--gray); margin-bottom: 2rem; font-size: 1.1rem;">Для комфортной игры на нашем сервере рекомендуем следующие системные требования:</p>
+            
+            <div class="requirements-grid">
+                <div class="requirement-card">
+                    <div class="requirement-icon">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <h3>Минимальные</h3>
+                    <p>• Процессор: Intel Core i3 или аналогичный<br>
+                       • Оперативная память: 4 ГБ<br>
+                       • Видеокарта: Intel HD Graphics или аналогичная<br>
+                       • Интернет: 5 Мбит/с</p>
+                </div>
+
+                <div class="requirement-card">
+                    <div class="requirement-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3>Рекомендуемые</h3>
+                    <p>• Процессор: Intel Core i5 или лучше<br>
+                       • Оперативная память: 8 ГБ или более<br>
+                       • Видеокарта: NVIDIA GTX 1050 или аналогичная<br>
+                       • Интернет: 10 Мбит/с или быстрее</p>
+                </div>
+
+                <div class="requirement-card">
+                    <div class="requirement-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Сетевое соединение</h3>
+                    <p>• Стабильное подключение к интернету<br>
+                       • Пинг до сервера: до 100 мс<br>
+                       • Отсутствие потерь пакетов<br>
+                       • Рекомендуется проводное подключение</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="index.html" class="logo">
+                        <div class="logo-icon">VV</div>
+                        <div class="logo-text">VisualVertexRP</div>
+                    </a>
+                    <p style="color: var(--gray); margin-top: 1.5rem; line-height: 1.6;">Уникальный Minecraft RolePlay сервер с глубокой экономикой, политикой и активным сообществом.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>Навигация</h3>
+                        <ul>
+                            <li><a href="index.html">Главная</a></li>
+                            <li><a href="how-to-play.html">Как играть</a></li>
+                            <li><a href="rules.html">Правила</a></li>
+                            <li><a href="faq.html">Частые вопросы</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3>Поддержка</h3>
+                        <ul>
+                            <li><a href="how-to-play.html">Как начать играть</a></li>
+                            <li><a href="rules.html">Правила сервера</a></li>
+                            <li><a href="faq.html">Частые вопросы</a></li>
+                            <li><a href="tech-support.html">Техническая помощь</a></li>
+                                                    <ul>
+                            <li><a href="https://visualvertex.forumes.ru/" target="_blank">Форум</a></li> 
+                        </ul>
+                    </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2025 VisualVertexRP. Все права защищены.</p>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem;">Minecraft является товарным знаком Mojang AB. Данный проект не аффилирован с Mojang или Microsoft.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Highlight current page in navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            navLinks.forEach(link => {
+                const linkPage = link.getAttribute('href');
+                if (linkPage === currentPage) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

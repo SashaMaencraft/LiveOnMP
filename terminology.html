@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Терминология | VisualVertexRP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #8a2be2;
+            --secondary: #4169e1;
+            --dark: #0d0a1a;
+            --darker: #070510;
+            --light: #f0f4ff;
+            --accent: #00ffff;
+            --gray: #8a8ca5;
+            --zone-green: #2ecc71;
+            --zone-orange: #e67e22;
+            --zone-red: #e74c3c;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(13, 10, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+            padding: 1.2rem 0;
+            position: sticky;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            position: relative;
+            transition: color 0.3s;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a.active {
+            color: var(--accent);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.4);
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 5rem 0 2.5rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(0, 255, 255, 0.05));
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .page-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Content */
+        .content-section {
+            padding: 2rem 0 4rem;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: var(--light);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        /* Glossary Grid */
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.8rem;
+            margin-bottom: 3rem;
+        }
+
+        .term-card {
+            background: rgba(13, 10, 26, 0.8);
+            border-radius: 16px;
+            border: 1px solid rgba(138, 43, 226, 0.25);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .term-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(0, 255, 255, 0.1);
+        }
+
+        .term-header {
+            padding: 1.2rem 1.5rem;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.15), rgba(0, 255, 255, 0.05));
+            border-bottom: 1px solid rgba(138, 43, 226, 0.2);
+            display: flex;
+            align-items: baseline;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .term-abbr {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .term-name {
+            font-size: 1rem;
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        .zone-badge {
+            margin-left: auto;
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .zone-green { background: rgba(46, 204, 113, 0.2); color: var(--zone-green); border: 1px solid rgba(46, 204, 113, 0.3); }
+        .zone-orange { background: rgba(230, 126, 34, 0.2); color: var(--zone-orange); border: 1px solid rgba(230, 126, 34, 0.3); }
+        .zone-red { background: rgba(231, 76, 60, 0.2); color: var(--zone-red); border: 1px solid rgba(231, 76, 60, 0.3); }
+        .badge-default { background: rgba(138, 43, 226, 0.2); color: var(--accent); border: 1px solid rgba(0, 255, 255, 0.3); }
+
+        .term-body {
+            padding: 1.5rem;
+        }
+
+        .term-desc {
+            color: var(--light);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .term-example {
+            background: rgba(0, 0, 0, 0.4);
+            border-left: 3px solid var(--accent);
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .term-example p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-bottom: 0.3rem;
+        }
+
+        .term-example strong {
+            color: var(--accent);
+            font-style: normal;
+        }
+
+        .punishment-badge {
+            display: inline-block;
+            background: rgba(231, 76, 60, 0.15);
+            color: #e74c3c;
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 0.8rem;
+            border: 1px solid rgba(231, 76, 60, 0.3);
+        }
+
+        /* Quick Reference Table */
+        .quick-ref {
+            background: rgba(7, 5, 16, 0.7);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            overflow-x: auto;
+        }
+
+        .quick-ref h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            text-align: center;
+        }
+
+        .ref-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        .ref-table th,
+        .ref-table td {
+            padding: 0.9rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(138, 43, 226, 0.2);
+        }
+
+        .ref-table th {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .ref-table td {
+            color: var(--gray);
+        }
+
+        .ref-table tr:hover td {
+            color: var(--light);
+        }
+
+        .term-code {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: var(--accent);
+            background: rgba(0, 255, 255, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--darker);
+            padding: 4rem 0 2rem;
+            border-top: 1px solid rgba(138, 43, 226, 0.3);
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .footer-links {
+            flex: 2;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-column h3 {
+            color: var(--light);
+            margin-bottom: 1.2rem;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.7rem;
+        }
+
+        .footer-column a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            text-align: center;
+            color: var(--gray);
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .page-title {
+                font-size: 2.2rem;
+            }
+            
+            .glossary-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .term-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .zone-badge {
+                margin-left: 0;
+                margin-top: 0.5rem;
+            }
+            
+            .btn {
+                padding: 0.6rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">VV</div>
+                    <div class="logo-text">VisualVertexRP</div>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="how-to-play.html">Как играть</a></li>
+                    <li><a href="rules.html">Правила</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="tech-support.html">Поддержка</a></li>
+                    <li><a href="terminology.html" class="active">Термины</a></li>
+                </ul>
+                <a href="index.html#premium" class="btn">Купить Проходку</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Терминология VisualVertexRP</h1>
+            <p class="page-subtitle">Уникальные термины и сленг сервера. Знай свои зоны, статусы и механику — стань частью нашего комьюнити.</p>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <div class="container">
+        <section class="content-section">
+            <h2 class="section-title">Основные термины</h2>
+            <div class="glossary-grid">
+                <!-- 1. ЗЗ -->
+                <div class="term-card">
+                    <div class="term-header">
+                        <span class="term-abbr">ЗЗ</span>
+                        <span class="term-name">Зеленая Зона</span>
+                        <span class="zone-badge zone-green">PvP запрещён</span>
+                    </div>
+                    <div class="term-body">
+                        <div class="term-desc">Территория, где <strong>PvP (убийства) запрещены полностью</strong>. Безопасное место для общения, торговли и старта.</div>
+                        <div class="term-example">
+                            <p><strong>РП пример:</strong> «Мы сейчас в ЗЗ, брат. Ты можешь оскорблять меня сколько влезет, но ударишь — получишь варн. Это святое место».</p>
+                        </div>
+                        <span class="punishment-badge"><i class="fas fa-gavel"></i> Наказание: бан 3 дня за убийство</span>
+                    </div>
+                </div>
+
+                <!-- 2. ОЗ -->
+                <div class="term-card">
+                    <div class="term-header">
+                        <span class="term-abbr">ОЗ</span>
+                        <span class="term-name">Оранжевая Зона</span>
+                        <span class="zone-badge zone-orange">PvP по причине</span>
+                    </div>
+                    <div class="term-body">
+                        <div class="term-desc">Зона, где можно воевать, но <strong>только по ролевой причине</strong>. Беспричинные убийства запрещены.</div>
+                        <div class="term-example">
+                            <p><strong>РП пример:</strong> «Склад на окраине — ОЗ. Ты украл мой ДМ? Валимся там. Но просто так пройти мимо и выстрелить — нельзя».</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. КЗ -->
+                <div class="term-card">
+                    <div class="term-header">
+                        <span class="term-abbr">КЗ</span>
+                        <span class="term-name">Красная Зона</span>
+                        <span class="zone-badge zone-red">Полный фристайл</span>
+                    </div>
+                    <div class="term-body">
+                        <div class="term-desc">Полный фристайл. Убивай всех, кого видишь, без слов. Претензии к админам не принимаются.</div>
+                        <div class="term-example">
+                            <p><strong>РП пример:</strong> «Зашел в КЗ — будь готов, что из каждого угла прилетит пуля. Претензии к админам не принимаются».</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. ДМ (Дикий Матч) -->
+                <div class="term-card">
+                    <div class="term-header">
+                        <span class="term-abbr">ДМ</span>
+                        <span class="term-name">Дикий Матч</span>
+                        <span class="zone-badge badge-default">Нарушение</span>
+                    </div>
+                    <div class="term-body">
+                        <div class="term-desc">Беспричинное убийство без отыгровки. Нарушение правил сервера.</div>
+                        <div class="term-example">
+                            <p><strong>РП пример:</strong> «Он зашел в кафе, ни слова не сказал, достал нож и зарезал официанта. Это чистое ДМ. /report 14 — ДМ».</p>
+                        </div>
+                        <span class="punishment-badge"><i class="fas fa-ban"></i> Наказание: Предупреждение + возврат жертвы</span>
+                    </div>
+                </div>
+
+                <!-- 5. ДМ-токен (Денежный Маркер) -->
+                <div class="term-card">
+                    <div class="term-header">
+                        <span class="term-abbr">ДМ-токен</span>
+                        <span class="term-name">Денежный Маркер (V$)</span>
+                        <span class="zone-badge badge-default">Валюта</span>
+                    </div>
+                    <div class="term-body">
+                        <div class="term-desc">Основная валюта сервера — <strong>V$ (Вертекс-доллары)</strong>. Физически лежит в инвентаре как «пачка налички».</div>
+                        <div class="term-example">
+                            <p><strong>РП пример:</strong> «Заплачу 5000 V$. Переводи через терминал в телефоне».</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. ПГ -->
+                <div class="term-card">
+                    <div class="term-header">
+                        <span class="term-abbr">ПГ</span>
+                        <span class="term-name">Переносной Груз</span>
+                        <span class="zone-badge badge-default">Инвентарь</span>
+                    </div>
+                    <div class="term-body">
+                        <div class="term-desc">Объем твоего инвентаря в килограммах. Лимит: 40 ПГ без рюкзака, 80 ПГ с военным рюкзаком.</div>
+                        <div class="term-example">
+                            <p><strong>РП пример:</strong> «Не могу взять твой броник, у меня 39/40 ПГ. Или оставь патроны, или тащи сам».</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. АКГ -->
+                <div class="term-card">
+                    <div class="term-header">
+                        <span class="term-abbr">АКГ</span>
+                        <span class="term-name">Архивный Криминальный Груз</span>
+                        <span class="zone-badge badge-default">Нелегал</span>
+                    </div>
+                    <div class="term-body">
+                        <div class="term-desc">Вещи, которые нельзя продать в обычном магазине. Только через черного дилера.</div>
+                        <div class="term-example">
+                            <p><strong>РП пример:</strong> «У меня в багажнике АКГ на 15 штук. Если мент найдет — посадят на 2 часа реала. Гони к дилеру на точку».</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. ЗК -->
+                <div class="term-card">
+                    <div class="term-header">
+                        <span class="term-abbr">ЗК</span>
+                        <span class="term-name">Зеленая Карта</span>
+                        <span class="zone-badge badge-default">Статус</span>
+                    </div>
+                    <div class="term-body">
+                        <div class="term-desc">Статус «Честный игрок». Выдается через 7 дней без нарушений. Даёт скидки и доверие.</div>
+                        <div class="term-example">
+                            <p><strong>РП пример:</strong> «У меня ЗК висит, чувак. Не буду я тебя кидать. Давай честно поделим».</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9. ЧМ -->
+                <div class="term-card">
+                    <div class="term-header">
+                        <span class="term-abbr">ЧМ</span>
+                        <span class="term-name">Черная Метка</span>
+                        <span class="zone-badge zone-red">Розыск</span>
+                    </div>
+                    <div class="term-body">
+                        <div class="term-desc">Статус «В розыске». Тебя видит каждый полицейский на радаре. Снимается через адвоката или тюрьму.</div>
+                        <div class="term-example">
+                            <p><strong>РП пример:</strong> «На мне ЧМ, братан. Прячь меня в подвале, пока патруль не уедет».</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10. СУ -->
+                <div class="term-card">
+                    <div class="term-header">
+                        <span class="term-abbr">СУ</span>
+                        <span class="term-name">Слепая Удача</span>
+                        <span class="zone-badge badge-default">Рандом</span>
+                    </div>
+                    <div class="term-body">
+                        <div class="term-desc">Механика случайного лута из ящиков/трупов. Везение — часть геймплея.</div>
+                        <div class="term-example">
+                            <p><strong>РП пример:</strong> «Вскрыл грузовик, прокачал СУ — выпал револьвер. А сосед открыл такой же и нашёл пустую пачку сигарет. Фарт такой фарт».</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 11. РГ -->
+                <div class="term-card">
+                    <div class="term-header">
+                        <span class="term-abbr">РГ</span>
+                        <span class="term-name">Ручной Геймплей</span>
+                        <span class="zone-badge badge-default">Отыгровка</span>
+                    </div>
+                    <div class="term-body">
+                        <div class="term-desc">Ты должен отыгрывать каждое действие текстом через <code class="term-code">/me</code>.</div>
+                        <div class="term-example">
+                            <p><strong>Плохо:</strong> Нажал E и сел в машину.<br>
+                            <strong>Хорошо:</strong> <code>/me открывает дверь, садится за руль, заводит двигатель с третьего раза</code>.</p>
+                        </div>
+                        <span class="punishment-badge">Штраф: предупреждение за отсутствие РГ</span>
+                    </div>
+                </div>
+
+                <!-- 12. ВЗ -->
+                <div class="term-card">
+                    <div class="term-header">
+                        <span class="term-abbr">ВЗ</span>
+                        <span class="term-name">Визуальный Якорь</span>
+                        <span class="zone-badge badge-default">Взаимодействие</span>
+                    </div>
+                    <div class="term-body">
+                        <div class="term-desc">Ты должен смотреть на игрока/предмет, чтобы взаимодействовать. Нельзя украсть из кармана, стоя спиной.</div>
+                        <div class="term-example">
+                            <p><strong>РП пример:</strong> «Нельзя украсть телефон из кармана, если стоишь спиной. Повернись к нему, посмотри в лицо, только потом пиши /me обыскивает».</p>
+                        </div>
+                        <span class="punishment-badge">Наказание: откат действия + штраф 1000 V$</span>
+                    </div>
+                </div>
+
+                <!-- 13. ФЛ -->
+                <div class="term-card">
+                    <div class="term-header">
+                        <span class="term-abbr">ФЛ</span>
+                        <span class="term-name">Фейковый Лут</span>
+                        <span class="zone-badge badge-default">Текст</span>
+                    </div>
+                    <div class="term-body">
+                        <div class="term-desc">Предметы, которые существуют только в тексте <code class="term-code">/me</code>, но не в инвентаре. Нельзя использовать как настоящее оружие.</div>
+                        <div class="term-example">
+                            <p><strong>РП пример:</strong> «У меня в бардачке лежит ФЛ — пачка чипсов и газета. Их нельзя продать, но можно съесть ради отыгровки».</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 14. ХД -->
+                <div class="term-card">
+                    <div class="term-header">
+                        <span class="term-abbr">ХД</span>
+                        <span class="term-name">Холодный Дроп</span>
+                        <span class="zone-badge badge-default">Механика</span>
+                    </div>
+                    <div class="term-body">
+                        <div class="term-desc">Брошенный предмет исчезает через 2 минуты, если никто не подобрал. Чтобы сервер не лагал.</div>
+                        <div class="term-example">
+                            <p><strong>РП пример:</strong> «Уронил ключи на асфальт. Через 120 секунд они испарятся. Либо подбирай сразу, либо прощай».</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Быстрая таблица для шпаргалки -->
+            <div class="quick-ref">
+                <h3><i class="fas fa-table-list"></i> Шпаргалка по терминам (F1)</h3>
+                <table class="ref-table">
+                    <thead>
+                        <tr><th>Термин</th><th>Расшифровка</th><th>Когда использовать</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="term-code">ЗЗ</td><td>Зеленая Зона</td><td>Не убивать, безопасная территория</td></tr>
+                        <tr><td class="term-code">ОЗ</td><td>Оранжевая Зона</td><td>Драться только по РП-причине</td></tr>
+                        <tr><td class="term-code">КЗ</td><td>Красная Зона</td><td>Валить всех без слов</td></tr>
+                        <tr><td class="term-code">ДМ</td><td>Дикий Матч</td><td>Жалоба на беспричинку</td></tr>
+                        <tr><td class="term-code">ДМ-токен</td><td>Денежный Маркер</td><td>Платить и получать V$</td></tr>
+                        <tr><td class="term-code">ПГ</td><td>Переносной Груз</td><td>Ограничение инвентаря (кг)</td></tr>
+                        <tr><td class="term-code">АКГ</td><td>Архивный Криминальный Груз</td><td>Нелегальный лут (только через дилера)</td></tr>
+                        <tr><td class="term-code">ЗК</td><td>Зеленая Карта</td><td>Статус честного игрока</td></tr>
+                        <tr><td class="term-code">ЧМ</td><td>Черная Метка</td><td>Статус «в розыске»</td></tr>
+                        <tr><td class="term-code">СУ</td><td>Слепая Удача</td><td>Рандомный лут из ящиков</td></tr>
+                        <tr><td class="term-code">РГ</td><td>Ручной Геймплей</td><td>Отыгровка действий через /me</td></tr>
+                        <tr><td class="term-code">ВЗ</td><td>Визуальный Якорь</td><td>Смотреть на цель для взаимодействия</td></tr>
+                        <tr><td class="term-code">ФЛ</td><td>Фейковый Лут</td><td>Текстовые предметы (не в инвентаре)</td></tr>
+                        <tr><td class="term-code">ХД</td><td>Холодный Дроп</td><td>Исчезновение вещей через 2 минуты</td></tr>
+                    </tbody>
+                </table>
+                <p style="color: var(--gray); margin-top: 1rem; font-size: 0.85rem; text-align: center;"><i class="fas fa-info-circle"></i> Незнание терминов не освобождает от наказания. Уважай зоны и статусы.</p>
+            </div>
+
+            <!-- Дополнительная заметка -->
+            <div style="background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(0, 255, 255, 0.05)); border-radius: 16px; padding: 2rem; margin-top: 2rem; text-align: center;">
+                <i class="fas fa-book-open" style="font-size: 2rem; color: var(--accent); margin-bottom: 1rem; display: inline-block;"></i>
+                <h3 style="font-size: 1.5rem; margin-bottom: 0.8rem;">Освоил термины?</h3>
+                <p style="color: var(--gray); max-width: 600px; margin: 0 auto 1.5rem;">Теперь ты говоришь на языке VisualVertexRP. Используй сленг, чтобы глубже погрузиться в отыгровку и избежать штрафов.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="rules.html" class="btn"><i class="fas fa-gavel"></i> Правила сервера</a>
+                    <a href="how-to-play.html" class="btn"><i class="fas fa-gamepad"></i> Как начать играть</a>
+                    <a href="faq.html" class="btn"><i class="fas fa-question-circle"></i> FAQ</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="index.html" class="logo">
+                        <div class="logo-icon">VV</div>
+                        <div class="logo-text">VisualVertexRP</div>
+                    </a>
+                    <p style="color: var(--gray); margin-top: 1.5rem; line-height: 1.6;">Уникальный Minecraft RolePlay сервер с глубокой экономикой, политикой и активным сообществом. Знай термины — уважай игру.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>Навигация</h3>
+                        <ul>
+                            <li><a href="index.html">Главная</a></li>
+                            <li><a href="how-to-play.html">Как играть</a></li>
+                            <li><a href="rules.html">Правила</a></li>
+                            <li><a href="faq.html">FAQ</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Поддержка</h3>
+                        <ul>
+                            <li><a href="tech-support.html">Техническая помощь</a></li>
+                            <li><a href="terminology.html">Терминология</a></li>
+                            <li><a href="index.html#premium">Купить Проходку</a></li>
+                                                    <ul>
+                            <li><a href="https://visualvertex.forumes.ru/" target="_blank">Форум</a></li>                        
+                        </ul>
+                    </div>
+                </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2025 VisualVertexRP. Все права защищены.</p>
+                <p style="margin-top: 0.5rem; font-size: 0.85rem;">Minecraft является товарным знаком Mojang AB. Данный проект не аффилирован с Mojang или Microsoft.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Подсветка активной страницы в навигации
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

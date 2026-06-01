@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Правила экономики | VisualVertexRP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #8a2be2;
+            --secondary: #4169e1;
+            --dark: #0d0a1a;
+            --darker: #070510;
+            --light: #f0f4ff;
+            --accent: #00ffff;
+            --gray: #8a8ca5;
+            --warning: #ff6b6b;
+            --success: #51cf66;
+            --gold: #ffd700;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(13, 10, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+            padding: 1.2rem 0;
+            position: sticky;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a.active {
+            color: var(--accent);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.4);
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 6rem 0 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(0, 255, 255, 0.05));
+            margin-bottom: 3rem;
+        }
+
+        .page-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--gold), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Content */
+        .content-section {
+            padding: 2rem 0 4rem;
+        }
+
+        .rules-warning {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.05));
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .warning-icon {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .rules-warning h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+
+        .rules-warning p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--light);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--accent));
+            border-radius: 2px;
+        }
+
+        .rules-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .rule-category {
+            background: rgba(13, 10, 26, 0.7);
+            border-radius: 15px;
+            padding: 2.5rem;
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            transition: all 0.3s;
+        }
+
+        .rule-category:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .category-icon {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            width: 70px;
+            height: 70px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .category-title {
+            font-size: 2rem;
+            color: var(--accent);
+        }
+
+        .rules-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .rule-item {
+            display: flex;
+            gap: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(138, 43, 226, 0.1);
+        }
+
+        .rule-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .rule-number {
+            background: rgba(138, 43, 226, 0.2);
+            color: var(--accent);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .rule-content h4 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            color: var(--light);
+        }
+
+        .rule-content p {
+            color: var(--gray);
+            line-height: 1.7;
+            margin-bottom: 0.5rem;
+        }
+
+        .rule-content small {
+            color: #6c757d;
+            font-size: 0.85rem;
+        }
+
+        .punishment {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+
+        .punishment.warning {
+            background-color: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+            border: 1px solid rgba(255, 193, 7, 0.3);
+        }
+
+        .punishment.ban {
+            background-color: rgba(220, 53, 69, 0.2);
+            color: #dc3545;
+            border: 1px solid rgba(220, 53, 69, 0.3);
+        }
+
+        .punishment.mute {
+            background-color: rgba(108, 117, 125, 0.2);
+            color: #6c757d;
+            border: 1px solid rgba(108, 117, 125, 0.3);
+        }
+
+        .punishment.success {
+            background-color: rgba(81, 207, 102, 0.2);
+            color: var(--success);
+            border: 1px solid rgba(81, 207, 102, 0.3);
+        }
+
+        /* Таблица исключений */
+        .exceptions-table {
+            background: rgba(13, 10, 26, 0.7);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .exceptions-table h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--gold);
+        }
+
+        .exceptions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .exception-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .exception-item:last-child {
+            border-bottom: none;
+        }
+
+        .exception-action {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .exception-status {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .exception-status.yes {
+            color: var(--success);
+        }
+
+        .exception-status.no {
+            color: var(--warning);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--darker);
+            padding: 4rem 0 2rem;
+            border-top: 1px solid rgba(138, 43, 226, 0.3);
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .footer-links {
+            flex: 2;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-column h3 {
+            color: var(--light);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            text-align: center;
+            color: var(--gray);
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .category-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .rule-category {
+                padding: 1.5rem;
+            }
+            
+            .rule-item {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">VV</div>
+                    <div class="logo-text">VisualVertexRP</div>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="how-to-play.html">Как играть</a></li>
+                    <li><a href="rules.html">Правила</a></li>
+                    <li><a href="economy-rules.html" class="active">Экономика</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="tech-support.html">Поддержка</a></li>
+                </ul>
+                <a href="index.html#home" class="btn">На главную</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">💰 Правила экономики</h1>
+            <p class="page-subtitle">Официальные правила экономической системы сервера VisualVertexRP. Алмазы, изумруды, коины и ферма опыта.</p>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <div class="container">
+        <section class="content-section">
+            <div class="rules-warning">
+                <div class="warning-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h3>⚠️ ВАЖНАЯ ИНФОРМАЦИЯ</h3>
+                <p>Нарушение экономических правил карается баном. Незнание правил не освобождает от ответственности. Администрация в праве забанить за любые действия, нарушающие баланс экономики.</p>
+            </div>
+
+            <h2 class="section-title">📊 Основные валюты сервера</h2>
+            
+            <div class="rules-container">
+                <!-- 1️⃣ АЛМАЗЫ -->
+                <div class="rule-category">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                        <div class="category-title">1️⃣ АЛМАЗЫ — Основная валюта шахтёров 💎</div>
+                    </div>
+                    
+                    <div class="rules-list">
+                        <div class="rule-item">
+                            <div class="rule-number">📍</div>
+                            <div class="rule-content">
+                                <h4>Где хранятся</h4>
+                                <p>Инвентарь, сундуки.</p>
+                            </div>
+                        </div>
+                        <div class="rule-item">
+                            <div class="rule-number">⛏️</div>
+                            <div class="rule-content">
+                                <h4>Как получить</h4>
+                                <p>Найти в шахте, купить у игрока, получить с сайта.</p>
+                            </div>
+                        </div>
+                        <div class="rule-item">
+                            <div class="rule-number">🔨</div>
+                            <div class="rule-content">
+                                <h4>Крафт</h4>
+                                <p>Алмазную броню, оружие и инструменты можно крафтить из руды. Это не нарушает экономику.</p>
+                                <span class="punishment success">✅ РАЗРЕШЕНО</span>
+                            </div>
+                        </div>
+                        <div class="rule-item">
+                            <div class="rule-number">🚫</div>
+                            <div class="rule-content">
+                                <h4>Запрещено</h4>
+                                <p>Использовать баги, дупликаты, схемы обмана.</p>
+                                <span class="punishment ban">Бан 7-30 дней</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2️⃣ ИЗУМРУДЫ -->
+                <div class="rule-category">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <div class="category-title">2️⃣ ИЗУМРУДЫ — Торговая валюта 🟢</div>
+                    </div>
+                    
+                    <div class="rules-list">
+                        <div class="rule-item">
+                            <div class="rule-number">❌</div>
+                            <div class="rule-content">
+                                <h4>Изумрудной брони, мечей или кирок в Minecraft не существует</h4>
+                                <p>Крафтить их невозможно.</p>
+                            </div>
+                        </div>
+                        <div class="rule-item">
+                            <div class="rule-number">🏪</div>
+                            <div class="rule-content">
+                                <h4>Назначение</h4>
+                                <p>Торговля с жителями, покупка зелий, книг, еды в магазинах сервера.</p>
+                            </div>
+                        </div>
+                        <div class="rule-item">
+                            <div class="rule-number">🚫</div>
+                            <div class="rule-content">
+                                <h4>Запрещено</h4>
+                                <p>Баги с жителями, бесконечный обмен.</p>
+                                <span class="punishment ban">Бан 3-14 дней</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3️⃣ КОИНЫ -->
+                <div class="rule-category">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <div class="category-title">3️⃣ КОИНЫ (ЧИЗКОЙНЫ) — Сайтовая валюта 💰</div>
+                    </div>
+                    
+                    <div class="rules-list">
+                        <div class="rule-item">
+                            <div class="rule-number">💻</div>
+                            <div class="rule-content">
+                                <h4>Где хранятся</h4>
+                                <p>Только на официальном сайте, в личном кабинете.</p>
+                            </div>
+                        </div>
+                        <div class="rule-item">
+                            <div class="rule-number">💳</div>
+                            <div class="rule-content">
+                                <h4>Как получить</h4>
+                                <p>Покупка за реальные деньги.</p>
+                            </div>
+                        </div>
+                        <div class="rule-item">
+                            <div class="rule-number">🎯</div>
+                            <div class="rule-content">
+                                <h4>На что тратить</h4>
+                                <p>В игровом шопе (/shop, /market) — алмазная броня, оружие, ресурсы. У других игроков за коины. Доступ к ферме опыта.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4️⃣ ФЕРМА ОПЫТА -->
+                <div class="rule-category">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-star-of-life"></i>
+                        </div>
+                        <div class="category-title">4️⃣ ФЕРМА ОПЫТА МОБОВ — Услуга с телепортом по заявке 🔥</div>
+                    </div>
+                    
+                    <div class="rules-list">
+                        <div class="rule-item">
+                            <div class="rule-number">1</div>
+                            <div class="rule-content">
+                                <h4>Пишешь в глобальный чат</h4>
+                                <p>Например: «Ищу ферму опыта, готов заплатить».</p>
+                            </div>
+                        </div>
+                        <div class="rule-item">
+                            <div class="rule-number">2</div>
+                            <div class="rule-content">
+                                <h4>Владелец фермы отвечает тебе в чате</h4>
+                                <p>Называет свою цену (алмазы, изумруды или коины — сколько захочет).</p>
+                            </div>
+                        </div>
+                        <div class="rule-item">
+                            <div class="rule-number">3</div>
+                            <div class="rule-content">
+                                <h4>Вы договариваетесь о сумме</h4>
+                                <p>Ограничения по цене нет — владелец ставит цену сам.</p>
+                            </div>
+                        </div>
+                        <div class="rule-item">
+                            <div class="rule-number">4</div>
+                            <div class="rule-content">
+                                <h4>Владелец кидает тебе заявку на телепорт</h4>
+                                <p>Через плагин /tpa или /call.</p>
+                            </div>
+                        </div>
+                        <div class="rule-item">
+                            <div class="rule-number">5</div>
+                            <div class="rule-content">
+                                <h4>Ты телепортируешься к нему на ферму</h4>
+                                <p>Передаёшь деньги лично в руки (бросаешь на землю или через /pay).</p>
+                            </div>
+                        </div>
+                        <div class="rule-item">
+                            <div class="rule-number">6</div>
+                            <div class="rule-content">
+                                <h4>После оплаты ты имеешь право фармить опыт столько, сколько тебе нужно</h4>
+                                <p>Никаких жёстких лимитов по времени, если не оговорено иное. Если владелец хочет ограничить время — он обязан предупредить ДО телепорта (например: «Полчаса за 10 алмазов»).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Наказания -->
+                <div class="rule-category">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-gavel"></i>
+                        </div>
+                        <div class="category-title">⚖️ За что можно наказать</div>
+                    </div>
+                    
+                    <div class="rules-list">
+                        <div class="rule-item">
+                            <div class="rule-number">🚫</div>
+                            <div class="rule-content">
+                                <h4>Игрок не заплатил, но начал фармить</h4>
+                                <span class="punishment ban">Бан фермы на 3 дня</span>
+                            </div>
+                        </div>
+                        <div class="rule-item">
+                            <div class="rule-number">💔</div>
+                            <div class="rule-content">
+                                <h4>Игрок сломал механизмы фермы</h4>
+                                <span class="punishment ban">Штраф (50 алмазов) или бан</span>
+                            </div>
+                        </div>
+                        <div class="rule-item">
+                            <div class="rule-number">💰</div>
+                            <div class="rule-content">
+                                <h4>Владелец взял деньги, но не дал фармить</h4>
+                                <span class="punishment ban">Лишение права строить фермы навсегда</span>
+                            </div>
+                        </div>
+                        <div class="rule-item">
+                            <div class="rule-number">💡</div>
+                            <div class="rule-content">
+                                <h4>Важно</h4>
+                                <p>Владелец сам называет цену. Если она тебе не нравится — ищи другую ферму.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ГЛАВНЫЕ ИСКЛЮЧЕНИЯ -->
+            <div class="exceptions-table">
+                <h3><i class="fas fa-check-circle"></i> ГЛАВНЫЕ ИСКЛЮЧЕНИЯ</h3>
+                <div class="exceptions-grid">
+                    <div class="exception-item">
+                        <span class="exception-action">Крафтить алмазную броню/оружие</span>
+                        <span class="exception-status yes">✅ ДА</span>
+                    </div>
+                    <div class="exception-item">
+                        <span class="exception-action">Крафтить изумрудную броню/оружие</span>
+                        <span class="exception-status no">❌ НЕТ (их нет в игре)</span>
+                    </div>
+                    <div class="exception-item">
+                        <span class="exception-action">Купить броню за коины в шопе</span>
+                        <span class="exception-status yes">✅ ДА</span>
+                    </div>
+                    <div class="exception-item">
+                        <span class="exception-action">Фармить на ферме без оплаты</span>
+                        <span class="exception-status no">❌ НЕТ (бан)</span>
+                    </div>
+                    <div class="exception-item">
+                        <span class="exception-action">Владельцу ставить любую цену</span>
+                        <span class="exception-status yes">✅ ДА</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 4rem; padding: 2rem; background: rgba(81, 207, 102, 0.1); border-radius: 15px; border: 1px solid rgba(81, 207, 102, 0.3);">
+                <h3 style="color: var(--success); margin-bottom: 1rem; font-size: 1.5rem;">
+                    <i class="fas fa-check-circle"></i> Последнее обновление правил экономики
+                </h3>
+                <p style="color: var(--gray);">Правила были обновлены 15 апреля 2025 года. Администрация оставляет за собой право вносить изменения в правила без предварительного уведомления.</p>
+                <p style="color: var(--gray); margin-top: 1rem;">По всем вопросам, связанным с экономикой и наказаниями, обращайтесь к администрации через Форум сервера или используйте команду /help в игре на <strong>visualvertexrp.wellduck.org</strong>.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="index.html" class="logo">
+                        <div class="logo-icon">VV</div>
+                        <div class="logo-text">VisualVertexRP</div>
+                    </a>
+                    <p style="color: var(--gray); margin-top: 1.5rem; line-height: 1.6;">Уникальный Minecraft RolePlay сервер с глубокой экономикой, политикой и активным сообществом. Подключайтесь к visualvertexrp.wellduck.org</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>Навигация</h3>
+                        <ul>
+                            <li><a href="index.html">Главная</a></li>
+                            <li><a href="how-to-play.html">Как играть</a></li>
+                            <li><a href="rules.html">Правила</a></li>
+                            <li><a href="economy-rules.html">Экономика</a></li>
+                            <li><a href="faq.html">Частые вопросы</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3>Поддержка</h3>
+                        <ul>
+                            <li><a href="how-to-play.html">Как начать играть</a></li>
+                            <li><a href="rules.html">Правила сервера</a></li>
+                            <li><a href="economy-rules.html">Правила экономики</a></li>
+                            <li><a href="faq.html">Частые вопросы</a></li>
+                            <li><a href="tech-support.html">Техническая помощь</a></li>
+                                                    <ul>
+                            <li><a href="https://visualvertex.forumes.ru/" target="_blank">Форум</a></li>                        
+                        </ul>
+                    </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2025 VisualVertexRP. Все права защищены.</p>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem;">Minecraft является товарным знаком Mojang AB. Данный проект не аффилирован с Mojang или Microsoft. Адрес сервера: visualvertexrp.wellduck.org</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Highlight current page in navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            navLinks.forEach(link => {
+                const linkPage = link.getAttribute('href');
+                if (linkPage === currentPage) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

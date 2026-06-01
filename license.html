@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Лицензионное соглашение | VisualVertexRP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #8a2be2;
+            --secondary: #4169e1;
+            --dark: #0d0a1a;
+            --darker: #070510;
+            --light: #f0f4ff;
+            --accent: #00ffff;
+            --gray: #8a8ca5;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: rgba(13, 10, 26, 0.98);
+            border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            font-family: 'Courier New', 'Fira Code', monospace;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background: var(--darker);
+            z-index: 1001;
+            padding: 80px 30px 30px;
+            transition: right 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+        }
+
+        @media (max-width: 767px) {
+            .nav-links, .desktop-btn {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+
+        /* Основной контент */
+        .license-hero {
+            padding: 120px 0 60px;
+            background: linear-gradient(135deg, rgba(138,43,226,0.1), rgba(0,255,255,0.05));
+        }
+
+        .license-hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .license-hero p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 800px;
+        }
+
+        .license-content {
+            padding: 60px 0;
+        }
+
+        .license-card {
+            background: rgba(13, 10, 26, 0.6);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .license-card-header {
+            background: linear-gradient(90deg, rgba(138,43,226,0.2), rgba(0,255,255,0.1));
+            padding: 20px 30px;
+            border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+        }
+
+        .license-card-header h2 {
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .license-card-header h2 i {
+            color: var(--accent);
+            font-size: 1.8rem;
+        }
+
+        .license-card-body {
+            padding: 30px;
+        }
+
+        .license-card-body h3 {
+            color: var(--accent);
+            margin: 20px 0 15px 0;
+            font-size: 1.3rem;
+        }
+
+        .license-card-body h3:first-of-type {
+            margin-top: 0;
+        }
+
+        .license-card-body p {
+            line-height: 1.7;
+            margin-bottom: 15px;
+            color: #d0d4ff;
+        }
+
+        .license-card-body ul, .license-card-body ol {
+            margin: 15px 0 20px 30px;
+            line-height: 1.7;
+        }
+
+        .license-card-body li {
+            margin-bottom: 8px;
+            color: #d0d4ff;
+        }
+
+        .license-badge {
+            display: inline-block;
+            background: rgba(0, 255, 255, 0.15);
+            border: 1px solid var(--accent);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-right: 10px;
+        }
+
+        .legal-note {
+            background: rgba(138, 43, 226, 0.15);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .footer-links-section {
+            margin-top: 40px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links-section a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        footer {
+            background-color: var(--darker);
+            padding: 40px 0 20px;
+            border-top: 1px solid rgba(138, 43, 226, 0.3);
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .copyright {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .license-card-header h2 { font-size: 1.3rem; }
+            .license-card-body { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <img class="logo-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%238a2be2'/%3E%3Cstop offset='100%25' stop-color='%2300ffff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='40' height='40' rx='8' fill='url(%23grad)'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='white' font-size='20' font-family='Arial, sans-serif' font-weight='bold'%3EVV%3C/text%3E%3C/svg%3E" alt="VisualVertexRP">
+                    <div class="logo-text">VisualVertexRP</div>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html#home">Главная</a></li>
+                    <li><a href="index.html#features">Особенности</a></li>
+                    <li><a href="index.html#premium">Проходка</a></li>
+                    <li><a href="license.html">Лицензия</a></li>
+                </ul>
+                <a href="https://pay.cloudtips.ru/p/0df70dac" target="_blank" class="btn desktop-btn">Купить Проходку</a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <button id="mobileMenuClose" style="background:none; border:none; color:white; font-size:1.8rem; position:absolute; top:20px; right:20px;"><i class="fas fa-times"></i></button>
+        <ul style="list-style:none;">
+            <li style="margin-bottom:15px;"><a href="index.html#home" style="color:white; text-decoration:none; font-size:1.2rem;">Главная</a></li>
+            <li style="margin-bottom:15px;"><a href="index.html#features" style="color:white; text-decoration:none; font-size:1.2rem;">Особенности</a></li>
+            <li style="margin-bottom:15px;"><a href="index.html#premium" style="color:white; text-decoration:none; font-size:1.2rem;">Проходка</a></li>
+            <li style="margin-bottom:15px;"><a href="license.html" style="color:white; text-decoration:none; font-size:1.2rem;">Лицензия</a></li>
+        </ul>
+        <a href="https://pay.cloudtips.ru/p/0df70dac" target="_blank" class="btn" style="width:100%; text-align:center; margin-top:20px;">Купить Проходку</a>
+    </div>
+
+    <section class="license-hero">
+        <div class="container">
+            <h1><i class="fas fa-file-contract"></i> Лицензионное соглашение</h1>
+            <p>Официальные правовые документы VisualVertexRP. Использование сайта, форума и игрового сервера регулируется настоящим соглашением в соответствии с законодательством Российской Федерации.</p>
+            <p style="margin-top:15px;"><span class="license-badge"><i class="fas fa-balance-scale"></i> Версия 2.0</span><span class="license-badge"><i class="fas fa-calendar-alt"></i> Актуально: 29 апреля 2026 г.</span></p>
+        </div>
+    </section>
+
+    <div class="license-content">
+        <div class="container">
+            <!-- Блок 1: Лицензия на сайт и форум -->
+            <div class="license-card">
+                <div class="license-card-header">
+                    <h2><i class="fas fa-globe"></i> 1. Лицензия на использование Сайта и Форума</h2>
+                </div>
+                <div class="license-card-body">
+                    <p><strong>1.1.</strong> Официальный сайт VisualVertexRP (далее — «Сайт») и форум (далее — «Форум») являются интеллектуальной собственностью Администрации проекта. Все авторские права на дизайн, тексты, логотипы, графические элементы и программный код защищены законодательством РФ.</p>
+                    <p><strong>1.2.</strong> Пользователям предоставляется <strong>ограниченная, неисключительная лицензия</strong> на доступ к Сайту и Форуму в личных, некоммерческих целях. Запрещается:</p>
+                    <ul>
+                        <li>Копирование, модификация или распространение любых материалов Сайта без письменного разрешения Администрации;</li>
+                        <li>Использование автоматизированных скриптов (парсинг, боты) для сбора данных с Сайта или Форума;</li>
+                        <li>Размещение на Форуме запрещённой информации (экстремистской, оскорбительной, нарушающей законодательство РФ).</li>
+                    </ul>
+                    <p><strong>1.3.</strong> Форум работает на основе лицензионного движка. Права на исходное программное обеспечение принадлежат его правообладателям. Администрация не несёт ответственности за содержание сообщений пользователей, но оставляет за собой право удалять нарушающий контент в соответствии с ФЗ «Об информации, информационных технологиях и о защите информации».</p>
+                    <div class="legal-note">
+                        <i class="fas fa-gavel" style="color: var(--accent); margin-right: 10px;"></i>
+                        <strong>Правовая основа:</strong> Гражданский кодекс РФ (часть 4), Федеральный закон № 149-ФЗ «Об информации, информационных технологиях и о защите информации».
+                    </div>
+                </div>
+            </div>
+
+            <!-- Блок 2: Лицензия на Minecraft сервер (исправленная версия) -->
+<div class="license-card">
+    <div class="license-card-header">
+        <h2><i class="fas fa-cube"></i> 2. Лицензия на игровой сервер Minecraft</h2>
+    </div>
+    <div class="license-card-body">
+        <p><strong>2.1.</strong> Игровой сервер VisualVertexRP является некоммерческим проектом и не связан с компанией Mojang AB или Microsoft. Minecraft является товарным знаком Mojang AB, используемым в соответствии с <strong>Minecraft End User License Agreement (EULA)</strong> и <strong>Brand and Asset Usage Guidelines</strong>.</p>
+        <p><strong>2.2.</strong> Администрация сервера гарантирует соблюдение официальной EULA Minecraft в части коммерческого использования и распространения контента.</p>
+        
+        <p><strong>2.3.</strong> Сервер открыт для всех игроков вне зависимости от типа приобретённой версии игры. Доступ на сервер возможен как с лицензионной версией Minecraft Java Edition, так и с использованием сторонних лаунчеров («пиратских» клиентов), поскольку это не нарушает условия использования платформы и направлено на расширение сообщества.</p>
+        
+        <p><strong>2.4.</strong> При этом Администрация рекомендует использовать лицензионную версию игры, так как она обеспечивает большую стабильность, безопасность и доступ ко всем официальным функциям Minecraft. Вопросы технической поддержки для нелицензионных клиентов могут решаться в индивидуальном порядке.</p>
+        
+        <p><strong>2.5.</strong> Все игровые материалы (постройки, скины, текстуры), созданные игроками на сервере, остаются их интеллектуальной собственностью, однако Администрация получает неисключительное право на их демонстрацию в promotional-материалах.</p>
+        
+        <div class="legal-note">
+            <i class="fab fa-minecraft" style="color: #5f9c43; margin-right: 10px;"></i>
+            <strong>Важно:</strong> Сервер не распространяет пиратские версии игры, не требует взлома и не нарушает авторские права. Игроки самостоятельно выбирают способ доступа к игре. Администрация не несёт ответственности за проблемы, связанные с использованием нелицензионного программного обеспечения.
+        </div>
+    </div>
+</div>
+
+            <!-- Блок 3: Пункты по законодательству РФ -->
+            <div class="license-card">
+                <div class="license-card-header">
+                    <h2><i class="fas fa-landmark"></i> 3. Пункты в соответствии с законодательством РФ</h2>
+                </div>
+                <div class="license-card-body">
+                    <h3><i class="fas fa-user-secret"></i> 3.1. Обработка персональных данных (ФЗ-152)</h3>
+                    <p>При регистрации на Форуме или на Сайте Администрация может собирать следующие данные: IP-адрес, никнейм, адрес электронной почты. Все данные обрабатываются с согласия пользователя, хранятся на серверах, расположенных на территории РФ, и не передаются третьим лицам, кроме случаев, предусмотренных законом. Пользователь вправе запросить удаление своих данных, направив заявление на почту drakon.karol@yandex.ru.</p>
+                    
+                    <h3><i class="fas fa-shopping-cart"></i> 3.2. Правила оказания платных услуг (ЗоЗПП)</h3>
+                    <p>Платные «Проходки» и донаты являются <strong>добровольными пожертвованиями</strong> с возвратом согласно ст. 32 Закона РФ «О защите прав потребителей». Возврат средств возможен в течение 14 дней при условии, что услуга (доступ к серверу) не была оказана в полном объёме. Для возврата необходимо обратиться в техподдержку с чеком об оплате. Администрация вправе отказать в возврате, если игрок получил услугу (например, игровые преимущества) или нарушал правила сервера.</p>
+                    
+                    <h3><i class="fas fa-ban"></i> 3.3. Ответственность за нарушения</h3>
+                    <p>За нарушение правил сервера, форума или лицензионного соглашения Администрация вправе применить санкции: предупреждение, временная или постоянная блокировка аккаунта, удаление сообщений, ограничение доступа к сайту. Все действия обжалуются через обращение в техническую поддержку.</p>
+                    
+                    <h3><i class="fas fa-file-alt"></i> 3.4. Уведомления об изменениях</h3>
+                    <p>Администрация обязуется уведомлять пользователей об изменении лицензионного соглашения путём публикации новой версии на Сайте. Использование сервера, форума или сайта после опубликования изменений означает согласие с новой редакцией.</p>
+                    
+                    <h3><i class="fas fa-gavel"></i> 3.5. Применимое право и судебная юрисдикция</h3>
+                    <p>Настоящее соглашение регулируется законодательством Российской Федерации. Все споры подлежат рассмотрению в суде по месту нахождения Администрации проекта (г. Мурманск, Российская Федерация).</p>
+                    
+                    <div class="legal-note">
+                        <i class="fas fa-envelope"></i> <strong>Контактные данные Администрации для юридически значимых обращений:</strong><br>
+                        E-mail: drakon.karol@yandex.ru | Telegram: @VisualVertexbot<br>
+                        Юридический адрес (для корреспонденции): 101000, г. Мурманск, ул. ...., д. . (проект работает онлайн).
+                    </div>
+                </div>
+            </div>
+
+            <!-- Блок 4: Дополнительные условия и акцепт -->
+            <div class="license-card">
+                <div class="license-card-header">
+                    <h2><i class="fas fa-check-double"></i> 4. Акцепт лицензионного соглашения</h2>
+                </div>
+                <div class="license-card-body">
+                    <p>Нажимая «Зарегистрироваться» на Форуме, входя на игровой сервер или используя Сайт, вы автоматически принимаете условия настоящей Лицензии, Правил сервера и Политики обработки персональных данных.</p>
+                    <p>Если вы не согласны с каким-либо пунктом, вам запрещается использовать ресурсы VisualVertexRP. Лица, не достигшие 16 лет, обязаны получить согласие родителей или законных представителей на обработку персональных данных и ознакомиться с условиями соглашения вместе с ними.</p>
+                    <p><strong>Дата последнего обновления:</strong> 29 апреля 2026 года. Предыдущие версии утрачивают силу с момента публикации текущей редакции.</p>
+                </div>
+            </div>
+
+            <!-- Блок 5: Ссылки на официальные лицензии -->
+            <div class="license-card">
+                <div class="license-card-header">
+                    <h2><i class="fas fa-link"></i> 5. Официальные лицензии и внешние источники</h2>
+                </div>
+                <div class="license-card-body">
+                    <p>Ниже приведены ссылки на официальные лицензии используемого программного обеспечения и правовые документы платформ, с которыми взаимодействует проект:</p>
+                    <ul>
+                        <li><i class="fab fa-minecraft"></i> <strong>Minecraft EULA</strong> — <a href="https://www.minecraft.net/ru-ru/terms" target="_blank" style="color: var(--accent);">https://www.minecraft.net/ru-ru/terms</a> — определяет правила использования игры и серверов.</li>
+                        <li><i class="fas fa-crown"></i> <strong>CloudTips (платёжная система)</strong> — Политика обработки данных: <a href="https://cloudtips.ru/terms" target="_blank" style="color: var(--accent);">https://cloudtips.ru/terms</a> — все транзакции защищены по ФЗ-161 «О национальной платёжной системе».</li>
+                        <li><i class="fas fa-users"></i> <strong>Форумное ПО (phpBB / XenForo)</strong> — лицензия <a href="https://www.gnu.org/licenses/gpl-2.0.html" target="_blank" style="color: var(--accent);">GPL v2</a> / коммерческая лицензия в зависимости от используемого движка.</li>
+                        <li><i class="fab fa-telegram"></i> <strong>Telegram API Terms</strong> — условия использования ботов и связи с мессенджером.</li>
+                    </ul>
+                    <p style="margin-top: 20px;">Любое цитирование материалов VisualVertexRP допускается только с обязательной активной гиперссылкой на источник. Коммерческое использование материалов без согласования с Администрацией запрещено.</p>
+                </div>
+            </div>
+
+            <div class="footer-links-section">
+                <a href="index.html"><i class="fas fa-home"></i> Вернуться на главную</a>
+                <a href="rules.html"><i class="fas fa-book"></i> Правила сервера</a>
+                <a href="tech-support.html"><i class="fas fa-headset"></i> Техническая поддержка</a>
+                <a href="https://visualvertex.forumes.ru/" target="_blank"><i class="fas fa-comments"></i> Официальный форум</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                <p>© 2025-2026 VisualVertexRP. Все права защищены.</p>
+                <p style="margin-top: 8px; font-size: 0.8rem;">Minecraft является товарным знаком Mojang AB. VisualVertexRP не аффилирован с Mojang AB или Microsoft.</p>
+                <p style="margin-top: 12px;">Данный документ является официальным лицензионным соглашением и действует на территории Российской Федерации.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        const menuBtn = document.getElementById('mobileMenuBtn');
+        const closeBtn = document.getElementById('mobileMenuClose');
+        const overlay = document.getElementById('mobileMenuOverlay');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        function openMenu() {
+            mobileMenu.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            mobileMenu.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        if (menuBtn) menuBtn.addEventListener('click', openMenu);
+        if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+        if (overlay) overlay.addEventListener('click', closeMenu);
+
+        // Закрытие меню при клике на ссылку
+        document.querySelectorAll('.mobile-menu a, .mobile-menu .btn').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+    </script>
+</body>
+</html>
