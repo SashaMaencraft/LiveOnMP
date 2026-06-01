@@ -1,5 +1,7 @@
 # ⛔ VisualVertexRP — ЗАКРЫТЫЙ ПРОЕКТ
 
+Сайт: https://sashamaencraft.github.io/VisualVertexRP/
+
 **Этот репозиторий создан ТОЛЬКО для демонстрации. Копирование, модификация, распространение ЗАПРЕЩЕНЫ.**
 
 ---
@@ -49,7 +51,7 @@
 
 ## 🔗 Официальные ресурсы
 
-- Сайт: [visualvertexrp.wellduck.org](https://visualvertexrp.wellduck.org)
+- Сайт: [https://sashamaencraft.github.io/VisualVertexRP/)
 - Форум: [visualvertex.forumes.ru](https://visualvertex.forumes.ru)
 - Поддержка: @VisualVertexbot (Telegram)
 
