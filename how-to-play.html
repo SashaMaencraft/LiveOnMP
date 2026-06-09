@@ -24,22 +24,36 @@
         }
 
         body {
-            background-color: var(--dark);
+            background: radial-gradient(circle at 20% 30%, rgba(138, 43, 226, 0.12), var(--dark) 70%);
             color: var(--light);
             min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDQwIDQwIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxIiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDMiLz48L3N2Zz4=');
+            pointer-events: none;
+            z-index: 0;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Header */
         header {
-            background-color: rgba(13, 10, 26, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+            background: rgba(13, 10, 26, 0.65);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(138, 43, 226, 0.25);
             padding: 1.2rem 0;
             position: sticky;
             width: 100%;
@@ -64,13 +78,14 @@
             width: 40px;
             height: 40px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 8px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
             font-size: 1.2rem;
             color: white;
+            box-shadow: 0 4px 12px rgba(138, 43, 226, 0.3);
         }
 
         .logo-text {
@@ -100,6 +115,7 @@
 
         .nav-links a:hover {
             color: var(--accent);
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
         }
 
         .nav-links a.active {
@@ -118,24 +134,26 @@
 
         .btn {
             display: inline-block;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background: rgba(138, 43, 226, 0.2);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(138, 43, 226, 0.5);
             color: white;
             padding: 0.8rem 1.8rem;
-            border-radius: 10px;
+            border-radius: 12px;
             text-decoration: none;
             font-weight: 700;
             font-size: 1.1rem;
             transition: all 0.3s;
-            border: none;
             cursor: pointer;
         }
 
         .btn:hover {
+            background: rgba(138, 43, 226, 0.4);
+            border-color: var(--accent);
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.4);
+            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.3);
         }
 
-        /* Page Header */
         .page-header {
             padding: 6rem 0 3rem;
             text-align: center;
@@ -154,12 +172,11 @@
 
         .page-subtitle {
             font-size: 1.2rem;
-            color: var(--gray);
+            color: rgba(240, 244, 255, 0.8);
             max-width: 700px;
             margin: 0 auto;
         }
 
-        /* Content */
         .content-section {
             padding: 2rem 0 4rem;
         }
@@ -194,20 +211,23 @@
             display: flex;
             gap: 2rem;
             align-items: flex-start;
-            background: rgba(13, 10, 26, 0.7);
-            border-radius: 15px;
+            background: rgba(13, 10, 26, 0.45);
+            backdrop-filter: blur(16px);
+            border-radius: 20px;
             padding: 2.5rem;
-            border: 1px solid rgba(138, 43, 226, 0.2);
+            border: 1px solid rgba(138, 43, 226, 0.25);
             transition: all 0.3s;
         }
 
         .step:hover {
             border-color: var(--accent);
             transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
 
         .step-number {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.3), rgba(0, 255, 255, 0.15));
+            backdrop-filter: blur(8px);
             color: white;
             width: 60px;
             height: 60px;
@@ -218,6 +238,7 @@
             font-size: 1.8rem;
             font-weight: bold;
             flex-shrink: 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .step-content h3 {
@@ -227,13 +248,13 @@
         }
 
         .step-content p {
-            color: var(--gray);
+            color: rgba(240, 244, 255, 0.75);
             line-height: 1.7;
             margin-bottom: 1.5rem;
         }
 
         .step-content ul {
-            color: var(--gray);
+            color: rgba(240, 244, 255, 0.75);
             margin-left: 1.5rem;
             margin-bottom: 1.5rem;
         }
@@ -244,9 +265,10 @@
         }
 
         .code-block {
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
             border: 1px solid rgba(0, 255, 255, 0.2);
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 1.5rem;
             font-family: 'Courier New', monospace;
             font-size: 1.2rem;
@@ -255,7 +277,6 @@
             overflow-x: auto;
         }
 
-        /* Requirements */
         .requirements-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -264,17 +285,19 @@
         }
 
         .requirement-card {
-            background: rgba(13, 10, 26, 0.7);
-            border-radius: 15px;
+            background: rgba(13, 10, 26, 0.45);
+            backdrop-filter: blur(16px);
+            border-radius: 18px;
             padding: 2rem;
             text-align: center;
-            border: 1px solid rgba(138, 43, 226, 0.2);
+            border: 1px solid rgba(138, 43, 226, 0.25);
             transition: all 0.3s;
         }
 
         .requirement-card:hover {
             border-color: var(--accent);
             transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
         .requirement-icon {
@@ -290,13 +313,13 @@
         }
 
         .requirement-card p {
-            color: var(--gray);
+            color: rgba(240, 244, 255, 0.7);
             line-height: 1.6;
         }
 
-        /* Footer */
         footer {
-            background-color: var(--darker);
+            background: rgba(7, 5, 16, 0.8);
+            backdrop-filter: blur(16px);
             padding: 4rem 0 2rem;
             border-top: 1px solid rgba(138, 43, 226, 0.3);
             margin-top: 4rem;
@@ -366,7 +389,6 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Responsive */
         @media (max-width: 992px) {
             .step {
                 flex-direction: column;
@@ -398,7 +420,6 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="container">
             <nav>
@@ -418,7 +439,6 @@
         </div>
     </header>
 
-    <!-- Page Header -->
     <section class="page-header">
         <div class="container">
             <h1 class="page-title">Как начать играть</h1>
@@ -426,13 +446,11 @@
         </div>
     </section>
 
-    <!-- Content -->
     <div class="container">
         <section class="content-section">
             <h2 class="section-title">Пошаговое руководство</h2>
             
             <div class="steps-container">
-                <!-- Шаг 1 -->
                 <div class="step">
                     <div class="step-number">1</div>
                     <div class="step-content">
@@ -447,7 +465,6 @@
                     </div>
                 </div>
 
-                <!-- Шаг 2 -->
                 <div class="step">
                     <div class="step-number">2</div>
                     <div class="step-content">
@@ -464,7 +481,6 @@
                     </div>
                 </div>
 
-                <!-- Шаг 3 -->
                 <div class="step">
                     <div class="step-number">3</div>
                     <div class="step-content">
@@ -479,7 +495,6 @@
                     </div>
                 </div>
 
-                <!-- Шаг 4 -->
                 <div class="step">
                     <div class="step-number">4</div>
                     <div class="step-content">
@@ -497,7 +512,7 @@
             </div>
 
             <h2 class="section-title">Системные требования</h2>
-            <p style="color: var(--gray); margin-bottom: 2rem; font-size: 1.1rem;">Для комфортной игры на нашем сервере рекомендуем следующие системные требования:</p>
+            <p style="color: rgba(240, 244, 255, 0.75); margin-bottom: 2rem; font-size: 1.1rem;">Для комфортной игры на нашем сервере рекомендуем следующие системные требования:</p>
             
             <div class="requirements-grid">
                 <div class="requirement-card">
@@ -536,7 +551,6 @@
         </section>
     </div>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -566,10 +580,7 @@
                             <li><a href="rules.html">Правила сервера</a></li>
                             <li><a href="faq.html">Частые вопросы</a></li>
                             <li><a href="tech-support.html">Техническая помощь</a></li>
-                                                    <ul>
                             <li><a href="https://visualvertex.forumes.ru/" target="_blank">Форум</a></li> 
-                        </ul>
-                    </div>
                         </ul>
                     </div>
                 </div>
@@ -583,7 +594,6 @@
     </footer>
 
     <script>
-        // Highlight current page in navigation
         document.addEventListener('DOMContentLoaded', function() {
             const currentPage = window.location.pathname.split('/').pop();
             const navLinks = document.querySelectorAll('.nav-links a');
