@@ -24,27 +24,42 @@
         }
 
         body {
-            background-color: var(--dark);
+            background: radial-gradient(circle at 20% 30%, rgba(138, 43, 226, 0.12), var(--dark) 70%);
             color: var(--light);
             min-height: 100vh;
             overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDQwIDQwIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxIiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDMiLz48L3N2Zz4=');
+            pointer-events: none;
+            z-index: 0;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            position: relative;
+            z-index: 1;
         }
 
         header {
-            background-color: rgba(13, 10, 26, 0.98);
-            border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+            background: rgba(13, 10, 26, 0.65);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(138, 43, 226, 0.25);
             padding: 15px 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(10px);
         }
 
         nav {
@@ -65,8 +80,9 @@
             width: 40px;
             height: 40px;
             object-fit: cover;
-            border-radius: 10px;
+            border-radius: 12px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
+            box-shadow: 0 4px 12px rgba(138, 43, 226, 0.3);
         }
 
         .logo-text {
@@ -95,31 +111,39 @@
 
         .nav-links a:hover {
             color: var(--accent);
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
         }
 
         .btn {
             display: inline-block;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background: rgba(138, 43, 226, 0.2);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(138, 43, 226, 0.5);
             color: white;
             padding: 12px 25px;
-            border-radius: 8px;
+            border-radius: 12px;
             text-decoration: none;
             font-weight: 700;
             transition: all 0.3s ease;
         }
 
         .btn:hover {
+            background: rgba(138, 43, 226, 0.4);
+            border-color: var(--accent);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
+            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.3);
         }
 
         .mobile-menu-btn {
             display: none;
-            background: none;
-            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 10px;
             color: var(--light);
             font-size: 1.5rem;
             cursor: pointer;
+            padding: 8px 12px;
         }
 
         .mobile-menu {
@@ -128,10 +152,12 @@
             right: -100%;
             width: 280px;
             height: 100vh;
-            background: var(--darker);
+            background: rgba(7, 5, 16, 0.95);
+            backdrop-filter: blur(20px);
             z-index: 1001;
             padding: 80px 30px 30px;
             transition: right 0.3s ease;
+            border-left: 1px solid rgba(138, 43, 226, 0.3);
         }
 
         .mobile-menu.active {
@@ -145,7 +171,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
             z-index: 1000;
         }
 
@@ -162,10 +189,9 @@
             }
         }
 
-        /* Основной контент */
         .license-hero {
             padding: 120px 0 60px;
-            background: linear-gradient(135deg, rgba(138,43,226,0.1), rgba(0,255,255,0.05));
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(0, 255, 255, 0.05));
         }
 
         .license-hero h1 {
@@ -179,7 +205,7 @@
 
         .license-hero p {
             font-size: 1.1rem;
-            color: var(--gray);
+            color: rgba(240, 244, 255, 0.8);
             max-width: 800px;
         }
 
@@ -188,18 +214,18 @@
         }
 
         .license-card {
-            background: rgba(13, 10, 26, 0.6);
-            border: 1px solid rgba(138, 43, 226, 0.3);
-            border-radius: 20px;
+            background: rgba(13, 10, 26, 0.45);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(138, 43, 226, 0.25);
+            border-radius: 24px;
             margin-bottom: 30px;
             overflow: hidden;
-            backdrop-filter: blur(5px);
         }
 
         .license-card-header {
-            background: linear-gradient(90deg, rgba(138,43,226,0.2), rgba(0,255,255,0.1));
+            background: linear-gradient(90deg, rgba(138, 43, 226, 0.12), rgba(0, 255, 255, 0.05));
             padding: 20px 30px;
-            border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+            border-bottom: 1px solid rgba(138, 43, 226, 0.2);
         }
 
         .license-card-header h2 {
@@ -231,7 +257,7 @@
         .license-card-body p {
             line-height: 1.7;
             margin-bottom: 15px;
-            color: #d0d4ff;
+            color: rgba(240, 244, 255, 0.8);
         }
 
         .license-card-body ul, .license-card-body ol {
@@ -241,12 +267,13 @@
 
         .license-card-body li {
             margin-bottom: 8px;
-            color: #d0d4ff;
+            color: rgba(240, 244, 255, 0.8);
         }
 
         .license-badge {
             display: inline-block;
-            background: rgba(0, 255, 255, 0.15);
+            background: rgba(0, 255, 255, 0.1);
+            backdrop-filter: blur(4px);
             border: 1px solid var(--accent);
             padding: 5px 12px;
             border-radius: 20px;
@@ -256,7 +283,8 @@
         }
 
         .legal-note {
-            background: rgba(138, 43, 226, 0.15);
+            background: rgba(138, 43, 226, 0.1);
+            backdrop-filter: blur(8px);
             border-left: 4px solid var(--primary);
             padding: 20px;
             border-radius: 12px;
@@ -277,7 +305,8 @@
         }
 
         footer {
-            background-color: var(--darker);
+            background: rgba(7, 5, 16, 0.8);
+            backdrop-filter: blur(16px);
             padding: 40px 0 20px;
             border-top: 1px solid rgba(138, 43, 226, 0.3);
             margin-top: 40px;
@@ -337,7 +366,6 @@
 
     <div class="license-content">
         <div class="container">
-            <!-- Блок 1: Лицензия на сайт и форум -->
             <div class="license-card">
                 <div class="license-card-header">
                     <h2><i class="fas fa-globe"></i> 1. Лицензия на использование Сайта и Форума</h2>
@@ -358,29 +386,23 @@
                 </div>
             </div>
 
-            <!-- Блок 2: Лицензия на Minecraft сервер (исправленная версия) -->
-<div class="license-card">
-    <div class="license-card-header">
-        <h2><i class="fas fa-cube"></i> 2. Лицензия на игровой сервер Minecraft</h2>
-    </div>
-    <div class="license-card-body">
-        <p><strong>2.1.</strong> Игровой сервер VisualVertexRP является некоммерческим проектом и не связан с компанией Mojang AB или Microsoft. Minecraft является товарным знаком Mojang AB, используемым в соответствии с <strong>Minecraft End User License Agreement (EULA)</strong> и <strong>Brand and Asset Usage Guidelines</strong>.</p>
-        <p><strong>2.2.</strong> Администрация сервера гарантирует соблюдение официальной EULA Minecraft в части коммерческого использования и распространения контента.</p>
-        
-        <p><strong>2.3.</strong> Сервер открыт для всех игроков вне зависимости от типа приобретённой версии игры. Доступ на сервер возможен как с лицензионной версией Minecraft Java Edition, так и с использованием сторонних лаунчеров («пиратских» клиентов), поскольку это не нарушает условия использования платформы и направлено на расширение сообщества.</p>
-        
-        <p><strong>2.4.</strong> При этом Администрация рекомендует использовать лицензионную версию игры, так как она обеспечивает большую стабильность, безопасность и доступ ко всем официальным функциям Minecraft. Вопросы технической поддержки для нелицензионных клиентов могут решаться в индивидуальном порядке.</p>
-        
-        <p><strong>2.5.</strong> Все игровые материалы (постройки, скины, текстуры), созданные игроками на сервере, остаются их интеллектуальной собственностью, однако Администрация получает неисключительное право на их демонстрацию в promotional-материалах.</p>
-        
-        <div class="legal-note">
-            <i class="fab fa-minecraft" style="color: #5f9c43; margin-right: 10px;"></i>
-            <strong>Важно:</strong> Сервер не распространяет пиратские версии игры, не требует взлома и не нарушает авторские права. Игроки самостоятельно выбирают способ доступа к игре. Администрация не несёт ответственности за проблемы, связанные с использованием нелицензионного программного обеспечения.
-        </div>
-    </div>
-</div>
+            <div class="license-card">
+                <div class="license-card-header">
+                    <h2><i class="fas fa-cube"></i> 2. Лицензия на игровой сервер Minecraft</h2>
+                </div>
+                <div class="license-card-body">
+                    <p><strong>2.1.</strong> Игровой сервер VisualVertexRP является некоммерческим проектом и не связан с компанией Mojang AB или Microsoft. Minecraft является товарным знаком Mojang AB, используемым в соответствии с <strong>Minecraft End User License Agreement (EULA)</strong> и <strong>Brand and Asset Usage Guidelines</strong>.</p>
+                    <p><strong>2.2.</strong> Администрация сервера гарантирует соблюдение официальной EULA Minecraft в части коммерческого использования и распространения контента.</p>
+                    <p><strong>2.3.</strong> Сервер открыт для всех игроков вне зависимости от типа приобретённой версии игры. Доступ на сервер возможен как с лицензионной версией Minecraft Java Edition, так и с использованием сторонних лаунчеров («пиратских» клиентов), поскольку это не нарушает условия использования платформы и направлено на расширение сообщества.</p>
+                    <p><strong>2.4.</strong> При этом Администрация рекомендует использовать лицензионную версию игры, так как она обеспечивает большую стабильность, безопасность и доступ ко всем официальным функциям Minecraft. Вопросы технической поддержки для нелицензионных клиентов могут решаться в индивидуальном порядке.</p>
+                    <p><strong>2.5.</strong> Все игровые материалы (постройки, скины, текстуры), созданные игроками на сервере, остаются их интеллектуальной собственностью, однако Администрация получает неисключительное право на их демонстрацию в promotional-материалах.</p>
+                    <div class="legal-note">
+                        <i class="fab fa-minecraft" style="color: #5f9c43; margin-right: 10px;"></i>
+                        <strong>Важно:</strong> Сервер не распространяет пиратские версии игры, не требует взлома и не нарушает авторские права. Игроки самостоятельно выбирают способ доступа к игре. Администрация не несёт ответственности за проблемы, связанные с использованием нелицензионного программного обеспечения.
+                    </div>
+                </div>
+            </div>
 
-            <!-- Блок 3: Пункты по законодательству РФ -->
             <div class="license-card">
                 <div class="license-card-header">
                     <h2><i class="fas fa-landmark"></i> 3. Пункты в соответствии с законодательством РФ</h2>
@@ -409,7 +431,6 @@
                 </div>
             </div>
 
-            <!-- Блок 4: Дополнительные условия и акцепт -->
             <div class="license-card">
                 <div class="license-card-header">
                     <h2><i class="fas fa-check-double"></i> 4. Акцепт лицензионного соглашения</h2>
@@ -421,7 +442,6 @@
                 </div>
             </div>
 
-            <!-- Блок 5: Ссылки на официальные лицензии -->
             <div class="license-card">
                 <div class="license-card-header">
                     <h2><i class="fas fa-link"></i> 5. Официальные лицензии и внешние источники</h2>
@@ -429,10 +449,9 @@
                 <div class="license-card-body">
                     <p>Ниже приведены ссылки на официальные лицензии используемого программного обеспечения и правовые документы платформ, с которыми взаимодействует проект:</p>
                     <ul>
-                        <li><i class="fab fa-minecraft"></i> <strong>Minecraft EULA</strong> — <a href="https://www.minecraft.net/ru-ru/terms" target="_blank" style="color: var(--accent);">https://www.minecraft.net/ru-ru/terms</a> — определяет правила использования игры и серверов.</li>
-                        <li><i class="fas fa-crown"></i> <strong>CloudTips (платёжная система)</strong> — Политика обработки данных: <a href="https://cloudtips.ru/terms" target="_blank" style="color: var(--accent);">https://cloudtips.ru/terms</a> — все транзакции защищены по ФЗ-161 «О национальной платёжной системе».</li>
-                        <li><i class="fas fa-users"></i> <strong>Форумное ПО (phpBB / XenForo)</strong> — лицензия <a href="https://www.gnu.org/licenses/gpl-2.0.html" target="_blank" style="color: var(--accent);">GPL v2</a> / коммерческая лицензия в зависимости от используемого движка.</li>
-                        <li><i class="fab fa-telegram"></i> <strong>Telegram API Terms</strong> — условия использования ботов и связи с мессенджером.</li>
+                        <li><i class="fab fa-minecraft"></i> <strong>Minecraft EULA</strong> — <a href="https://www.minecraft.net/ru-ru/terms" target="_blank" style="color: var(--accent);">https://www.minecraft.net/ru-ru/terms</a></li>
+                        <li><i class="fas fa-crown"></i> <strong>CloudTips (платёжная система)</strong> — <a href="https://cloudtips.ru/terms" target="_blank" style="color: var(--accent);">https://cloudtips.ru/terms</a></li>
+                        <li><i class="fab fa-telegram"></i> <strong>Telegram API Terms</strong> — условия использования ботов и связи с мессенджером</li>
                     </ul>
                     <p style="margin-top: 20px;">Любое цитирование материалов VisualVertexRP допускается только с обязательной активной гиперссылкой на источник. Коммерческое использование материалов без согласования с Администрацией запрещено.</p>
                 </div>
@@ -458,7 +477,6 @@
     </footer>
 
     <script>
-        // Мобильное меню
         const menuBtn = document.getElementById('mobileMenuBtn');
         const closeBtn = document.getElementById('mobileMenuClose');
         const overlay = document.getElementById('mobileMenuOverlay');
@@ -480,7 +498,6 @@
         if (closeBtn) closeBtn.addEventListener('click', closeMenu);
         if (overlay) overlay.addEventListener('click', closeMenu);
 
-        // Закрытие меню при клике на ссылку
         document.querySelectorAll('.mobile-menu a, .mobile-menu .btn').forEach(link => {
             link.addEventListener('click', closeMenu);
         });
