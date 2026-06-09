@@ -27,22 +27,36 @@
         }
 
         body {
-            background-color: var(--dark);
+            background: radial-gradient(circle at 20% 30%, rgba(138, 43, 226, 0.12), var(--dark) 70%);
             color: var(--light);
             min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDQwIDQwIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxIiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDMiLz48L3N2Zz4=');
+            pointer-events: none;
+            z-index: 0;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Header */
         header {
-            background-color: rgba(13, 10, 26, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+            background: rgba(13, 10, 26, 0.65);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(138, 43, 226, 0.25);
             padding: 1.2rem 0;
             position: sticky;
             width: 100%;
@@ -69,13 +83,14 @@
             width: 40px;
             height: 40px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 8px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
             font-size: 1.2rem;
             color: white;
+            box-shadow: 0 4px 12px rgba(138, 43, 226, 0.3);
         }
 
         .logo-text {
@@ -107,6 +122,7 @@
 
         .nav-links a:hover {
             color: var(--accent);
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
         }
 
         .nav-links a.active {
@@ -125,24 +141,26 @@
 
         .btn {
             display: inline-block;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background: rgba(138, 43, 226, 0.2);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(138, 43, 226, 0.5);
             color: white;
             padding: 0.7rem 1.5rem;
-            border-radius: 10px;
+            border-radius: 12px;
             text-decoration: none;
             font-weight: 700;
             font-size: 0.95rem;
             transition: all 0.3s;
-            border: none;
             cursor: pointer;
         }
 
         .btn:hover {
+            background: rgba(138, 43, 226, 0.4);
+            border-color: var(--accent);
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.4);
+            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.3);
         }
 
-        /* Page Header */
         .page-header {
             padding: 5rem 0 2.5rem;
             text-align: center;
@@ -161,12 +179,11 @@
 
         .page-subtitle {
             font-size: 1.1rem;
-            color: var(--gray);
+            color: rgba(240, 244, 255, 0.8);
             max-width: 700px;
             margin: 0 auto;
         }
 
-        /* Content */
         .content-section {
             padding: 2rem 0 4rem;
         }
@@ -190,7 +207,6 @@
             border-radius: 2px;
         }
 
-        /* Glossary Grid */
         .glossary-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -199,18 +215,18 @@
         }
 
         .term-card {
-            background: rgba(13, 10, 26, 0.8);
-            border-radius: 16px;
+            background: rgba(13, 10, 26, 0.45);
+            backdrop-filter: blur(16px);
+            border-radius: 18px;
             border: 1px solid rgba(138, 43, 226, 0.25);
             overflow: hidden;
             transition: all 0.3s ease;
-            backdrop-filter: blur(4px);
         }
 
         .term-card:hover {
             border-color: var(--accent);
             transform: translateY(-5px);
-            box-shadow: 0 12px 28px rgba(0, 255, 255, 0.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
 
         .term-header {
@@ -235,7 +251,7 @@
 
         .term-name {
             font-size: 1rem;
-            color: var(--gray);
+            color: rgba(240, 244, 255, 0.7);
             font-weight: 500;
         }
 
@@ -248,10 +264,10 @@
             text-transform: uppercase;
         }
 
-        .zone-green { background: rgba(46, 204, 113, 0.2); color: var(--zone-green); border: 1px solid rgba(46, 204, 113, 0.3); }
-        .zone-orange { background: rgba(230, 126, 34, 0.2); color: var(--zone-orange); border: 1px solid rgba(230, 126, 34, 0.3); }
-        .zone-red { background: rgba(231, 76, 60, 0.2); color: var(--zone-red); border: 1px solid rgba(231, 76, 60, 0.3); }
-        .badge-default { background: rgba(138, 43, 226, 0.2); color: var(--accent); border: 1px solid rgba(0, 255, 255, 0.3); }
+        .zone-green { background: rgba(46, 204, 113, 0.15); color: var(--zone-green); border: 1px solid rgba(46, 204, 113, 0.3); }
+        .zone-orange { background: rgba(230, 126, 34, 0.15); color: var(--zone-orange); border: 1px solid rgba(230, 126, 34, 0.3); }
+        .zone-red { background: rgba(231, 76, 60, 0.15); color: var(--zone-red); border: 1px solid rgba(231, 76, 60, 0.3); }
+        .badge-default { background: rgba(138, 43, 226, 0.15); color: var(--accent); border: 1px solid rgba(0, 255, 255, 0.3); }
 
         .term-body {
             padding: 1.5rem;
@@ -265,15 +281,16 @@
         }
 
         .term-example {
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(4px);
             border-left: 3px solid var(--accent);
             padding: 0.8rem 1rem;
-            border-radius: 8px;
+            border-radius: 10px;
             margin: 1rem 0;
         }
 
         .term-example p {
-            color: var(--gray);
+            color: rgba(240, 244, 255, 0.7);
             font-size: 0.9rem;
             font-style: italic;
             margin-bottom: 0.3rem;
@@ -286,7 +303,7 @@
 
         .punishment-badge {
             display: inline-block;
-            background: rgba(231, 76, 60, 0.15);
+            background: rgba(231, 76, 60, 0.12);
             color: #e74c3c;
             padding: 0.2rem 0.7rem;
             border-radius: 20px;
@@ -296,10 +313,10 @@
             border: 1px solid rgba(231, 76, 60, 0.3);
         }
 
-        /* Quick Reference Table */
         .quick-ref {
-            background: rgba(7, 5, 16, 0.7);
-            border-radius: 20px;
+            background: rgba(7, 5, 16, 0.5);
+            backdrop-filter: blur(16px);
+            border-radius: 24px;
             padding: 2rem;
             margin: 2rem 0;
             border: 1px solid rgba(138, 43, 226, 0.3);
@@ -333,7 +350,7 @@
         }
 
         .ref-table td {
-            color: var(--gray);
+            color: rgba(240, 244, 255, 0.7);
         }
 
         .ref-table tr:hover td {
@@ -350,9 +367,9 @@
             font-size: 0.9rem;
         }
 
-        /* Footer */
         footer {
-            background-color: var(--darker);
+            background: rgba(7, 5, 16, 0.8);
+            backdrop-filter: blur(16px);
             padding: 4rem 0 2rem;
             border-top: 1px solid rgba(138, 43, 226, 0.3);
             margin-top: 3rem;
@@ -423,7 +440,6 @@
             font-size: 0.9rem;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -454,7 +470,6 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="container">
             <nav>
@@ -475,7 +490,6 @@
         </div>
     </header>
 
-    <!-- Page Header -->
     <section class="page-header">
         <div class="container">
             <h1 class="page-title">Терминология VisualVertexRP</h1>
@@ -483,12 +497,10 @@
         </div>
     </section>
 
-    <!-- Content -->
     <div class="container">
         <section class="content-section">
             <h2 class="section-title">Основные термины</h2>
             <div class="glossary-grid">
-                <!-- 1. ЗЗ -->
                 <div class="term-card">
                     <div class="term-header">
                         <span class="term-abbr">ЗЗ</span>
@@ -504,7 +516,6 @@
                     </div>
                 </div>
 
-                <!-- 2. ОЗ -->
                 <div class="term-card">
                     <div class="term-header">
                         <span class="term-abbr">ОЗ</span>
@@ -519,7 +530,6 @@
                     </div>
                 </div>
 
-                <!-- 3. КЗ -->
                 <div class="term-card">
                     <div class="term-header">
                         <span class="term-abbr">КЗ</span>
@@ -534,7 +544,6 @@
                     </div>
                 </div>
 
-                <!-- 4. ДМ (Дикий Матч) -->
                 <div class="term-card">
                     <div class="term-header">
                         <span class="term-abbr">ДМ</span>
@@ -550,7 +559,6 @@
                     </div>
                 </div>
 
-                <!-- 5. ДМ-токен (Денежный Маркер) -->
                 <div class="term-card">
                     <div class="term-header">
                         <span class="term-abbr">ДМ-токен</span>
@@ -565,7 +573,6 @@
                     </div>
                 </div>
 
-                <!-- 6. ПГ -->
                 <div class="term-card">
                     <div class="term-header">
                         <span class="term-abbr">ПГ</span>
@@ -580,7 +587,6 @@
                     </div>
                 </div>
 
-                <!-- 7. АКГ -->
                 <div class="term-card">
                     <div class="term-header">
                         <span class="term-abbr">АКГ</span>
@@ -595,7 +601,6 @@
                     </div>
                 </div>
 
-                <!-- 8. ЗК -->
                 <div class="term-card">
                     <div class="term-header">
                         <span class="term-abbr">ЗК</span>
@@ -610,7 +615,6 @@
                     </div>
                 </div>
 
-                <!-- 9. ЧМ -->
                 <div class="term-card">
                     <div class="term-header">
                         <span class="term-abbr">ЧМ</span>
@@ -625,7 +629,6 @@
                     </div>
                 </div>
 
-                <!-- 10. СУ -->
                 <div class="term-card">
                     <div class="term-header">
                         <span class="term-abbr">СУ</span>
@@ -640,7 +643,6 @@
                     </div>
                 </div>
 
-                <!-- 11. РГ -->
                 <div class="term-card">
                     <div class="term-header">
                         <span class="term-abbr">РГ</span>
@@ -657,7 +659,6 @@
                     </div>
                 </div>
 
-                <!-- 12. ВЗ -->
                 <div class="term-card">
                     <div class="term-header">
                         <span class="term-abbr">ВЗ</span>
@@ -673,7 +674,6 @@
                     </div>
                 </div>
 
-                <!-- 13. ФЛ -->
                 <div class="term-card">
                     <div class="term-header">
                         <span class="term-abbr">ФЛ</span>
@@ -688,7 +688,6 @@
                     </div>
                 </div>
 
-                <!-- 14. ХД -->
                 <div class="term-card">
                     <div class="term-header">
                         <span class="term-abbr">ХД</span>
@@ -704,7 +703,6 @@
                 </div>
             </div>
 
-            <!-- Быстрая таблица для шпаргалки -->
             <div class="quick-ref">
                 <h3><i class="fas fa-table-list"></i> Шпаргалка по терминам (F1)</h3>
                 <table class="ref-table">
@@ -728,14 +726,13 @@
                         <tr><td class="term-code">ХД</td><td>Холодный Дроп</td><td>Исчезновение вещей через 2 минуты</td></tr>
                     </tbody>
                 </table>
-                <p style="color: var(--gray); margin-top: 1rem; font-size: 0.85rem; text-align: center;"><i class="fas fa-info-circle"></i> Незнание терминов не освобождает от наказания. Уважай зоны и статусы.</p>
+                <p style="color: rgba(240, 244, 255, 0.6); margin-top: 1rem; font-size: 0.85rem; text-align: center;"><i class="fas fa-info-circle"></i> Незнание терминов не освобождает от наказания. Уважай зоны и статусы.</p>
             </div>
 
-            <!-- Дополнительная заметка -->
-            <div style="background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(0, 255, 255, 0.05)); border-radius: 16px; padding: 2rem; margin-top: 2rem; text-align: center;">
+            <div style="background: linear-gradient(135deg, rgba(138, 43, 226, 0.08), rgba(0, 255, 255, 0.03)); backdrop-filter: blur(12px); border-radius: 20px; padding: 2rem; margin-top: 2rem; text-align: center; border: 1px solid rgba(138, 43, 226, 0.2);">
                 <i class="fas fa-book-open" style="font-size: 2rem; color: var(--accent); margin-bottom: 1rem; display: inline-block;"></i>
                 <h3 style="font-size: 1.5rem; margin-bottom: 0.8rem;">Освоил термины?</h3>
-                <p style="color: var(--gray); max-width: 600px; margin: 0 auto 1.5rem;">Теперь ты говоришь на языке VisualVertexRP. Используй сленг, чтобы глубже погрузиться в отыгровку и избежать штрафов.</p>
+                <p style="color: rgba(240, 244, 255, 0.7); max-width: 600px; margin: 0 auto 1.5rem;">Теперь ты говоришь на языке VisualVertexRP. Используй сленг, чтобы глубже погрузиться в отыгровку и избежать штрафов.</p>
                 <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
                     <a href="rules.html" class="btn"><i class="fas fa-gavel"></i> Правила сервера</a>
                     <a href="how-to-play.html" class="btn"><i class="fas fa-gamepad"></i> Как начать играть</a>
@@ -745,7 +742,6 @@
         </section>
     </div>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -772,11 +768,8 @@
                             <li><a href="tech-support.html">Техническая помощь</a></li>
                             <li><a href="terminology.html">Терминология</a></li>
                             <li><a href="index.html#premium">Купить Проходку</a></li>
-                                                    <ul>
                             <li><a href="https://visualvertex.forumes.ru/" target="_blank">Форум</a></li>                        
                         </ul>
-                    </div>
-                </ul>
                     </div>
                 </div>
             </div>
@@ -788,7 +781,6 @@
     </footer>
 
     <script>
-        // Подсветка активной страницы в навигации
         document.addEventListener('DOMContentLoaded', function() {
             const currentPage = window.location.pathname.split('/').pop();
             const navLinks = document.querySelectorAll('.nav-links a');
