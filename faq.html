@@ -24,22 +24,36 @@
         }
 
         body {
-            background-color: var(--dark);
+            background: radial-gradient(circle at 20% 30%, rgba(138, 43, 226, 0.12), var(--dark) 70%);
             color: var(--light);
             min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDQwIDQwIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxIiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDMiLz48L3N2Zz4=');
+            pointer-events: none;
+            z-index: 0;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Header */
         header {
-            background-color: rgba(13, 10, 26, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+            background: rgba(13, 10, 26, 0.65);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(138, 43, 226, 0.25);
             padding: 1.2rem 0;
             position: sticky;
             width: 100%;
@@ -64,13 +78,14 @@
             width: 40px;
             height: 40px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 8px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
             font-size: 1.2rem;
             color: white;
+            box-shadow: 0 4px 12px rgba(138, 43, 226, 0.3);
         }
 
         .logo-text {
@@ -100,6 +115,7 @@
 
         .nav-links a:hover {
             color: var(--accent);
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
         }
 
         .nav-links a.active {
@@ -118,24 +134,26 @@
 
         .btn {
             display: inline-block;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background: rgba(138, 43, 226, 0.2);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(138, 43, 226, 0.5);
             color: white;
             padding: 0.8rem 1.8rem;
-            border-radius: 10px;
+            border-radius: 12px;
             text-decoration: none;
             font-weight: 700;
             font-size: 1.1rem;
             transition: all 0.3s;
-            border: none;
             cursor: pointer;
         }
 
         .btn:hover {
+            background: rgba(138, 43, 226, 0.4);
+            border-color: var(--accent);
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.4);
+            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.3);
         }
 
-        /* Page Header */
         .page-header {
             padding: 6rem 0 3rem;
             text-align: center;
@@ -154,12 +172,11 @@
 
         .page-subtitle {
             font-size: 1.2rem;
-            color: var(--gray);
+            color: rgba(240, 244, 255, 0.8);
             max-width: 700px;
             margin: 0 auto;
         }
 
-        /* Content */
         .content-section {
             padding: 2rem 0 4rem;
         }
@@ -176,9 +193,10 @@
         .search-input {
             width: 100%;
             padding: 1.2rem 1.5rem 1.2rem 3.5rem;
-            background: rgba(13, 10, 26, 0.7);
+            background: rgba(13, 10, 26, 0.5);
+            backdrop-filter: blur(12px);
             border: 1px solid rgba(138, 43, 226, 0.3);
-            border-radius: 12px;
+            border-radius: 16px;
             color: var(--light);
             font-size: 1.1rem;
             transition: all 0.3s;
@@ -187,7 +205,7 @@
         .search-input:focus {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
         }
 
         .search-icon {
@@ -236,9 +254,11 @@
             border-bottom: 2px solid rgba(138, 43, 226, 0.3);
         }
 
+        /* Стеклянные карточки FAQ */
         .faq-item {
-            background: rgba(13, 10, 26, 0.7);
-            border-radius: 12px;
+            background: rgba(13, 10, 26, 0.45);
+            backdrop-filter: blur(16px);
+            border-radius: 16px;
             overflow: hidden;
             border: 1px solid rgba(138, 43, 226, 0.2);
             transition: all 0.3s;
@@ -247,7 +267,7 @@
 
         .faq-item.active {
             border-color: var(--accent);
-            box-shadow: 0 5px 20px rgba(0, 255, 255, 0.1);
+            box-shadow: 0 8px 25px rgba(0, 255, 255, 0.1);
         }
 
         .faq-question {
@@ -294,13 +314,13 @@
         }
 
         .faq-answer p {
-            color: var(--gray);
+            color: rgba(240, 244, 255, 0.75);
             line-height: 1.7;
             margin-bottom: 1rem;
         }
 
         .faq-answer ul {
-            color: var(--gray);
+            color: rgba(240, 244, 255, 0.75);
             margin-left: 1.5rem;
             margin-bottom: 1rem;
         }
@@ -311,21 +331,24 @@
         }
 
         .faq-answer code {
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
             border: 1px solid rgba(0, 255, 255, 0.2);
-            border-radius: 4px;
+            border-radius: 8px;
             padding: 0.2rem 0.5rem;
             font-family: 'Courier New', monospace;
             color: var(--accent);
         }
 
-        /* Contact Section */
+        /* Стеклянный контактный блок */
         .contact-section {
-            background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(0, 255, 255, 0.05));
-            border-radius: 15px;
+            background: rgba(138, 43, 226, 0.08);
+            backdrop-filter: blur(16px);
+            border-radius: 24px;
             padding: 3rem;
             margin-top: 4rem;
             text-align: center;
+            border: 1px solid rgba(138, 43, 226, 0.3);
         }
 
         .contact-title {
@@ -335,15 +358,15 @@
         }
 
         .contact-text {
-            color: var(--gray);
+            color: rgba(240, 244, 255, 0.7);
             max-width: 700px;
             margin: 0 auto 2rem;
             line-height: 1.7;
         }
 
-        /* Footer */
         footer {
-            background-color: var(--darker);
+            background: rgba(7, 5, 16, 0.8);
+            backdrop-filter: blur(16px);
             padding: 4rem 0 2rem;
             border-top: 1px solid rgba(138, 43, 226, 0.3);
             margin-top: 4rem;
@@ -413,7 +436,6 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -438,7 +460,6 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="container">
             <nav>
@@ -458,7 +479,6 @@
         </div>
     </header>
 
-    <!-- Page Header -->
     <section class="page-header">
         <div class="container">
             <h1 class="page-title">Частые вопросы</h1>
@@ -466,7 +486,6 @@
         </div>
     </section>
 
-    <!-- Content -->
     <div class="container">
         <section class="content-section">
             <div class="faq-search">
@@ -479,7 +498,6 @@
             <h2 class="section-title">Вопросы и ответы</h2>
             
             <div class="faq-container">
-                <!-- Категория 1 -->
                 <div class="faq-category">
                     <h3 class="category-title">Подключение к серверу</h3>
                     
@@ -529,7 +547,6 @@
                     </div>
                 </div>
 
-                <!-- Категория 2 -->
                 <div class="faq-category">
                     <h3 class="category-title">Игровой процесс</h3>
                     
@@ -585,7 +602,6 @@
                     </div>
                 </div>
 
-                <!-- Категория 3 -->
                 <div class="faq-category">
                     <h3 class="category-title">Правила и модерация</h3>
                     
@@ -642,7 +658,6 @@
                 </div>
             </div>
 
-            <!-- Contact Section -->
             <div class="contact-section">
                 <h3 class="contact-title">Не нашли ответ на свой вопрос?</h3>
                 <p class="contact-text">Если вы не нашли ответ на интересующий вас вопрос в этом списке, обратитесь за помощью к нашей службе поддержки через Discord или воспользуйтесь командой /help в игре.</p>
@@ -651,7 +666,6 @@
         </section>
     </div>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -684,8 +698,6 @@
                             <li><a href="https://visualvertex.forumes.ru/" target="_blank">Форум</a></li>                        
                         </ul>
                     </div>
-                        </ul>
-                    </div>
                 </div>
             </div>
             
@@ -697,13 +709,11 @@
     </footer>
 
     <script>
-        // FAQ accordion functionality
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
                 const faqItem = question.parentElement;
                 faqItem.classList.toggle('active');
                 
-                // Close other items
                 document.querySelectorAll('.faq-item').forEach(item => {
                     if (item !== faqItem && item.classList.contains('active')) {
                         item.classList.remove('active');
@@ -712,7 +722,6 @@
             });
         });
 
-        // Search functionality
         const searchInput = document.getElementById('searchInput');
         const faqItems = document.querySelectorAll('.faq-item');
         
@@ -720,31 +729,19 @@
             const searchTerm = this.value.toLowerCase().trim();
             
             if (searchTerm.length === 0) {
-                // Show all items
-                faqItems.forEach(item => {
-                    item.style.display = 'block';
-                });
-                
-                // Show all categories
-                document.querySelectorAll('.faq-category').forEach(category => {
-                    category.style.display = 'block';
-                });
-                
+                faqItems.forEach(item => { item.style.display = 'block'; });
+                document.querySelectorAll('.faq-category').forEach(category => { category.style.display = 'block'; });
                 return;
             }
             
-            let foundInCategory = false;
             let visibleCategories = new Set();
             
-            // Search through FAQ items
             faqItems.forEach(item => {
                 const question = item.querySelector('.faq-question h3').textContent.toLowerCase();
                 const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
                 
                 if (question.includes(searchTerm) || answer.includes(searchTerm)) {
                     item.style.display = 'block';
-                    
-                    // Mark category as visible
                     const category = item.closest('.faq-category');
                     visibleCategories.add(category);
                 } else {
@@ -752,17 +749,11 @@
                 }
             });
             
-            // Show/hide categories based on search results
             document.querySelectorAll('.faq-category').forEach(category => {
-                if (visibleCategories.has(category)) {
-                    category.style.display = 'block';
-                } else {
-                    category.style.display = 'none';
-                }
+                category.style.display = visibleCategories.has(category) ? 'block' : 'none';
             });
         });
 
-        // Highlight current page in navigation
         document.addEventListener('DOMContentLoaded', function() {
             const currentPage = window.location.pathname.split('/').pop();
             const navLinks = document.querySelectorAll('.nav-links a');
