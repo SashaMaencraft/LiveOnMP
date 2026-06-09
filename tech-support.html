@@ -28,22 +28,36 @@
         }
 
         body {
-            background-color: var(--dark);
+            background: radial-gradient(circle at 20% 30%, rgba(138, 43, 226, 0.12), var(--dark) 70%);
             color: var(--light);
             min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDQwIDQwIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxIiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDMiLz48L3N2Zz4=');
+            pointer-events: none;
+            z-index: 0;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Header */
         header {
-            background-color: rgba(13, 10, 26, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+            background: rgba(13, 10, 26, 0.65);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(138, 43, 226, 0.25);
             padding: 1.2rem 0;
             position: sticky;
             width: 100%;
@@ -68,13 +82,14 @@
             width: 40px;
             height: 40px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 8px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
             font-size: 1.2rem;
             color: white;
+            box-shadow: 0 4px 12px rgba(138, 43, 226, 0.3);
         }
 
         .logo-text {
@@ -104,6 +119,7 @@
 
         .nav-links a:hover {
             color: var(--accent);
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
         }
 
         .nav-links a.active {
@@ -122,25 +138,30 @@
 
         .btn {
             display: inline-block;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background: rgba(138, 43, 226, 0.2);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(138, 43, 226, 0.5);
             color: white;
             padding: 0.8rem 1.8rem;
-            border-radius: 10px;
+            border-radius: 12px;
             text-decoration: none;
             font-weight: 700;
             font-size: 1.1rem;
             transition: all 0.3s;
-            border: none;
             cursor: pointer;
         }
 
         .btn:hover {
+            background: rgba(138, 43, 226, 0.4);
+            border-color: var(--accent);
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.4);
+            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.3);
         }
 
         .btn-telegram {
-            background: linear-gradient(90deg, var(--telegram), #24A1DE);
+            background: rgba(0, 136, 204, 0.2);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 136, 204, 0.4);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -152,12 +173,10 @@
         }
 
         .btn-telegram:hover {
-            background: linear-gradient(90deg, #24A1DE, var(--telegram));
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 136, 204, 0.4);
+            background: rgba(0, 136, 204, 0.4);
+            border-color: var(--telegram);
         }
 
-        /* Page Header */
         .page-header {
             padding: 6rem 0 3rem;
             text-align: center;
@@ -176,12 +195,11 @@
 
         .page-subtitle {
             font-size: 1.2rem;
-            color: var(--gray);
+            color: rgba(240, 244, 255, 0.8);
             max-width: 700px;
             margin: 0 auto;
         }
 
-        /* Content */
         .content-section {
             padding: 2rem 0 4rem;
         }
@@ -213,11 +231,12 @@
         }
 
         .support-card {
-            background: rgba(13, 10, 26, 0.7);
-            border-radius: 15px;
+            background: rgba(13, 10, 26, 0.45);
+            backdrop-filter: blur(16px);
+            border-radius: 20px;
             padding: 2.5rem 2rem;
             text-align: center;
-            border: 1px solid rgba(138, 43, 226, 0.2);
+            border: 1px solid rgba(138, 43, 226, 0.25);
             transition: all 0.3s;
         }
 
@@ -232,21 +251,10 @@
             margin-bottom: 1.5rem;
         }
 
-        .support-icon.fix {
-            color: var(--success);
-        }
-
-        .support-icon.connect {
-            color: var(--accent);
-        }
-
-        .support-icon.lag {
-            color: var(--warning);
-        }
-
-        .support-icon.error {
-            color: var(--error);
-        }
+        .support-icon.fix { color: var(--success); }
+        .support-icon.connect { color: var(--accent); }
+        .support-icon.lag { color: var(--warning); }
+        .support-icon.error { color: var(--error); }
 
         .support-card h3 {
             font-size: 1.8rem;
@@ -255,7 +263,7 @@
         }
 
         .support-card p {
-            color: var(--gray);
+            color: rgba(240, 244, 255, 0.7);
             line-height: 1.7;
             margin-bottom: 1.5rem;
         }
@@ -266,7 +274,7 @@
         }
 
         .steps-list li {
-            color: var(--gray);
+            color: rgba(240, 244, 255, 0.7);
             margin-bottom: 0.8rem;
             line-height: 1.6;
             padding-left: 1.5rem;
@@ -281,10 +289,10 @@
             font-weight: bold;
         }
 
-        /* Troubleshooting Section */
         .troubleshooting {
-            background: rgba(7, 5, 16, 0.7);
-            border-radius: 20px;
+            background: rgba(7, 5, 16, 0.5);
+            backdrop-filter: blur(16px);
+            border-radius: 24px;
             padding: 3rem;
             margin: 4rem 0;
             border: 1px solid rgba(138, 43, 226, 0.2);
@@ -298,8 +306,9 @@
         }
 
         .issue-item {
-            background: rgba(13, 10, 26, 0.7);
-            border-radius: 12px;
+            background: rgba(13, 10, 26, 0.45);
+            backdrop-filter: blur(12px);
+            border-radius: 16px;
             padding: 2rem;
             margin-bottom: 1.5rem;
             border-left: 4px solid var(--warning);
@@ -314,6 +323,8 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
         .issue-header h4 {
@@ -330,31 +341,31 @@
         }
 
         .status-resolved {
-            background-color: rgba(81, 207, 102, 0.2);
+            background: rgba(81, 207, 102, 0.15);
             color: var(--success);
             border: 1px solid rgba(81, 207, 102, 0.3);
         }
 
         .status-pending {
-            background-color: rgba(255, 146, 43, 0.2);
+            background: rgba(255, 146, 43, 0.15);
             color: var(--warning);
             border: 1px solid rgba(255, 146, 43, 0.3);
         }
 
         .issue-content p {
-            color: var(--gray);
+            color: rgba(240, 244, 255, 0.7);
             line-height: 1.7;
             margin-bottom: 1rem;
         }
 
-        /* Telegram Contact Section */
         .telegram-section {
-            background: linear-gradient(135deg, rgba(0, 136, 204, 0.1), rgba(0, 255, 255, 0.05));
-            border-radius: 20px;
+            background: rgba(0, 136, 204, 0.05);
+            backdrop-filter: blur(16px);
+            border-radius: 24px;
             padding: 4rem 2rem;
             margin-top: 4rem;
             text-align: center;
-            border: 1px solid rgba(0, 136, 204, 0.3);
+            border: 1px solid rgba(0, 136, 204, 0.25);
         }
 
         .telegram-icon {
@@ -370,7 +381,7 @@
         }
 
         .telegram-subtitle {
-            color: var(--gray);
+            color: rgba(240, 244, 255, 0.7);
             margin-bottom: 2rem;
             line-height: 1.7;
             max-width: 700px;
@@ -406,17 +417,18 @@
         }
 
         .feature-text p {
-            color: var(--gray);
+            color: rgba(240, 244, 255, 0.7);
             line-height: 1.6;
         }
 
-        /* Quick Support */
         .quick-support {
-            background: rgba(13, 10, 26, 0.7);
-            border-radius: 15px;
+            background: rgba(13, 10, 26, 0.45);
+            backdrop-filter: blur(12px);
+            border-radius: 18px;
             padding: 2.5rem;
             margin-top: 3rem;
             text-align: center;
+            border: 1px solid rgba(138, 43, 226, 0.2);
         }
 
         .quick-support h3 {
@@ -426,14 +438,14 @@
         }
 
         .quick-support p {
-            color: var(--gray);
+            color: rgba(240, 244, 255, 0.7);
             line-height: 1.7;
             margin-bottom: 1.5rem;
         }
 
-        /* Footer */
         footer {
-            background-color: var(--darker);
+            background: rgba(7, 5, 16, 0.8);
+            backdrop-filter: blur(16px);
             padding: 4rem 0 2rem;
             border-top: 1px solid rgba(138, 43, 226, 0.3);
             margin-top: 4rem;
@@ -503,7 +515,6 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -532,7 +543,6 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="container">
             <nav>
@@ -552,7 +562,6 @@
         </div>
     </header>
 
-    <!-- Page Header -->
     <section class="page-header">
         <div class="container">
             <h1 class="page-title">Техническая помощь</h1>
@@ -560,13 +569,11 @@
         </div>
     </section>
 
-    <!-- Content -->
     <div class="container">
         <section class="content-section">
             <h2 class="section-title">Быстрые решения</h2>
             
             <div class="support-grid">
-                <!-- Карточка 1 -->
                 <div class="support-card">
                     <div class="support-icon fix">
                         <i class="fas fa-tools"></i>
@@ -582,7 +589,6 @@
                     </ul>
                 </div>
 
-                <!-- Карточка 2 -->
                 <div class="support-card">
                     <div class="support-icon connect">
                         <i class="fas fa-plug"></i>
@@ -598,7 +604,6 @@
                     </ul>
                 </div>
 
-                <!-- Карточка 3 -->
                 <div class="support-card">
                     <div class="support-icon lag">
                         <i class="fas fa-tachometer-alt"></i>
@@ -614,7 +619,6 @@
                     </ul>
                 </div>
 
-                <!-- Карточка 4 -->
                 <div class="support-card">
                     <div class="support-icon error">
                         <i class="fas fa-exclamation-triangle"></i>
@@ -631,7 +635,6 @@
                 </div>
             </div>
 
-            <!-- Troubleshooting Section -->
             <div class="troubleshooting">
                 <h3 class="troubleshooting-title">Известные проблемы и решения</h3>
                 
@@ -672,7 +675,6 @@
                 </div>
             </div>
 
-            <!-- Telegram Contact Section -->
             <div class="telegram-section">
                 <div class="telegram-icon">
                     <i class="fab fa-telegram"></i>
@@ -692,7 +694,7 @@
                         </div>
                         <div class="feature-text">
                             <h4>Мгновенные ответы</h4>
-                            <p>Наш бот отвечает тичение одних суток или по расписанию, а администраторы подключаются в течение 18 минут в рабочее время</p>
+                            <p>Наш бот отвечает в течение одних суток или по расписанию, а администраторы подключаются в течение 18 минут в рабочее время</p>
                         </div>
                     </div>
                     
@@ -742,7 +744,7 @@
             
             <div style="margin-top: 4rem; text-align: center;">
                 <h3 style="font-size: 1.8rem; margin-bottom: 1rem; color: var(--light);">Дополнительные способы связи</h3>
-                <p style="color: var(--gray); max-width: 700px; margin: 0 auto 2rem; line-height: 1.7;">Если у вас нет Telegram, вы можете обратиться к нам через внутриигровую систему тикетов (команда /helpop).</p>
+                <p style="color: rgba(240, 244, 255, 0.7); max-width: 700px; margin: 0 auto 2rem; line-height: 1.7;">Если у вас нет Telegram, вы можете обратиться к нам через внутриигровую систему тикетов (команда /helpop).</p>
                 <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
                     <a href="faq.html" class="btn"><i class="fas fa-question-circle"></i> Частые вопросы</a>
                     <a href="rules.html" class="btn"><i class="fas fa-book"></i> Правила сервера</a>
@@ -752,7 +754,6 @@
         </section>
     </div>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -789,7 +790,7 @@
                         <h3>Сообщество</h3>
                         <ul>
                             <li><a href="https://visualvertex.forumes.ru/" target="_blank">Форум</a></li>
-                            <li><a href="javascript:void(0)" onclick="showGalleryMessage()">Галерея построек</a></li>
+                            <li><a href="javascript:void(0)" onclick="alert('Галерея построек находится в разработке. Скоро будет доступна!')">Галерея построек</a></li>
                         </ul>
                     </div>
                 </div>
@@ -803,7 +804,6 @@
     </footer>
 
     <script>
-        // Highlight current page in navigation
         document.addEventListener('DOMContentLoaded', function() {
             const currentPage = window.location.pathname.split('/').pop();
             const navLinks = document.querySelectorAll('.nav-links a');
@@ -816,17 +816,6 @@
                     link.classList.remove('active');
                 }
             });
-        });
-
-        // Gallery message function
-        function showGalleryMessage() {
-            alert("Галерея построек находится в разработке. Скоро будет доступна!");
-        }
-
-        // Telegram bot click tracking (optional)
-        document.querySelector('.btn-telegram').addEventListener('click', function() {
-            // Можно добавить аналитику или логирование здесь
-            console.log('Переход в Telegram-бот поддержки');
         });
     </script>
 </body>
