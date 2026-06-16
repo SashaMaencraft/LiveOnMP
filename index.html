@@ -679,6 +679,95 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        /* Модальное окно */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal-window {
+            background: rgba(13, 10, 26, 0.85);
+            backdrop-filter: blur(20px);
+            border-radius: 28px;
+            padding: 40px 45px;
+            max-width: 420px;
+            width: 90%;
+            text-align: center;
+            border: 1px solid rgba(138, 43, 226, 0.5);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            animation: scaleIn 0.3s ease;
+        }
+        .modal-window .modal-icon {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+            background: rgba(0, 255, 255, 0.1);
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border-radius: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+        }
+        .modal-window h2 {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .modal-window p {
+            color: rgba(240, 244, 255, 0.8);
+            font-size: 1.05rem;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+        .modal-window .btn-close-modal {
+            background: rgba(138, 43, 226, 0.3);
+            border: 1px solid rgba(138, 43, 226, 0.5);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .modal-window .btn-close-modal:hover {
+            background: rgba(138, 43, 226, 0.5);
+            border-color: var(--accent);
+            transform: scale(1.03);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
         @media (max-width: 767px) {
             .nav-links, .desktop-btn {
                 display: none;
@@ -697,6 +786,9 @@
             }
             .footer-logo {
                 text-align: center;
+            }
+            .hero-buttons {
+                justify-content: center;
             }
         }
 
@@ -767,6 +859,16 @@
         <a href="https://pay.cloudtips.ru/p/0df70dac" target="_blank" class="btn" style="width:100%; text-align:center; margin-top:30px;">Купить Проходку</a>
     </div>
 
+    <!-- Модальное окно "В разработке" -->
+    <div class="modal-overlay" id="devModal">
+        <div class="modal-window">
+            <div class="modal-icon"><i class="fas fa-tools"></i></div>
+            <h2>В разработке</h2>
+            <p>Функция входа временно недоступна. Мы работаем над её улучшением, чтобы вы могли получить лучший опыт!</p>
+            <button class="btn-close-modal" id="closeModalBtn"><i class="fas fa-times"></i> Закрыть</button>
+        </div>
+    </div>
+
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
@@ -777,7 +879,10 @@
                     <span class="ip-address" id="serverIp">visualvertexrp.wellduck.org</span>
                     <button class="copy-btn" id="copyIpBtn"><i class="fas fa-copy"></i> Скопировать адрес</button>
                 </div>
-                <a href="https://pay.cloudtips.ru/p/0df70dac" target="_blank" class="btn" style="display:block; text-align:center;">Получить Проходку</a>
+                <div class="hero-buttons">
+                    <a href="https://pay.cloudtips.ru/p/0df70dac" target="_blank" class="btn">Купить Проходку</a>
+                    <button class="btn" id="loginBtn"><i class="fas fa-sign-in-alt"></i> Вход</button>
+                </div>
             </div>
         </div>
     </section>
@@ -966,7 +1071,7 @@
         function rebuildFullContent() {
             const passContainer = document.getElementById('passContainer');
             if (passContainer && passContainer.children.length === 0) {
-                passContainer.innerHTML = `<div class="pass-card"><div class="pass-header"><div class="pass-icon"><i class="fas fa-crown"></i></div><div class="pass-title"><h3>ПРЕМИУМ ПРОХОДКА</h3><p class="pass-subtitle">90 дней эксклюзивного доступа с расширенными возможностями</p></div></div><div class="pass-benefits">${Array(12).fill('<div class="benefit-item"><i class="fas fa-check-circle"></i><span>Приоритетный вход, расширенные лимиты, скидки и уникальные возможности</span></div>').join('')}</div><div class="pass-price"><div class="price-container"><span class="price-old">499 ₽</span><span class="price-new">299 ₽</span><span class="price-discount">-40%</span></div><p class="price-period">Всего 3.3 ₽ в день за 90 дней премиум-доступа</p><a href="https://pay.cloudtips.ru/p/0df70dac" class="premium-btn"><i class="fas fa-shopping-cart"></i> Купить Проходку</a><p style="color:var(--gray); margin-top:15px;"><i class="fas fa-shield-alt"></i> Безопасная оплата через CloudTips</p></div></div>`;
+                passContainer.innerHTML = `<div class="pass-card"><div class="pass-header"><div class="pass-icon"><i class="fas fa-crown"></i></div><div class="pass-title"><h3>ПРЕМИУМ ПРОХОДКА</h3><p class="pass-subtitle">90 дней эксклюзивного доступа с расширенными возможностями</p></div></div><div class="pass-benefits"><div class="benefit-item"><i class="fas fa-check-circle"></i><span>Приоритетный вход, расширенные лимиты, скидки и уникальные возможности</span></div></div><div class="pass-price"><div class="price-container"><span class="price-old">499 ₽</span><span class="price-new">299 ₽</span><span class="price-discount">-40%</span></div><p class="price-period">Всего 3.3 ₽ в день за 90 дней премиум-доступа</p><a href="https://pay.cloudtips.ru/p/0df70dac" class="premium-btn"><i class="fas fa-shopping-cart"></i> Купить Проходку</a><p style="color:var(--gray); margin-top:15px;"><i class="fas fa-shield-alt"></i> Безопасная оплата через CloudTips</p></div></div>`;
             }
             const infoContainer = document.getElementById('infoContainer');
             if (infoContainer && infoContainer.children.length === 0) {
@@ -1045,6 +1150,29 @@
                 if (curr > 100) headerElem.style.transform = curr > lastScroll ? 'translateY(-100%)' : 'translateY(0)';
                 else headerElem.style.transform = 'translateY(0)';
                 lastScroll = curr;
+            });
+
+            // Модальное окно для кнопки "Вход"
+            const loginBtn = document.getElementById('loginBtn');
+            const devModal = document.getElementById('devModal');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+
+            function openModal() {
+                devModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            function closeModal() {
+                devModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+
+            loginBtn?.addEventListener('click', openModal);
+            closeModalBtn?.addEventListener('click', closeModal);
+            devModal?.addEventListener('click', function(e) {
+                if (e.target === devModal) closeModal();
+            });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && devModal.classList.contains('active')) closeModal();
             });
         });
     </script>
