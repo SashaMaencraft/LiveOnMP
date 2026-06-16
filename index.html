@@ -21,6 +21,7 @@
             --light: #f0f4ff;
             --accent: #00ffff;
             --gray: #8a8ca5;
+            --gold: #ffd700;
         }
 
         body {
@@ -31,7 +32,6 @@
             position: relative;
         }
 
-        /* Стеклянный эффект для фона */
         body::before {
             content: '';
             position: fixed;
@@ -52,7 +52,6 @@
             z-index: 1;
         }
 
-        /* HEADER - Стеклянный */
         header {
             background: rgba(13, 10, 26, 0.65);
             backdrop-filter: blur(20px);
@@ -145,7 +144,13 @@
             text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
         }
 
-        /* Стеклянная кнопка */
+        .header-buttons {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
         .btn {
             display: inline-block;
             background: rgba(138, 43, 226, 0.2);
@@ -170,6 +175,16 @@
             border-color: var(--accent);
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(138, 43, 226, 0.3);
+        }
+
+        .btn-login {
+            background: rgba(0, 255, 255, 0.1);
+            border-color: rgba(0, 255, 255, 0.3);
+        }
+
+        .btn-login:hover {
+            background: rgba(0, 255, 255, 0.25);
+            border-color: var(--accent);
         }
 
         .mobile-menu-btn {
@@ -220,7 +235,6 @@
             display: block;
         }
 
-        /* HERO - Стеклянный блок */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -253,7 +267,6 @@
             text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
         }
 
-        /* Стеклянный контейнер IP */
         .ip-container {
             background: rgba(13, 10, 26, 0.5);
             backdrop-filter: blur(16px);
@@ -297,7 +310,14 @@
             border-color: var(--accent);
         }
 
-        /* FEATURES */
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
         .features {
             padding: 60px 0;
         }
@@ -381,7 +401,6 @@
             text-align: left;
         }
 
-        /* PREMIUM - Стеклянная карта */
         .premium-pass {
             padding: 60px 0;
         }
@@ -400,7 +419,7 @@
         .pass-header {
             padding: 30px 20px;
             text-align: center;
-            background: linear-gradient(135deg, rgba(138, 43, 226, 0.15), rgba(0, 255, 255, 0.05));
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(0, 255, 255, 0.08));
             border-bottom: 1px solid rgba(138, 43, 226, 0.2);
         }
         
@@ -408,47 +427,65 @@
             width: 80px;
             height: 80px;
             margin: 0 auto 20px;
-            background: linear-gradient(135deg, rgba(138, 43, 226, 0.4), rgba(0, 255, 255, 0.3));
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(138, 43, 226, 0.3));
             backdrop-filter: blur(8px);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2.5rem;
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--gold);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.1);
         }
         
         .pass-title h3 {
             font-size: clamp(1.5rem, 3vw, 2rem);
             margin-bottom: 10px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
+            background: linear-gradient(90deg, var(--gold), #ff8c00);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            letter-spacing: 2px;
+        }
+        
+        .pass-subtitle {
+            color: rgba(240, 244, 255, 0.6);
+            font-size: 1rem;
         }
         
         .pass-benefits {
             padding: 25px 20px;
-            max-height: 400px;
-            overflow-y: auto;
         }
         
         .benefit-item {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 15px;
-            padding: 15px;
+            margin-bottom: 12px;
+            padding: 14px 18px;
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(4px);
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+        }
+        
+        .benefit-item:hover {
+            background: rgba(255, 215, 0, 0.05);
+            border-color: rgba(255, 215, 0, 0.15);
         }
         
         .benefit-item i {
-            color: var(--accent);
+            color: var(--gold);
             margin-right: 15px;
             margin-top: 3px;
+            font-size: 1.1rem;
+            min-width: 20px;
+        }
+        
+        .benefit-item span {
+            font-size: 0.98rem;
+            color: rgba(240, 244, 255, 0.9);
         }
         
         .pass-price {
@@ -477,12 +514,12 @@
         .price-new {
             font-size: 2.2rem;
             font-weight: 800;
-            color: var(--accent);
+            color: var(--gold);
         }
         
         .price-discount {
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            color: white;
+            background: linear-gradient(90deg, var(--gold), #ff8c00);
+            color: #0d0a1a;
             padding: 5px 10px;
             border-radius: 20px;
             font-weight: 700;
@@ -490,9 +527,9 @@
         
         .premium-btn {
             display: block;
-            background: rgba(138, 43, 226, 0.25);
+            background: rgba(255, 215, 0, 0.15);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(138, 43, 226, 0.5);
+            border: 1px solid rgba(255, 215, 0, 0.3);
             color: white;
             padding: 18px;
             border-radius: 12px;
@@ -504,12 +541,12 @@
         }
         
         .premium-btn:hover {
-            background: rgba(138, 43, 226, 0.45);
-            border-color: var(--accent);
+            background: rgba(255, 215, 0, 0.3);
+            border-color: var(--gold);
             transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.15);
         }
 
-        /* INFO */
         .server-info {
             padding: 60px 0;
         }
@@ -558,7 +595,6 @@
             margin-bottom: 15px;
         }
 
-        /* STATS */
         .stats {
             padding: 60px 0;
         }
@@ -594,7 +630,6 @@
             margin-bottom: 10px;
         }
 
-        /* FOOTER */
         footer {
             background: rgba(7, 5, 16, 0.8);
             backdrop-filter: blur(16px);
@@ -679,7 +714,6 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Модальное окно */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -760,16 +794,8 @@
             to { transform: scale(1); opacity: 1; }
         }
 
-        .hero-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            align-items: center;
-            justify-content: flex-start;
-        }
-
         @media (max-width: 767px) {
-            .nav-links, .desktop-btn {
+            .nav-links, .header-buttons {
                 display: none;
             }
             .mobile-menu-btn {
@@ -830,7 +856,10 @@
                         </div>
                     </li>
                 </ul>
-                <a href="https://pay.cloudtips.ru/p/0df70dac" target="_blank" class="btn desktop-btn">Купить Проходку</a>
+                <div class="header-buttons">
+                    <a href="https://pay.cloudtips.ru/p/0df70dac" target="_blank" class="btn">Купить Проходку</a>
+                    <button class="btn btn-login" id="loginBtn"><i class="fas fa-sign-in-alt"></i> Вход</button>
+                </div>
                 <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
             </nav>
         </div>
@@ -859,7 +888,6 @@
         <a href="https://pay.cloudtips.ru/p/0df70dac" target="_blank" class="btn" style="width:100%; text-align:center; margin-top:30px;">Купить Проходку</a>
     </div>
 
-    <!-- Модальное окно "В разработке" -->
     <div class="modal-overlay" id="devModal">
         <div class="modal-window">
             <div class="modal-icon"><i class="fas fa-tools"></i></div>
@@ -881,7 +909,7 @@
                 </div>
                 <div class="hero-buttons">
                     <a href="https://pay.cloudtips.ru/p/0df70dac" target="_blank" class="btn">Купить Проходку</a>
-                    <button class="btn" id="loginBtn"><i class="fas fa-sign-in-alt"></i> Вход</button>
+                    <button class="btn btn-login" id="loginBtnHero"><i class="fas fa-sign-in-alt"></i> Вход</button>
                 </div>
             </div>
         </div>
@@ -979,7 +1007,6 @@
     </footer>
 
     <script>
-        // БЕСКОНЕЧНЫЙ ЦИКЛ ПЕЧАТНОЙ МАШИНКИ (полностью сохранён)
         class InfiniteTypewriter {
             constructor(element, fullText, typeSpeed = 85, eraseSpeed = 45, pauseAfterFull = 1300, pauseAfterErase = 300) {
                 this.element = element;
@@ -1071,7 +1098,34 @@
         function rebuildFullContent() {
             const passContainer = document.getElementById('passContainer');
             if (passContainer && passContainer.children.length === 0) {
-                passContainer.innerHTML = `<div class="pass-card"><div class="pass-header"><div class="pass-icon"><i class="fas fa-crown"></i></div><div class="pass-title"><h3>ПРЕМИУМ ПРОХОДКА</h3><p class="pass-subtitle">90 дней эксклюзивного доступа с расширенными возможностями</p></div></div><div class="pass-benefits"><div class="benefit-item"><i class="fas fa-check-circle"></i><span>Приоритетный вход, расширенные лимиты, скидки и уникальные возможности</span></div></div><div class="pass-price"><div class="price-container"><span class="price-old">499 ₽</span><span class="price-new">299 ₽</span><span class="price-discount">-40%</span></div><p class="price-period">Всего 3.3 ₽ в день за 90 дней премиум-доступа</p><a href="https://pay.cloudtips.ru/p/0df70dac" class="premium-btn"><i class="fas fa-shopping-cart"></i> Купить Проходку</a><p style="color:var(--gray); margin-top:15px;"><i class="fas fa-shield-alt"></i> Безопасная оплата через CloudTips</p></div></div>`;
+                passContainer.innerHTML = `
+                    <div class="pass-card">
+                        <div class="pass-header">
+                            <div class="pass-icon"><i class="fas fa-ticket-alt"></i></div>
+                            <div class="pass-title">
+                                <h3>ДОСТУП НА СЕРВЕР</h3>
+                                <p class="pass-subtitle">90 дней полного доступа ко всем возможностям</p>
+                            </div>
+                        </div>
+                        <div class="pass-benefits">
+                            <div class="benefit-item"><i class="fas fa-star"></i><span>Приоритетный вход, расширенные лимиты, скидки и уникальные возможности</span></div>
+                            <div class="benefit-item"><i class="fas fa-headset"></i><span>Быстрая поддержка в любое время суток</span></div>
+                            <div class="benefit-item"><i class="fas fa-trophy"></i><span>Доступ к эксклюзивным ивентам и розыгрышам</span></div>
+                            <div class="benefit-item"><i class="fas fa-comment-dots"></i><span>Отдельный канал связи с администрацией</span></div>
+                            <div class="benefit-item"><i class="fas fa-rocket"></i><span>Ранний доступ к новым обновлениям и контенту</span></div>
+                        </div>
+                        <div class="pass-price">
+                            <div class="price-container">
+                                <span class="price-old">499 ₽</span>
+                                <span class="price-new">299 ₽</span>
+                                <span class="price-discount">-40%</span>
+                            </div>
+                            <p class="price-period">Всего 3.3 ₽ в день за 90 дней премиум-доступа</p>
+                            <a href="https://pay.cloudtips.ru/p/0df70dac" class="premium-btn"><i class="fas fa-shopping-cart"></i> Купить Проходку</a>
+                            <p style="color:var(--gray); margin-top:15px;"><i class="fas fa-shield-alt"></i> Безопасная оплата через CloudTips</p>
+                        </div>
+                    </div>
+                `;
             }
             const infoContainer = document.getElementById('infoContainer');
             if (infoContainer && infoContainer.children.length === 0) {
@@ -1152,27 +1206,23 @@
                 lastScroll = curr;
             });
 
-            // Модальное окно для кнопки "Вход"
-            const loginBtn = document.getElementById('loginBtn');
-            const devModal = document.getElementById('devModal');
-            const closeModalBtn = document.getElementById('closeModalBtn');
-
             function openModal() {
-                devModal.classList.add('active');
+                document.getElementById('devModal').classList.add('active');
                 document.body.style.overflow = 'hidden';
             }
             function closeModal() {
-                devModal.classList.remove('active');
+                document.getElementById('devModal').classList.remove('active');
                 document.body.style.overflow = 'auto';
             }
 
-            loginBtn?.addEventListener('click', openModal);
-            closeModalBtn?.addEventListener('click', closeModal);
-            devModal?.addEventListener('click', function(e) {
-                if (e.target === devModal) closeModal();
+            document.getElementById('loginBtn')?.addEventListener('click', openModal);
+            document.getElementById('loginBtnHero')?.addEventListener('click', openModal);
+            document.getElementById('closeModalBtn')?.addEventListener('click', closeModal);
+            document.getElementById('devModal')?.addEventListener('click', function(e) {
+                if (e.target === this) closeModal();
             });
             document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && devModal.classList.contains('active')) closeModal();
+                if (e.key === 'Escape' && document.getElementById('devModal').classList.contains('active')) closeModal();
             });
         });
     </script>
