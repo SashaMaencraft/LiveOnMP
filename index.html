@@ -187,6 +187,16 @@
             border-color: var(--accent);
         }
 
+        .btn-admin {
+            background: rgba(255, 215, 0, 0.15);
+            border-color: rgba(255, 215, 0, 0.35);
+        }
+        .btn-admin:hover {
+            background: rgba(255, 215, 0, 0.3);
+            border-color: var(--gold);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+        }
+
         .mobile-menu-btn {
             display: none;
             background: rgba(255, 255, 255, 0.1);
@@ -794,6 +804,50 @@
             to { transform: scale(1); opacity: 1; }
         }
 
+        /* Admin card styles */
+        .admin-card {
+            background: rgba(13, 10, 26, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 28px 24px;
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.08);
+            text-align: left;
+            margin: 10px 0;
+        }
+        .admin-card .admin-role {
+            font-size: 1.1rem;
+            color: var(--gold);
+            font-weight: 600;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            padding-bottom: 10px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .admin-card .admin-role i {
+            font-size: 1.3rem;
+        }
+        .admin-card .admin-nick {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--gold), #ffb347);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 6px;
+        }
+        .admin-card .admin-desc {
+            color: rgba(240, 244, 255, 0.75);
+            font-size: 1rem;
+            line-height: 1.5;
+            padding-left: 4px;
+            border-left: 2px solid rgba(255, 215, 0, 0.3);
+            padding-left: 14px;
+        }
+
         @media (max-width: 767px) {
             .nav-links, .header-buttons {
                 display: none;
@@ -815,6 +869,9 @@
             }
             .hero-buttons {
                 justify-content: center;
+            }
+            .modal-window {
+                padding: 30px 20px;
             }
         }
 
@@ -859,6 +916,7 @@
                 <div class="header-buttons">
                     <a href="https://pay.cloudtips.ru/p/0df70dac" target="_blank" class="btn">Купить Проходку</a>
                     <button class="btn btn-login" id="loginBtn"><i class="fas fa-sign-in-alt"></i> Вход</button>
+                    <button class="btn btn-admin" id="adminBtn"><i class="fas fa-crown"></i> Админ</button>
                 </div>
                 <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
             </nav>
@@ -886,6 +944,21 @@
             </div>
         </div>
         <a href="https://pay.cloudtips.ru/p/0df70dac" target="_blank" class="btn" style="width:100%; text-align:center; margin-top:30px;">Купить Проходку</a>
+        <button class="btn btn-admin" id="adminBtnMob" style="width:100%; margin-top:15px;"><i class="fas fa-crown"></i> Админ</button>
+    </div>
+
+    <!-- Admin Modal -->
+    <div class="modal-overlay" id="adminModal">
+        <div class="modal-window" style="max-width: 500px;">
+            <div class="modal-icon" style="color: var(--gold); border-color: rgba(255,215,0,0.4);"><i class="fas fa-crown"></i></div>
+            <h2 style="background: linear-gradient(90deg, var(--gold), #ffb347); -webkit-background-clip: text; background-clip: text; color: transparent;">Администрация</h2>
+            <div class="admin-card">
+                <div class="admin-role"><i class="fas fa-star"></i> Статус привилегии: Владелец</div>
+                <div class="admin-nick">Dragon_Mira0</div>
+                <div class="admin-desc"><i class="fas fa-user" style="margin-right: 8px; color: var(--gold);"></i> Описание игрока: Основатель и главный архитектор мира VisualVertexRP. Всегда на связи, следит за порядком и развитием сервера.</div>
+            </div>
+            <button class="btn-close-modal" id="closeAdminModal"><i class="fas fa-times"></i> Закрыть</button>
+        </div>
     </div>
 
     <div class="modal-overlay" id="devModal">
@@ -910,6 +983,7 @@
                 <div class="hero-buttons">
                     <a href="https://pay.cloudtips.ru/p/0df70dac" target="_blank" class="btn">Купить Проходку</a>
                     <button class="btn btn-login" id="loginBtnHero"><i class="fas fa-sign-in-alt"></i> Вход</button>
+                    <button class="btn btn-admin" id="adminBtnHero"><i class="fas fa-crown"></i> Админ</button>
                 </div>
             </div>
         </div>
@@ -1206,23 +1280,37 @@
                 lastScroll = curr;
             });
 
-            function openModal() {
-                document.getElementById('devModal').classList.add('active');
+            function openModal(id) {
+                document.getElementById(id).classList.add('active');
                 document.body.style.overflow = 'hidden';
             }
-            function closeModal() {
-                document.getElementById('devModal').classList.remove('active');
+            function closeModal(id) {
+                document.getElementById(id).classList.remove('active');
                 document.body.style.overflow = 'auto';
             }
 
-            document.getElementById('loginBtn')?.addEventListener('click', openModal);
-            document.getElementById('loginBtnHero')?.addEventListener('click', openModal);
-            document.getElementById('closeModalBtn')?.addEventListener('click', closeModal);
+            // Admin modal
+            const adminBtns = ['adminBtn', 'adminBtnHero', 'adminBtnMob'];
+            adminBtns.forEach(id => {
+                document.getElementById(id)?.addEventListener('click', () => openModal('adminModal'));
+            });
+            document.getElementById('closeAdminModal')?.addEventListener('click', () => closeModal('adminModal'));
+            document.getElementById('adminModal')?.addEventListener('click', function(e) {
+                if (e.target === this) closeModal('adminModal');
+            });
+
+            // Dev modal
+            document.getElementById('loginBtn')?.addEventListener('click', () => openModal('devModal'));
+            document.getElementById('loginBtnHero')?.addEventListener('click', () => openModal('devModal'));
+            document.getElementById('closeModalBtn')?.addEventListener('click', () => closeModal('devModal'));
             document.getElementById('devModal')?.addEventListener('click', function(e) {
-                if (e.target === this) closeModal();
+                if (e.target === this) closeModal('devModal');
             });
             document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && document.getElementById('devModal').classList.contains('active')) closeModal();
+                if (e.key === 'Escape') {
+                    if (document.getElementById('devModal').classList.contains('active')) closeModal('devModal');
+                    if (document.getElementById('adminModal').classList.contains('active')) closeModal('adminModal');
+                }
             });
         });
     </script>
