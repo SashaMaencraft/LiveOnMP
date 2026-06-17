@@ -187,16 +187,6 @@
             border-color: var(--accent);
         }
 
-        .btn-admin {
-            background: rgba(255, 215, 0, 0.15);
-            border-color: rgba(255, 215, 0, 0.35);
-        }
-        .btn-admin:hover {
-            background: rgba(255, 215, 0, 0.3);
-            border-color: var(--gold);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
-        }
-
         .mobile-menu-btn {
             display: none;
             background: rgba(255, 255, 255, 0.1);
@@ -848,6 +838,17 @@
             padding-left: 14px;
         }
 
+        /* Админ кнопка только в мобильном меню и на герое */
+        .btn-admin {
+            background: rgba(255, 215, 0, 0.15);
+            border-color: rgba(255, 215, 0, 0.35);
+        }
+        .btn-admin:hover {
+            background: rgba(255, 215, 0, 0.3);
+            border-color: var(--gold);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+        }
+
         @media (max-width: 767px) {
             .nav-links, .header-buttons {
                 display: none;
@@ -916,7 +917,6 @@
                 <div class="header-buttons">
                     <a href="https://pay.cloudtips.ru/p/0df70dac" target="_blank" class="btn">Купить Проходку</a>
                     <button class="btn btn-login" id="loginBtn"><i class="fas fa-sign-in-alt"></i> Вход</button>
-                    <button class="btn btn-admin" id="adminBtn"><i class="fas fa-crown"></i> Админ</button>
                 </div>
                 <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
             </nav>
@@ -1290,7 +1290,7 @@
             }
 
             // Admin modal
-            const adminBtns = ['adminBtn', 'adminBtnHero', 'adminBtnMob'];
+            const adminBtns = ['adminBtnHero', 'adminBtnMob'];
             adminBtns.forEach(id => {
                 document.getElementById(id)?.addEventListener('click', () => openModal('adminModal'));
             });
