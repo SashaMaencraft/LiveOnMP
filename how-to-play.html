@@ -2,16 +2,11 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Как начать играть | VisualVertexRP</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 
         :root {
             --primary: #8a2be2;
@@ -41,20 +36,14 @@
             z-index: 0;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 1;
-        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
 
         header {
             background: rgba(13, 10, 26, 0.65);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(138, 43, 226, 0.25);
-            padding: 1.2rem 0;
+            padding: 1rem 0;
             position: sticky;
             width: 100%;
             top: 0;
@@ -65,6 +54,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .logo {
@@ -86,10 +76,11 @@
             font-size: 1.2rem;
             color: white;
             box-shadow: 0 4px 12px rgba(138, 43, 226, 0.3);
+            flex-shrink: 0;
         }
 
         .logo-text {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 800;
             background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
             -webkit-background-clip: text;
@@ -100,28 +91,23 @@
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             list-style: none;
+            align-items: center;
         }
 
         .nav-links a {
             color: var(--light);
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1rem;
             position: relative;
             transition: color 0.3s;
+            white-space: nowrap;
         }
 
-        .nav-links a:hover {
-            color: var(--accent);
-            text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
-        }
-
-        .nav-links a.active {
-            color: var(--accent);
-        }
-
+        .nav-links a:hover { color: var(--accent); text-shadow: 0 0 8px rgba(0, 255, 255, 0.5); }
+        .nav-links a.active { color: var(--accent); }
         .nav-links a.active::after {
             content: '';
             position: absolute;
@@ -138,149 +124,122 @@
             backdrop-filter: blur(12px);
             border: 1px solid rgba(138, 43, 226, 0.5);
             color: white;
-            padding: 0.8rem 1.8rem;
+            padding: 0.6rem 1.5rem;
             border-radius: 12px;
             text-decoration: none;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             transition: all 0.3s;
             cursor: pointer;
+            text-align: center;
         }
 
         .btn:hover {
             background: rgba(138, 43, 226, 0.4);
             border-color: var(--accent);
-            transform: translateY(-3px);
+            transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(138, 43, 226, 0.3);
         }
 
-        .page-header {
-            padding: 6rem 0 3rem;
-            text-align: center;
-            background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(0, 255, 255, 0.05));
-            margin-bottom: 3rem;
-        }
-
-        .page-title {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .page-subtitle {
-            font-size: 1.2rem;
-            color: rgba(240, 244, 255, 0.8);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .content-section {
-            padding: 2rem 0 4rem;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: var(--light);
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            border-radius: 2px;
-        }
-
-        .steps-container {
-            display: flex;
+        /* Мобильное меню */
+        .menu-toggle {
+            display: none;
             flex-direction: column;
-            gap: 3rem;
-            margin-bottom: 4rem;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
         }
+        .menu-toggle span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background: var(--light);
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+        .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .menu-toggle.active span:nth-child(2) { opacity: 0; }
+        .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
+        .mobile-nav {
+            display: none;
+            width: 100%;
+            flex-direction: column;
+            padding: 1rem 0;
+            border-top: 1px solid rgba(138, 43, 226, 0.2);
+            margin-top: 1rem;
+            gap: 0.8rem;
+        }
+        .mobile-nav.open { display: flex; }
+        .mobile-nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(138, 43, 226, 0.1);
+        }
+        .mobile-nav a.active { color: var(--accent); }
+
+        .page-header { padding: 4rem 0 2rem; text-align: center; background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(0, 255, 255, 0.05)); margin-bottom: 2rem; }
+        .page-title { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1rem; background: linear-gradient(90deg, var(--primary), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .page-subtitle { font-size: 1rem; color: rgba(240, 244, 255, 0.8); max-width: 700px; margin: 0 auto; padding: 0 10px; }
+        .content-section { padding: 2rem 0 4rem; }
+        .section-title { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 2rem; color: var(--light); position: relative; padding-bottom: 10px; }
+        .section-title::after { content: ''; position: absolute; bottom: 0; left: 0; width: 80px; height: 4px; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 2px; }
+
+        .steps-container { display: flex; flex-direction: column; gap: 2rem; margin-bottom: 4rem; }
         .step {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             align-items: flex-start;
             background: rgba(13, 10, 26, 0.45);
             backdrop-filter: blur(16px);
             border-radius: 20px;
-            padding: 2.5rem;
+            padding: 1.5rem;
             border: 1px solid rgba(138, 43, 226, 0.25);
             transition: all 0.3s;
         }
-
-        .step:hover {
-            border-color: var(--accent);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
-
+        .step:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); }
         .step-number {
             background: linear-gradient(135deg, rgba(138, 43, 226, 0.3), rgba(0, 255, 255, 0.15));
             backdrop-filter: blur(8px);
             color: white;
-            width: 60px;
-            height: 60px;
+            min-width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: bold;
             flex-shrink: 0;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-
-        .step-content h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
-        }
-
-        .step-content p {
-            color: rgba(240, 244, 255, 0.75);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-        }
-
-        .step-content ul {
-            color: rgba(240, 244, 255, 0.75);
-            margin-left: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .step-content li {
-            margin-bottom: 0.8rem;
-            line-height: 1.6;
-        }
-
+        .step-content h3 { font-size: 1.4rem; margin-bottom: 0.8rem; color: var(--accent); }
+        .step-content p { color: rgba(240, 244, 255, 0.75); line-height: 1.7; margin-bottom: 1rem; }
+        .step-content ul { color: rgba(240, 244, 255, 0.75); margin-left: 1.5rem; margin-bottom: 1rem; }
+        .step-content li { margin-bottom: 0.5rem; line-height: 1.6; }
         .code-block {
             background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(8px);
             border: 1px solid rgba(0, 255, 255, 0.2);
             border-radius: 12px;
-            padding: 1.5rem;
+            padding: 1rem;
             font-family: 'Courier New', monospace;
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--accent);
-            margin: 1.5rem 0;
+            margin: 1rem 0;
             overflow-x: auto;
+            word-break: break-all;
         }
 
         .requirements-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            gap: 1.5rem;
             margin-top: 2rem;
         }
 
@@ -288,134 +247,49 @@
             background: rgba(13, 10, 26, 0.45);
             backdrop-filter: blur(16px);
             border-radius: 18px;
-            padding: 2rem;
+            padding: 1.5rem;
             text-align: center;
             border: 1px solid rgba(138, 43, 226, 0.25);
             transition: all 0.3s;
         }
-
-        .requirement-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        }
-
-        .requirement-icon {
-            font-size: 3rem;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-        }
-
-        .requirement-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--light);
-        }
-
-        .requirement-card p {
-            color: rgba(240, 244, 255, 0.7);
-            line-height: 1.6;
-        }
+        .requirement-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); }
+        .requirement-icon { font-size: 2.5rem; color: var(--accent); margin-bottom: 1rem; }
+        .requirement-card h3 { font-size: 1.3rem; margin-bottom: 0.8rem; color: var(--light); }
+        .requirement-card p { color: rgba(240, 244, 255, 0.7); line-height: 1.6; font-size: 0.95rem; }
 
         footer {
             background: rgba(7, 5, 16, 0.8);
             backdrop-filter: blur(16px);
-            padding: 4rem 0 2rem;
+            padding: 3rem 0 1.5rem;
             border-top: 1px solid rgba(138, 43, 226, 0.3);
-            margin-top: 4rem;
+            margin-top: 3rem;
         }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-logo {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .footer-links {
-            flex: 2;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-
-        .footer-column h3 {
-            color: var(--light);
-            margin-bottom: 1.5rem;
-            font-size: 1.3rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-        }
-
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-column a {
-            color: var(--gray);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-column a:hover {
-            color: var(--accent);
-        }
-
-        .copyright {
-            text-align: center;
-            color: var(--gray);
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        @media (max-width: 992px) {
-            .step {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .step-number {
-                margin: 0 auto;
-            }
-        }
+        .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem; margin-bottom: 2rem; }
+        .footer-logo { flex: 1; min-width: 250px; }
+        .footer-links { flex: 2; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1.5rem; }
+        .footer-column h3 { color: var(--light); margin-bottom: 1rem; font-size: 1.1rem; position: relative; padding-bottom: 8px; }
+        .footer-column h3::after { content: ''; position: absolute; bottom: 0; left: 0; width: 40px; height: 3px; background: linear-gradient(90deg, var(--primary), var(--accent)); }
+        .footer-column ul { list-style: none; }
+        .footer-column li { margin-bottom: 0.6rem; }
+        .footer-column a { color: var(--gray); text-decoration: none; transition: color 0.3s; }
+        .footer-column a:hover { color: var(--accent); }
+        .copyright { text-align: center; color: var(--gray); padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.85rem; }
 
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .page-title {
-                font-size: 2.5rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .step {
-                padding: 1.5rem;
-            }
+            .nav-links, .desktop-btn { display: none; }
+            .menu-toggle { display: flex; }
+            .step { flex-direction: column; text-align: center; align-items: center; }
+            .step-number { margin: 0 auto; }
+            .step-content ul { text-align: left; }
+            .requirements-grid { grid-template-columns: 1fr; }
+            .page-header { padding: 3rem 0 1.5rem; }
+            .container { padding: 0 15px; }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .step { padding: 1.8rem; }
+            .nav-links { gap: 1rem; }
+            .nav-links a { font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -434,8 +308,19 @@
                     <li><a href="faq.html">FAQ</a></li>
                     <li><a href="tech-support.html">Поддержка</a></li>
                 </ul>
-                <a href="index.html#home" class="btn">На главную</a>
+                <a href="index.html#home" class="btn desktop-btn">На главную</a>
+                <button class="menu-toggle" id="menuToggle" aria-label="Меню">
+                    <span></span><span></span><span></span>
+                </button>
             </nav>
+            <div class="mobile-nav" id="mobileNav">
+                <a href="index.html">Главная</a>
+                <a href="how-to-play.html" class="active">Как играть</a>
+                <a href="rules.html">Правила</a>
+                <a href="faq.html">FAQ</a>
+                <a href="tech-support.html">Поддержка</a>
+                <a href="index.html#home" class="btn" style="margin-top: 0.5rem;">На главную</a>
+            </div>
         </div>
     </header>
 
@@ -512,40 +397,23 @@
             </div>
 
             <h2 class="section-title">Системные требования</h2>
-            <p style="color: rgba(240, 244, 255, 0.75); margin-bottom: 2rem; font-size: 1.1rem;">Для комфортной игры на нашем сервере рекомендуем следующие системные требования:</p>
+            <p style="color: rgba(240, 244, 255, 0.75); margin-bottom: 2rem; font-size: 1rem;">Для комфортной игры на нашем сервере рекомендуем следующие системные требования:</p>
             
             <div class="requirements-grid">
                 <div class="requirement-card">
-                    <div class="requirement-icon">
-                        <i class="fas fa-desktop"></i>
-                    </div>
+                    <div class="requirement-icon"><i class="fas fa-desktop"></i></div>
                     <h3>Минимальные</h3>
-                    <p>• Процессор: Intel Core i3 или аналогичный<br>
-                       • Оперативная память: 4 ГБ<br>
-                       • Видеокарта: Intel HD Graphics или аналогичная<br>
-                       • Интернет: 5 Мбит/с</p>
+                    <p>• Процессор: Intel Core i3 или аналогичный<br>• Оперативная память: 4 ГБ<br>• Видеокарта: Intel HD Graphics или аналогичная<br>• Интернет: 5 Мбит/с</p>
                 </div>
-
                 <div class="requirement-card">
-                    <div class="requirement-icon">
-                        <i class="fas fa-tachometer-alt"></i>
-                    </div>
+                    <div class="requirement-icon"><i class="fas fa-tachometer-alt"></i></div>
                     <h3>Рекомендуемые</h3>
-                    <p>• Процессор: Intel Core i5 или лучше<br>
-                       • Оперативная память: 8 ГБ или более<br>
-                       • Видеокарта: NVIDIA GTX 1050 или аналогичная<br>
-                       • Интернет: 10 Мбит/с или быстрее</p>
+                    <p>• Процессор: Intel Core i5 или лучше<br>• Оперативная память: 8 ГБ или более<br>• Видеокарта: NVIDIA GTX 1050 или аналогичная<br>• Интернет: 10 Мбит/с или быстрее</p>
                 </div>
-
                 <div class="requirement-card">
-                    <div class="requirement-icon">
-                        <i class="fas fa-network-wired"></i>
-                    </div>
+                    <div class="requirement-icon"><i class="fas fa-network-wired"></i></div>
                     <h3>Сетевое соединение</h3>
-                    <p>• Стабильное подключение к интернету<br>
-                       • Пинг до сервера: до 100 мс<br>
-                       • Отсутствие потерь пакетов<br>
-                       • Рекомендуется проводное подключение</p>
+                    <p>• Стабильное подключение к интернету<br>• Пинг до сервера: до 100 мс<br>• Отсутствие потерь пакетов<br>• Рекомендуется проводное подключение</p>
                 </div>
             </div>
         </section>
@@ -559,9 +427,8 @@
                         <div class="logo-icon">VV</div>
                         <div class="logo-text">VisualVertexRP</div>
                     </a>
-                    <p style="color: var(--gray); margin-top: 1.5rem; line-height: 1.6;">Уникальный Minecraft RolePlay сервер с глубокой экономикой, политикой и активным сообществом.</p>
+                    <p style="color: var(--gray); margin-top: 1.5rem; line-height: 1.6; font-size: 0.95rem;">Уникальный Minecraft RolePlay сервер с глубокой экономикой, политикой и активным сообществом.</p>
                 </div>
-                
                 <div class="footer-links">
                     <div class="footer-column">
                         <h3>Навигация</h3>
@@ -572,7 +439,6 @@
                             <li><a href="faq.html">Частые вопросы</a></li>
                         </ul>
                     </div>
-                    
                     <div class="footer-column">
                         <h3>Поддержка</h3>
                         <ul>
@@ -580,27 +446,40 @@
                             <li><a href="rules.html">Правила сервера</a></li>
                             <li><a href="faq.html">Частые вопросы</a></li>
                             <li><a href="tech-support.html">Техническая помощь</a></li>
-                            <li><a href="https://visualvertex.forumes.ru/" target="_blank">Форум</a></li> 
+                            <li><a href="https://visualvertex.forumes.ru/" target="_blank">Форум</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
-            
             <div class="copyright">
                 <p>© 2025 VisualVertexRP. Все права защищены.</p>
-                <p style="margin-top: 0.5rem; font-size: 0.9rem;">Minecraft является товарным знаком Mojang AB. Данный проект не аффилирован с Mojang или Microsoft.</p>
+                <p style="margin-top: 0.5rem; font-size: 0.8rem;">Minecraft является товарным знаком Mojang AB. Данный проект не аффилирован с Mojang или Microsoft.</p>
             </div>
         </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const currentPage = window.location.pathname.split('/').pop();
-            const navLinks = document.querySelectorAll('.nav-links a');
+            const toggle = document.getElementById('menuToggle');
+            const mobileNav = document.getElementById('mobileNav');
             
-            navLinks.forEach(link => {
-                const linkPage = link.getAttribute('href');
-                if (linkPage === currentPage) {
+            toggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                mobileNav.classList.toggle('open');
+            });
+
+            // Закрываем меню при клике на ссылку
+            mobileNav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    toggle.classList.remove('active');
+                    mobileNav.classList.remove('open');
+                });
+            });
+
+            // Активная ссылка
+            const currentPage = window.location.pathname.split('/').pop();
+            document.querySelectorAll('.nav-links a, .mobile-nav a').forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
                     link.classList.add('active');
                 } else {
                     link.classList.remove('active');
