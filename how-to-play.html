@@ -141,7 +141,6 @@
             box-shadow: 0 8px 20px rgba(138, 43, 226, 0.3);
         }
 
-        /* Мобильное меню */
         .menu-toggle {
             display: none;
             flex-direction: column;
@@ -163,6 +162,10 @@
         .menu-toggle.active span:nth-child(2) { opacity: 0; }
         .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
+        @media (max-width: 767px) {
+            .menu-toggle { display: flex; }
+        }
+
         .mobile-nav {
             display: none;
             width: 100%;
@@ -182,6 +185,26 @@
             border-bottom: 1px solid rgba(138, 43, 226, 0.1);
         }
         .mobile-nav a.active { color: var(--accent); }
+
+        /* ========== ЭФФЕКТ МАСШТАБИРОВАНИЯ ========== */
+        .zoomable {
+            display: inline-block;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                        color 0.2s, 
+                        text-shadow 0.2s,
+                        box-shadow 0.3s ease;
+            transform: scale(1);
+            transform-origin: center;
+            will-change: transform;
+        }
+
+        .zoomable.zoomed {
+            transform: scale(1.2);
+        }
+
+        .zoomable.zoomed.btn {
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.4);
+        }
 
         .page-header { padding: 4rem 0 2rem; text-align: center; background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(0, 255, 255, 0.05)); margin-bottom: 2rem; }
         .page-title { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1rem; background: linear-gradient(90deg, var(--primary), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -275,7 +298,7 @@
         .footer-column a:hover { color: var(--accent); }
         .copyright { text-align: center; color: var(--gray); padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.85rem; }
 
-        @media (max-width: 768px) {
+        @media (max-width: 767px) {
             .nav-links, .desktop-btn { display: none; }
             .menu-toggle { display: flex; }
             .step { flex-direction: column; text-align: center; align-items: center; }
@@ -286,7 +309,7 @@
             .container { padding: 0 15px; }
         }
 
-        @media (min-width: 769px) and (max-width: 1024px) {
+        @media (min-width: 768px) and (max-width: 1024px) {
             .step { padding: 1.8rem; }
             .nav-links { gap: 1rem; }
             .nav-links a { font-size: 0.9rem; }
@@ -302,24 +325,24 @@
                     <div class="logo-text">VisualVertexRP</div>
                 </a>
                 <ul class="nav-links">
-                    <li><a href="index.html">Главная</a></li>
-                    <li><a href="how-to-play.html" class="active">Как играть</a></li>
-                    <li><a href="rules.html">Правила</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="tech-support.html">Поддержка</a></li>
+                    <li><a href="index.html" class="zoomable">Главная</a></li>
+                    <li><a href="how-to-play.html" class="zoomable active">Как играть</a></li>
+                    <li><a href="rules.html" class="zoomable">Правила</a></li>
+                    <li><a href="faq.html" class="zoomable">FAQ</a></li>
+                    <li><a href="tech-support.html" class="zoomable">Поддержка</a></li>
                 </ul>
-                <a href="index.html#home" class="btn desktop-btn">На главную</a>
+                <a href="index.html#home" class="btn desktop-btn zoomable">На главную</a>
                 <button class="menu-toggle" id="menuToggle" aria-label="Меню">
                     <span></span><span></span><span></span>
                 </button>
             </nav>
             <div class="mobile-nav" id="mobileNav">
-                <a href="index.html">Главная</a>
-                <a href="how-to-play.html" class="active">Как играть</a>
-                <a href="rules.html">Правила</a>
-                <a href="faq.html">FAQ</a>
-                <a href="tech-support.html">Поддержка</a>
-                <a href="index.html#home" class="btn" style="margin-top: 0.5rem;">На главную</a>
+                <a href="index.html" class="zoomable">Главная</a>
+                <a href="how-to-play.html" class="zoomable active">Как играть</a>
+                <a href="rules.html" class="zoomable">Правила</a>
+                <a href="faq.html" class="zoomable">FAQ</a>
+                <a href="tech-support.html" class="zoomable">Поддержка</a>
+                <a href="index.html#home" class="btn zoomable" style="margin-top: 0.5rem;">На главную</a>
             </div>
         </div>
     </header>
@@ -433,20 +456,20 @@
                     <div class="footer-column">
                         <h3>Навигация</h3>
                         <ul>
-                            <li><a href="index.html">Главная</a></li>
-                            <li><a href="how-to-play.html">Как играть</a></li>
-                            <li><a href="rules.html">Правила</a></li>
-                            <li><a href="faq.html">Частые вопросы</a></li>
+                            <li><a href="index.html" class="zoomable">Главная</a></li>
+                            <li><a href="how-to-play.html" class="zoomable">Как играть</a></li>
+                            <li><a href="rules.html" class="zoomable">Правила</a></li>
+                            <li><a href="faq.html" class="zoomable">Частые вопросы</a></li>
                         </ul>
                     </div>
                     <div class="footer-column">
                         <h3>Поддержка</h3>
                         <ul>
-                            <li><a href="how-to-play.html">Как начать играть</a></li>
-                            <li><a href="rules.html">Правила сервера</a></li>
-                            <li><a href="faq.html">Частые вопросы</a></li>
-                            <li><a href="tech-support.html">Техническая помощь</a></li>
-                            <li><a href="https://visualvertex.forumes.ru/" target="_blank">Форум</a></li>
+                            <li><a href="how-to-play.html" class="zoomable">Как начать играть</a></li>
+                            <li><a href="rules.html" class="zoomable">Правила сервера</a></li>
+                            <li><a href="faq.html" class="zoomable">Частые вопросы</a></li>
+                            <li><a href="tech-support.html" class="zoomable">Техническая помощь</a></li>
+                            <li><a href="https://visualvertex.forumes.ru/" target="_blank" class="zoomable">Форум</a></li>
                         </ul>
                     </div>
                 </div>
@@ -459,6 +482,16 @@
     </footer>
 
     <script>
+        // ========== ЭФФЕКТ МАСШТАБИРОВАНИЯ ==========
+        function initZoomEffect() {
+            document.querySelectorAll('.zoomable').forEach(el => {
+                el.addEventListener('mouseenter', function() { this.classList.add('zoomed'); });
+                el.addEventListener('mouseleave', function() { this.classList.remove('zoomed'); });
+                el.addEventListener('touchstart', function() { this.classList.add('zoomed'); }, { passive: true });
+                el.addEventListener('touchend', function() { setTimeout(() => this.classList.remove('zoomed'), 300); }, { passive: true });
+            });
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             const toggle = document.getElementById('menuToggle');
             const mobileNav = document.getElementById('mobileNav');
@@ -468,7 +501,6 @@
                 mobileNav.classList.toggle('open');
             });
 
-            // Закрываем меню при клике на ссылку
             mobileNav.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', () => {
                     toggle.classList.remove('active');
@@ -476,7 +508,6 @@
                 });
             });
 
-            // Активная ссылка
             const currentPage = window.location.pathname.split('/').pop();
             document.querySelectorAll('.nav-links a, .mobile-nav a').forEach(link => {
                 if (link.getAttribute('href') === currentPage) {
@@ -485,6 +516,8 @@
                     link.classList.remove('active');
                 }
             });
+
+            initZoomEffect();
         });
     </script>
 </body>
