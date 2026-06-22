@@ -187,6 +187,7 @@
             border-color: var(--accent);
         }
 
+        /* ===== БУРГЕР-МЕНЮ — СКРЫТО НА ПК, ВИДНО ТОЛЬКО НА МОБИЛЬНЫХ ===== */
         .mobile-menu-btn {
             display: none;
             background: rgba(255, 255, 255, 0.1);
@@ -197,6 +198,13 @@
             font-size: 1.5rem;
             cursor: pointer;
             padding: 8px 12px;
+        }
+
+        /* Только для экранов меньше 768px (телефоны и планшеты) */
+        @media (max-width: 767px) {
+            .mobile-menu-btn {
+                display: block;
+            }
         }
 
         .mobile-menu {
@@ -838,7 +846,7 @@
             padding-left: 14px;
         }
 
-        /* Админ кнопка только в мобильном меню и на герое */
+        /* Админ кнопка */
         .btn-admin {
             background: rgba(255, 215, 0, 0.15);
             border-color: rgba(255, 215, 0, 0.35);
@@ -849,6 +857,69 @@
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
         }
 
+        /* ===== УНИВЕРСАЛЬНЫЙ ЭФФЕКТ МАСШТАБИРОВАНИЯ ===== */
+        .zoomable {
+            display: inline-block;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                        color 0.2s, 
+                        text-shadow 0.2s,
+                        box-shadow 0.3s ease;
+            transform: scale(1);
+            transform-origin: center;
+            will-change: transform;
+        }
+
+        .zoomable.zoomed {
+            transform: scale(1.2);
+        }
+
+        .zoomable.zoomed.btn {
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.4);
+        }
+
+        .zoomable.zoomed.btn-login {
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+        }
+
+        .zoomable.zoomed.btn-admin {
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .zoomable.zoomed.premium-btn {
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.25);
+        }
+
+        .zoomable.zoomed.telegram-btn {
+            box-shadow: 0 0 30px rgba(0, 136, 204, 0.3);
+        }
+
+        .zoomable.zoomed.nav-link {
+            color: var(--accent);
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+        }
+
+        .zoomable.zoomed.footer-link {
+            color: var(--accent);
+        }
+
+        .zoomable.zoomed.mobile-nav-link {
+            color: var(--accent);
+        }
+
+        .zoomable.zoomed.more-btn {
+            color: var(--accent);
+            border-color: rgba(0, 255, 255, 0.5);
+        }
+
+        .zoomable.zoomed.dropdown-link {
+            color: var(--accent);
+        }
+
+        .zoomable.zoomed.mobile-close-btn {
+            transform: scale(1.3) rotate(90deg);
+        }
+
+        /* ===== АДАПТИВ ===== */
         @media (max-width: 767px) {
             .nav-links, .header-buttons {
                 display: none;
@@ -892,59 +963,60 @@
     <header id="header">
         <div class="container">
             <nav>
-                <a href="#" class="logo">
+                <a href="#" class="logo zoomable" id="logoLink">
                     <img class="logo-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%238a2be2'/%3E%3Cstop offset='100%25' stop-color='%2300ffff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='40' height='40' rx='8' fill='url(%23grad)'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='white' font-size='20' font-family='Arial, sans-serif' font-weight='bold'%3EVV%3C/text%3E%3C/svg%3E"
                          alt="VisualVertexRP Logo">
                     <div class="logo-text" id="logoTypewriterTarget">VisualVertexRP</div>
                 </a>
                 <ul class="nav-links">
-                    <li><a href="#home">Главная</a></li>
-                    <li><a href="#features">Особенности</a></li>
-                    <li><a href="#premium">Проходка</a></li>
-                    <li><a href="#info">О сервере</a></li>
-                    <li><a href="#stats">Статистика</a></li>
+                    <li><a href="#home" class="zoomable nav-link">Главная</a></li>
+                    <li><a href="#features" class="zoomable nav-link">Особенности</a></li>
+                    <li><a href="#premium" class="zoomable nav-link">Проходка</a></li>
+                    <li><a href="#info" class="zoomable nav-link">О сервере</a></li>
+                    <li><a href="#stats" class="zoomable nav-link">Статистика</a></li>
                     <li class="more-menu" style="position: relative;">
-                        <button class="more-btn" style="background:rgba(255,255,255,0.05); backdrop-filter:blur(8px); border:1px solid rgba(138,43,226,0.3); border-radius:10px; color:var(--light); font-weight:600; cursor:pointer; padding:8px 15px;">Прочее <i class="fas fa-chevron-down"></i></button>
+                        <button class="more-btn zoomable" style="background:rgba(255,255,255,0.05); backdrop-filter:blur(8px); border:1px solid rgba(138,43,226,0.3); border-radius:10px; color:var(--light); font-weight:600; cursor:pointer; padding:8px 15px;">Прочее <i class="fas fa-chevron-down"></i></button>
                         <div class="more-dropdown" style="position:absolute; top:100%; left:0; background:rgba(13,10,26,0.95); backdrop-filter:blur(20px); border-radius:12px; padding:10px; display:none; flex-direction:column; gap:5px; z-index:100; min-width:160px; border:1px solid rgba(138,43,226,0.3);">
-                            <a href="how-to-play.html" style="padding:8px 12px; color:var(--light); text-decoration:none;">Как играть</a>
-                            <a href="rules.html" style="padding:8px 12px; color:var(--light); text-decoration:none;">Правила</a>
-                            <a href="faq.html" style="padding:8px 12px; color:var(--light); text-decoration:none;">FAQ</a>
-                            <a href="terminology.html" style="padding:8px 12px; color:var(--light); text-decoration:none;">Термины</a>
-                            <a href="tech-support.html" style="padding:8px 12px; color:var(--light); text-decoration:none;">Поддержка</a>
+                            <a href="how-to-play.html" class="zoomable dropdown-link" style="padding:8px 12px; color:var(--light); text-decoration:none;">Как играть</a>
+                            <a href="rules.html" class="zoomable dropdown-link" style="padding:8px 12px; color:var(--light); text-decoration:none;">Правила</a>
+                            <a href="faq.html" class="zoomable dropdown-link" style="padding:8px 12px; color:var(--light); text-decoration:none;">FAQ</a>
+                            <a href="terminology.html" class="zoomable dropdown-link" style="padding:8px 12px; color:var(--light); text-decoration:none;">Термины</a>
+                            <a href="tech-support.html" class="zoomable dropdown-link" style="padding:8px 12px; color:var(--light); text-decoration:none;">Поддержка</a>
                         </div>
                     </li>
                 </ul>
                 <div class="header-buttons">
-                    <a href="https://pay.cloudtips.ru/p/0df70dac" target="_blank" class="btn">Купить Проходку</a>
-                    <button class="btn btn-login" id="loginBtn"><i class="fas fa-sign-in-alt"></i> Вход</button>
+                    <a href="https://pay.cloudtips.ru/p/0df70dac" target="_blank" class="btn zoomable">Купить Проходку</a>
+                    <button class="btn btn-login zoomable" id="loginBtn"><i class="fas fa-sign-in-alt"></i> Вход</button>
                 </div>
-                <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+                <!-- ===== БУРГЕР-МЕНЮ — ПОЯВЛЯЕТСЯ ТОЛЬКО НА ЭКРАНАХ МЕНЬШЕ 768px ===== -->
+                <button class="mobile-menu-btn zoomable" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
             </nav>
         </div>
     </header>
 
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
     <div class="mobile-menu" id="mobileMenu">
-        <button class="mobile-menu-close" id="mobileMenuClose" style="background:none; border:none; color:white; font-size:1.8rem; position:absolute; top:20px; right:20px;"><i class="fas fa-times"></i></button>
+        <button class="mobile-menu-close zoomable mobile-close-btn" id="mobileMenuClose" style="background:none; border:none; color:white; font-size:1.8rem; position:absolute; top:20px; right:20px;"><i class="fas fa-times"></i></button>
         <ul class="mobile-nav-links" style="list-style:none;">
-            <li style="margin-bottom:15px;"><a href="#home" style="color:white; text-decoration:none; font-size:1.2rem;">Главная</a></li>
-            <li style="margin-bottom:15px;"><a href="#features" style="color:white; text-decoration:none; font-size:1.2rem;">Особенности</a></li>
-            <li style="margin-bottom:15px;"><a href="#premium" style="color:white; text-decoration:none; font-size:1.2rem;">Проходка</a></li>
-            <li style="margin-bottom:15px;"><a href="#info" style="color:white; text-decoration:none; font-size:1.2rem;">О сервере</a></li>
-            <li style="margin-bottom:15px;"><a href="#stats" style="color:white; text-decoration:none; font-size:1.2rem;">Статистика</a></li>
+            <li style="margin-bottom:15px;"><a href="#home" class="zoomable mobile-nav-link" style="color:white; text-decoration:none; font-size:1.2rem;">Главная</a></li>
+            <li style="margin-bottom:15px;"><a href="#features" class="zoomable mobile-nav-link" style="color:white; text-decoration:none; font-size:1.2rem;">Особенности</a></li>
+            <li style="margin-bottom:15px;"><a href="#premium" class="zoomable mobile-nav-link" style="color:white; text-decoration:none; font-size:1.2rem;">Проходка</a></li>
+            <li style="margin-bottom:15px;"><a href="#info" class="zoomable mobile-nav-link" style="color:white; text-decoration:none; font-size:1.2rem;">О сервере</a></li>
+            <li style="margin-bottom:15px;"><a href="#stats" class="zoomable mobile-nav-link" style="color:white; text-decoration:none; font-size:1.2rem;">Статистика</a></li>
         </ul>
         <div class="mobile-more-menu">
             <h3 style="color:var(--light); margin-bottom:15px;">Прочее</h3>
             <div style="display:flex; flex-direction:column; gap:10px;">
-                <a href="how-to-play.html" style="color:var(--light); text-decoration:none;">Как играть</a>
-                <a href="rules.html" style="color:var(--light); text-decoration:none;">Правила</a>
-                <a href="faq.html" style="color:var(--light); text-decoration:none;">FAQ</a>
-                <a href="terminology.html" style="color:var(--light); text-decoration:none;">Термины</a>
-                <a href="tech-support.html" style="color:var(--light); text-decoration:none;">Поддержка</a>
+                <a href="how-to-play.html" class="zoomable" style="color:var(--light); text-decoration:none;">Как играть</a>
+                <a href="rules.html" class="zoomable" style="color:var(--light); text-decoration:none;">Правила</a>
+                <a href="faq.html" class="zoomable" style="color:var(--light); text-decoration:none;">FAQ</a>
+                <a href="terminology.html" class="zoomable" style="color:var(--light); text-decoration:none;">Термины</a>
+                <a href="tech-support.html" class="zoomable" style="color:var(--light); text-decoration:none;">Поддержка</a>
             </div>
         </div>
-        <a href="https://pay.cloudtips.ru/p/0df70dac" target="_blank" class="btn" style="width:100%; text-align:center; margin-top:30px;">Купить Проходку</a>
-        <button class="btn btn-admin" id="adminBtnMob" style="width:100%; margin-top:15px;"><i class="fas fa-crown"></i> Админ</button>
+        <a href="https://pay.cloudtips.ru/p/0df70dac" target="_blank" class="btn zoomable" style="width:100%; text-align:center; margin-top:30px;">Купить Проходку</a>
+        <button class="btn btn-admin zoomable" id="adminBtnMob" style="width:100%; margin-top:15px;"><i class="fas fa-crown"></i> Админ</button>
     </div>
 
     <!-- Admin Modal -->
@@ -957,7 +1029,7 @@
                 <div class="admin-nick">Dragon_Mira0</div>
                 <div class="admin-desc"><i class="fas fa-user" style="margin-right: 8px; color: var(--gold);"></i> Описание игрока: Основатель и главный архитектор мира VisualVertexRP. Всегда на связи, следит за порядком и развитием сервера.</div>
             </div>
-            <button class="btn-close-modal" id="closeAdminModal"><i class="fas fa-times"></i> Закрыть</button>
+            <button class="btn-close-modal zoomable" id="closeAdminModal"><i class="fas fa-times"></i> Закрыть</button>
         </div>
     </div>
 
@@ -966,7 +1038,7 @@
             <div class="modal-icon"><i class="fas fa-tools"></i></div>
             <h2>В разработке</h2>
             <p>Функция входа временно недоступна. Мы работаем над её улучшением, чтобы вы могли получить лучший опыт!</p>
-            <button class="btn-close-modal" id="closeModalBtn"><i class="fas fa-times"></i> Закрыть</button>
+            <button class="btn-close-modal zoomable" id="closeModalBtn"><i class="fas fa-times"></i> Закрыть</button>
         </div>
     </div>
 
@@ -978,12 +1050,12 @@
                 <div class="ip-container">
                     <span class="ip-label">Адрес сервера:</span>
                     <span class="ip-address" id="serverIp">visualvertexrp.wellduck.org</span>
-                    <button class="copy-btn" id="copyIpBtn"><i class="fas fa-copy"></i> Скопировать адрес</button>
+                    <button class="copy-btn zoomable" id="copyIpBtn"><i class="fas fa-copy"></i> Скопировать адрес</button>
                 </div>
                 <div class="hero-buttons">
-                    <a href="https://pay.cloudtips.ru/p/0df70dac" target="_blank" class="btn">Купить Проходку</a>
-                    <button class="btn btn-login" id="loginBtnHero"><i class="fas fa-sign-in-alt"></i> Вход</button>
-                    <button class="btn btn-admin" id="adminBtnHero"><i class="fas fa-crown"></i> Админ</button>
+                    <a href="https://pay.cloudtips.ru/p/0df70dac" target="_blank" class="btn zoomable">Купить Проходку</a>
+                    <button class="btn btn-login zoomable" id="loginBtnHero"><i class="fas fa-sign-in-alt"></i> Вход</button>
+                    <button class="btn btn-admin zoomable" id="adminBtnHero"><i class="fas fa-crown"></i> Админ</button>
                 </div>
             </div>
         </div>
@@ -994,7 +1066,7 @@
             <h2 class="section-title">Наши особенности</h2>
             <div class="features-showcase">
                 <div class="feature-logo-block">
-                    <img class="feature-logo-img" src="photo/photoVV.png" alt="VisualVertexRP Logo" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27180%27 height=%27180%27 viewBox=%270 0 40 40%27%3E%3Crect width=%2740%27 height=%2740%27 fill=%27%238a2be2%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 dy=%27.3em%27 fill=%27white%27 font-size=%2720%27%3EVV%3C/text%3E%3C/svg%3E';">
+                    <img class="feature-logo-img zoomable" src="photo/photoVV.png" alt="VisualVertexRP Logo" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27180%27 height=%27180%27 viewBox=%270 0 40 40%27%3E%3Crect width=%2740%27 height=%2740%27 fill=%27%238a2be2%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 dy=%27.3em%27 fill=%27white%27 font-size=%2720%27%3EVV%3C/text%3E%3C/svg%3E';">
                 </div>
                 <div class="feature-description">
                     <p><span class="highlight-rp">🔮 Уникальный RolePlay опыт</span> — полное погружение в атмосферу, где каждый выбор меняет историю.</p>
@@ -1026,7 +1098,7 @@
             <h2 class="section-title">Сервер в цифрах</h2>
             <div class="stats-grid" id="statsGrid"></div>
             <div class="stats-cta" style="text-align:center; margin-top:40px;">
-                <a href="https://pay.cloudtips.ru/p/0df70dac" target="_blank" class="btn">Купить Проходку и присоединиться</a>
+                <a href="https://pay.cloudtips.ru/p/0df70dac" target="_blank" class="btn zoomable">Купить Проходку и присоединиться</a>
             </div>
         </div>
     </section>
@@ -1035,7 +1107,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <a href="#" class="logo" style="text-decoration:none; display:flex; gap:10px; align-items:center;">
+                    <a href="#" class="logo zoomable" style="text-decoration:none; display:flex; gap:10px; align-items:center;">
                         <img class="logo-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%238a2be2'/%3E%3Cstop offset='100%25' stop-color='%2300ffff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='40' height='40' rx='8' fill='url(%23grad)'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='white' font-size='20' font-family='Arial, sans-serif' font-weight='bold'%3EVV%3C/text%3E%3C/svg%3E"
                              alt="VisualVertexRP Logo">
                         <div class="logo-text" id="footerLogoTypewriter">VisualVertexRP</div>
@@ -1046,29 +1118,29 @@
                     <div class="footer-column">
                         <h3>Навигация</h3>
                         <ul>
-                            <li><a href="#home">Главная</a></li>
-                            <li><a href="#features">Особенности</a></li>
-                            <li><a href="#premium">Проходка</a></li>
-                            <li><a href="#info">О сервере</a></li>
-                            <li><a href="terminology.html">Термины</a></li>
-                            <li><a href="license.html" style="color: var(--accent); font-weight: bold;"><i class="fas fa-file-contract"></i> Лицензия</a></li>
+                            <li><a href="#home" class="zoomable footer-link">Главная</a></li>
+                            <li><a href="#features" class="zoomable footer-link">Особенности</a></li>
+                            <li><a href="#premium" class="zoomable footer-link">Проходка</a></li>
+                            <li><a href="#info" class="zoomable footer-link">О сервере</a></li>
+                            <li><a href="terminology.html" class="zoomable footer-link">Термины</a></li>
+                            <li><a href="license.html" class="zoomable footer-link" style="color: var(--accent); font-weight: bold;"><i class="fas fa-file-contract"></i> Лицензия</a></li>
                         </ul>
                     </div>
                     <div class="footer-column">
                         <h3>Поддержка</h3>
                         <ul>
-                            <li><a href="how-to-play.html">Как начать</a></li>
-                            <li><a href="rules.html">Правила</a></li>
-                            <li><a href="faq.html">FAQ</a></li>
-                            <li><a href="tech-support.html">Помощь</a></li>
+                            <li><a href="how-to-play.html" class="zoomable footer-link">Как начать</a></li>
+                            <li><a href="rules.html" class="zoomable footer-link">Правила</a></li>
+                            <li><a href="faq.html" class="zoomable footer-link">FAQ</a></li>
+                            <li><a href="tech-support.html" class="zoomable footer-link">Помощь</a></li>
                         </ul>
                     </div>
                     <div class="footer-column">
                         <h3>Сообщество</h3>
                         <ul>
-                            <li><a href="https://visualvertex.forumes.ru/" target="_blank">Форум</a></li>
-                            <li><a href="https://pay.cloudtips.ru/p/0df70dac" target="_blank">Купить Проходку</a></li>
-                            <li><a href="https://t.me/Application01bot" target="_blank" class="telegram-btn"><i class="fab fa-telegram"></i> Application - VisualVertexRP</a></li>
+                            <li><a href="https://visualvertex.forumes.ru/" target="_blank" class="zoomable footer-link">Форум</a></li>
+                            <li><a href="https://pay.cloudtips.ru/p/0df70dac" target="_blank" class="zoomable footer-link">Купить Проходку</a></li>
+                            <li><a href="https://t.me/Application01bot" target="_blank" class="telegram-btn zoomable"><i class="fab fa-telegram"></i> Application - VisualVertexRP</a></li>
                         </ul>
                     </div>
                 </div>
@@ -1081,6 +1153,7 @@
     </footer>
 
     <script>
+        // ========== 1. КЛАСС БЕСКОНЕЧНОЙ ПЕЧАТНОЙ МАШИНКИ ==========
         class InfiniteTypewriter {
             constructor(element, fullText, typeSpeed = 85, eraseSpeed = 45, pauseAfterFull = 1300, pauseAfterErase = 300) {
                 this.element = element;
@@ -1133,7 +1206,31 @@
                 this.type();
             }
         }
-        
+
+        // ========== 2. УНИВЕРСАЛЬНЫЙ ЭФФЕКТ МАСШТАБИРОВАНИЯ (ZOOM) ==========
+        function initZoomEffect() {
+            const zoomables = document.querySelectorAll('.zoomable');
+            
+            zoomables.forEach(el => {
+                el.addEventListener('mouseenter', function() {
+                    this.classList.add('zoomed');
+                });
+                
+                el.addEventListener('mouseleave', function() {
+                    this.classList.remove('zoomed');
+                });
+                
+                el.addEventListener('touchstart', function() {
+                    this.classList.add('zoomed');
+                }, { passive: true });
+                
+                el.addEventListener('touchend', function() {
+                    setTimeout(() => this.classList.remove('zoomed'), 300);
+                }, { passive: true });
+            });
+        }
+
+        // ========== 3. ИНИЦИАЛИЗАЦИЯ ПЕЧАТНЫХ МАШИНОК ==========
         function initTypewriters() {
             if (window._typewriters) window._typewriters.forEach(tw => tw.stop());
             window._typewriters = [];
@@ -1168,7 +1265,8 @@
                 window._typewriters.push(new InfiniteTypewriter(footerLogo, "VisualVertexRP", 80, 42, 1300, 360));
             }
         }
-        
+
+        // ========== 4. ЗАПОЛНЕНИЕ КОНТЕНТА ==========
         function rebuildFullContent() {
             const passContainer = document.getElementById('passContainer');
             if (passContainer && passContainer.children.length === 0) {
@@ -1195,7 +1293,7 @@
                                 <span class="price-discount">-40%</span>
                             </div>
                             <p class="price-period">Всего 3.3 ₽ в день за 90 дней премиум-доступа</p>
-                            <a href="https://pay.cloudtips.ru/p/0df70dac" class="premium-btn"><i class="fas fa-shopping-cart"></i> Купить Проходку</a>
+                            <a href="https://pay.cloudtips.ru/p/0df70dac" class="premium-btn zoomable"><i class="fas fa-shopping-cart"></i> Купить Проходку</a>
                             <p style="color:var(--gray); margin-top:15px;"><i class="fas fa-shield-alt"></i> Безопасная оплата через CloudTips</p>
                         </div>
                     </div>
@@ -1203,18 +1301,21 @@
             }
             const infoContainer = document.getElementById('infoContainer');
             if (infoContainer && infoContainer.children.length === 0) {
-                infoContainer.innerHTML = `<div class="info-image"><i class="fas fa-gamepad"></i></div><div class="info-content"><h2>Уникальный опыт RolePlay</h2><p>VisualVertexRP предлагает полностью погружающий RolePlay опыт в Minecraft. У нас вы не просто играете, а проживаете жизнь своего персонажа.</p><p>На сервере действует сложная экономическая система, политические механизмы и социальные взаимодействия.</p><a href="https://pay.cloudtips.ru/p/0df70dac" class="btn">Получить Проходку</a></div></div>`;
+                infoContainer.innerHTML = `<div class="info-image"><i class="fas fa-gamepad"></i></div><div class="info-content"><h2>Уникальный опыт RolePlay</h2><p>VisualVertexRP предлагает полностью погружающий RolePlay опыт в Minecraft. У нас вы не просто играете, а проживаете жизнь своего персонажа.</p><p>На сервере действует сложная экономическая система, политические механизмы и социальные взаимодействия.</p><a href="https://pay.cloudtips.ru/p/0df70dac" class="btn zoomable">Получить Проходку</a></div></div>`;
             }
             const statsGrid = document.getElementById('statsGrid');
             if (statsGrid && statsGrid.children.length === 0) {
                 statsGrid.innerHTML = `<div class="stat-item"><div class="stat-number" id="playersCount">250+</div><div class="stat-label">Активных игроков</div></div><div class="stat-item"><div class="stat-number">24/7</div><div class="stat-label">Работа сервера</div></div><div class="stat-item"><div class="stat-number" id="daysOnline">150+</div><div class="stat-label">Дней онлайн</div></div><div class="stat-item"><div class="stat-number">15+</div><div class="stat-label">Городов и государств</div></div>`;
             }
         }
-        
+
+        // ========== 5. ОСНОВНАЯ ИНИЦИАЛИЗАЦИЯ ==========
         document.addEventListener('DOMContentLoaded', () => {
             rebuildFullContent();
             initTypewriters();
+            initZoomEffect();
             
+            // Копирование IP
             document.getElementById('copyIpBtn')?.addEventListener('click', function() {
                 const ip = document.getElementById('serverIp').textContent;
                 navigator.clipboard.writeText(ip).then(() => {
@@ -1226,14 +1327,21 @@
                 }).catch(() => alert('Не удалось скопировать'));
             });
             
-            const menuBtn = document.getElementById('mobileMenuBtn'), closeBtn = document.getElementById('mobileMenuClose'), overlay = document.getElementById('mobileMenuOverlay'), mobileMenu = document.getElementById('mobileMenu');
+            // Мобильное меню
+            const menuBtn = document.getElementById('mobileMenuBtn');
+            const closeBtn = document.getElementById('mobileMenuClose');
+            const overlay = document.getElementById('mobileMenuOverlay');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
             function openMob() { mobileMenu.classList.add('active'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
             function closeMob() { mobileMenu.classList.remove('active'); overlay.classList.remove('active'); document.body.style.overflow = 'auto'; }
+            
             menuBtn?.addEventListener('click', openMob);
             closeBtn?.addEventListener('click', closeMob);
             overlay?.addEventListener('click', closeMob);
             document.querySelectorAll('.mobile-nav-links a, .mobile-menu .more-dropdown a').forEach(l => l.addEventListener('click', closeMob));
             
+            // Плавная прокрутка
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     const hash = this.getAttribute('href');
@@ -1248,6 +1356,7 @@
                 });
             });
             
+            // Выпадающее меню "Прочее"
             const moreBtn = document.querySelector('.more-menu .more-btn');
             const moreDrop = document.querySelector('.more-menu .more-dropdown');
             if (moreBtn && moreDrop) {
@@ -1255,6 +1364,7 @@
                 moreBtn.parentElement.addEventListener('mouseleave', () => moreDrop.style.display = 'none');
             }
             
+            // Анимация статистики
             function animateStats() {
                 const playersSpan = document.getElementById('playersCount');
                 const daysSpan = document.getElementById('daysOnline');
@@ -1267,10 +1377,18 @@
                     if (players >= 250 && days >= 150) clearInterval(interval);
                 }, 30);
             }
-            const statsObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { animateStats(); statsObserver.unobserve(entry.target); } }); }, { threshold: 0.3 });
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateStats();
+                        statsObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
             const statsSec = document.getElementById('stats');
             if (statsSec) statsObserver.observe(statsSec);
             
+            // Скрытие/показ хедера
             let lastScroll = 0;
             const headerElem = document.getElementById('header');
             window.addEventListener('scroll', () => {
@@ -1280,6 +1398,7 @@
                 lastScroll = curr;
             });
 
+            // Модальные окна
             function openModal(id) {
                 document.getElementById(id).classList.add('active');
                 document.body.style.overflow = 'hidden';
@@ -1289,7 +1408,6 @@
                 document.body.style.overflow = 'auto';
             }
 
-            // Admin modal
             const adminBtns = ['adminBtnHero', 'adminBtnMob'];
             adminBtns.forEach(id => {
                 document.getElementById(id)?.addEventListener('click', () => openModal('adminModal'));
@@ -1299,7 +1417,6 @@
                 if (e.target === this) closeModal('adminModal');
             });
 
-            // Dev modal
             document.getElementById('loginBtn')?.addEventListener('click', () => openModal('devModal'));
             document.getElementById('loginBtnHero')?.addEventListener('click', () => openModal('devModal'));
             document.getElementById('closeModalBtn')?.addEventListener('click', () => closeModal('devModal'));
