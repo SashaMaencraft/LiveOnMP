@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Как начать играть | VisualVertexRP</title>
+    <title>Частые вопросы | VisualVertexRP</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
@@ -213,72 +213,82 @@
         .section-title { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 2rem; color: var(--light); position: relative; padding-bottom: 10px; }
         .section-title::after { content: ''; position: absolute; bottom: 0; left: 0; width: 80px; height: 4px; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 2px; }
 
-        .steps-container { display: flex; flex-direction: column; gap: 2rem; margin-bottom: 4rem; }
-        .step {
-            display: flex;
-            gap: 1.5rem;
-            align-items: flex-start;
-            background: rgba(13, 10, 26, 0.45);
-            backdrop-filter: blur(16px);
-            border-radius: 20px;
-            padding: 1.5rem;
-            border: 1px solid rgba(138, 43, 226, 0.25);
-            transition: all 0.3s;
-        }
-        .step:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); }
-        .step-number {
-            background: linear-gradient(135deg, rgba(138, 43, 226, 0.3), rgba(0, 255, 255, 0.15));
-            backdrop-filter: blur(8px);
-            color: white;
-            min-width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            flex-shrink: 0;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .step-content h3 { font-size: 1.4rem; margin-bottom: 0.8rem; color: var(--accent); }
-        .step-content p { color: rgba(240, 244, 255, 0.75); line-height: 1.7; margin-bottom: 1rem; }
-        .step-content ul { color: rgba(240, 244, 255, 0.75); margin-left: 1.5rem; margin-bottom: 1rem; }
-        .step-content li { margin-bottom: 0.5rem; line-height: 1.6; }
-        .code-block {
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(0, 255, 255, 0.2);
-            border-radius: 12px;
-            padding: 1rem;
-            font-family: 'Courier New', monospace;
+        .faq-search { max-width: 600px; margin: 0 auto 2rem; }
+        .search-container { position: relative; }
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.2rem 1rem 3rem;
+            background: rgba(13, 10, 26, 0.5);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 16px;
+            color: var(--light);
             font-size: 1rem;
-            color: var(--accent);
-            margin: 1rem 0;
-            overflow-x: auto;
-            word-break: break-all;
-        }
-
-        .requirements-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .requirement-card {
-            background: rgba(13, 10, 26, 0.45);
-            backdrop-filter: blur(16px);
-            border-radius: 18px;
-            padding: 1.5rem;
-            text-align: center;
-            border: 1px solid rgba(138, 43, 226, 0.25);
             transition: all 0.3s;
         }
-        .requirement-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); }
-        .requirement-icon { font-size: 2.5rem; color: var(--accent); margin-bottom: 1rem; }
-        .requirement-card h3 { font-size: 1.3rem; margin-bottom: 0.8rem; color: var(--light); }
-        .requirement-card p { color: rgba(240, 244, 255, 0.7); line-height: 1.6; font-size: 0.95rem; }
+        .search-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 20px rgba(0, 255, 255, 0.15); }
+        .search-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--gray); font-size: 1.2rem; }
+
+        .faq-container { display: flex; flex-direction: column; gap: 1.5rem; }
+        .faq-category { margin-bottom: 2rem; }
+        .category-title { font-size: 1.5rem; margin-bottom: 1rem; color: var(--accent); padding-bottom: 8px; border-bottom: 2px solid rgba(138, 43, 226, 0.3); }
+
+        .faq-item {
+            background: rgba(13, 10, 26, 0.45);
+            backdrop-filter: blur(16px);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            transition: all 0.3s;
+            margin-bottom: 0.8rem;
+        }
+        .faq-item.active { border-color: var(--accent); box-shadow: 0 8px 25px rgba(0, 255, 255, 0.1); }
+        .faq-question {
+            padding: 1.2rem 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            gap: 1rem;
+        }
+        .faq-question:hover { background-color: rgba(138, 43, 226, 0.1); }
+        .faq-question h3 {
+            font-size: 1.1rem;
+            color: var(--light);
+            font-weight: 600;
+            margin-right: 1rem;
+            flex: 1;
+        }
+        .faq-icon { color: var(--accent); font-size: 1rem; transition: transform 0.3s; flex-shrink: 0; }
+        .faq-item.active .faq-icon { transform: rotate(180deg); }
+        .faq-answer { padding: 0 1.2rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; }
+        .faq-item.active .faq-answer { padding: 0 1.2rem 1.2rem; max-height: 1000px; }
+        .faq-answer p { color: rgba(240, 244, 255, 0.75); line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.95rem; }
+        .faq-answer ul { color: rgba(240, 244, 255, 0.75); margin-left: 1.2rem; margin-bottom: 0.8rem; }
+        .faq-answer li { margin-bottom: 0.4rem; line-height: 1.6; font-size: 0.95rem; }
+        .faq-answer code {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 6px;
+            padding: 0.1rem 0.4rem;
+            font-family: 'Courier New', monospace;
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+
+        .contact-section {
+            background: rgba(138, 43, 226, 0.08);
+            backdrop-filter: blur(16px);
+            border-radius: 24px;
+            padding: 2rem 1.5rem;
+            margin-top: 3rem;
+            text-align: center;
+            border: 1px solid rgba(138, 43, 226, 0.3);
+        }
+        .contact-title { font-size: 1.6rem; margin-bottom: 0.8rem; color: var(--light); }
+        .contact-text { color: rgba(240, 244, 255, 0.7); max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.7; font-size: 0.95rem; }
 
         footer {
             background: rgba(7, 5, 16, 0.8);
@@ -301,16 +311,13 @@
         @media (max-width: 767px) {
             .nav-links, .desktop-btn { display: none; }
             .menu-toggle { display: flex; }
-            .step { flex-direction: column; text-align: center; align-items: center; }
-            .step-number { margin: 0 auto; }
-            .step-content ul { text-align: left; }
-            .requirements-grid { grid-template-columns: 1fr; }
-            .page-header { padding: 3rem 0 1.5rem; }
             .container { padding: 0 15px; }
+            .page-header { padding: 3rem 0 1.5rem; }
+            .faq-question h3 { font-size: 1rem; }
+            .contact-section { padding: 1.5rem; }
         }
 
         @media (min-width: 768px) and (max-width: 1024px) {
-            .step { padding: 1.8rem; }
             .nav-links { gap: 1rem; }
             .nav-links a { font-size: 0.9rem; }
         }
@@ -326,9 +333,9 @@
                 </a>
                 <ul class="nav-links">
                     <li><a href="index.html" class="zoomable">Главная</a></li>
-                    <li><a href="how-to-play.html" class="zoomable active">Как играть</a></li>
+                    <li><a href="how-to-play.html" class="zoomable">Как играть</a></li>
                     <li><a href="rules.html" class="zoomable">Правила</a></li>
-                    <li><a href="faq.html" class="zoomable">FAQ</a></li>
+                    <li><a href="faq.html" class="zoomable active">FAQ</a></li>
                     <li><a href="tech-support.html" class="zoomable">Поддержка</a></li>
                 </ul>
                 <a href="index.html#home" class="btn desktop-btn zoomable">На главную</a>
@@ -338,9 +345,9 @@
             </nav>
             <div class="mobile-nav" id="mobileNav">
                 <a href="index.html" class="zoomable">Главная</a>
-                <a href="how-to-play.html" class="zoomable active">Как играть</a>
+                <a href="how-to-play.html" class="zoomable">Как играть</a>
                 <a href="rules.html" class="zoomable">Правила</a>
-                <a href="faq.html" class="zoomable">FAQ</a>
+                <a href="faq.html" class="zoomable active">FAQ</a>
                 <a href="tech-support.html" class="zoomable">Поддержка</a>
                 <a href="index.html#home" class="btn zoomable" style="margin-top: 0.5rem;">На главную</a>
             </div>
@@ -349,95 +356,187 @@
 
     <section class="page-header">
         <div class="container">
-            <h1 class="page-title">Как начать играть</h1>
-            <p class="page-subtitle">Пошаговое руководство по подключению к серверу VisualVertexRP и началу вашего RolePlay приключения</p>
+            <h1 class="page-title">Частые вопросы</h1>
+            <p class="page-subtitle">Найдите ответы на наиболее часто задаваемые вопросы о сервере VisualVertexRP</p>
         </div>
     </section>
 
     <div class="container">
         <section class="content-section">
-            <h2 class="section-title">Пошаговое руководство</h2>
+            <div class="faq-search">
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" id="searchInput" placeholder="Поиск по вопросам...">
+                </div>
+            </div>
+
+            <h2 class="section-title">Вопросы и ответы</h2>
             
-            <div class="steps-container">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Установите Minecraft</h3>
-                        <p>Для начала вам потребуется лицензионная версия Minecraft Java Edition. Если у вас её нет, вы можете приобрести её на официальном сайте:</p>
-                        <ul>
-                            <li>Перейдите на <a href="https://www.minecraft.net" style="color: var(--accent);">minecraft.net</a></li>
-                            <li>Создайте аккаунт Mojang/Microsoft</li>
-                            <li>Приобретите и скачайте Minecraft Java Edition</li>
-                        </ul>
-                        <p><strong>Версия игры:</strong> Наш сервер работает на версии <strong>1.21.1 Neoforge</strong> и выше.</p>
+            <div class="faq-container">
+                <div class="faq-category">
+                    <h3 class="category-title">Подключение к серверу</h3>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Как подключиться к серверу?</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Для подключения к серверу выполните следующие шаги:</p>
+                            <ul>
+                                <li>Запустите Minecraft Java Edition версии 1.21.1 Neoforge или выше</li>
+                                <li>В главном меню выберите "Мультиплеер" → "Добавить сервер"</li>
+                                <li>В поле "Адрес сервера" введите: <code>visualvertexrp.wellduck.org</code></li>
+                                <li>В поле "Имя сервера" можете указать "VisualVertexRP"</li>
+                                <li>Нажмите "Готово", затем выберите сервер из списка и нажмите "Подключиться"</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Какая версия Minecraft требуется?</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Наш сервер работает на версии <strong>1.21.1 Neoforge</strong> и выше. Мы рекомендуем использовать самую актуальную версию Minecraft Java Edition для лучшей совместимости.</p>
+                            <p>Если у вас более старая версия, обновите игру через официальный лаунчер Minecraft.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Сервер не отображается или не подключается</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Если у вас возникли проблемы с подключением:</p>
+                            <ul>
+                                <li>Проверьте правильность ввода IP-адреса: <code>visualvertexrp.wellduck.org</code></li>
+                                <li>Убедитесь, что вы используете правильную версию Minecraft (1.21.1 Neoforge)</li>
+                                <li>Проверьте интернет-соединение</li>
+                                <li>Отключите антивирус или брандмауэр на время подключения</li>
+                            </ul>
+                            <p>Если проблема не решается, проверьте статус сервера в нашем Discord.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Запустите Minecraft и добавьте сервер</h3>
-                        <p>После установки игры выполните следующие действия:</p>
-                        <ul>
-                            <li>Запустите Minecraft Launcher и войдите в свой аккаунт</li>
-                            <li>В главном меню выберите "Мультиплеер" (Multiplayer)</li>
-                            <li>Нажмите "Добавить сервер" (Add Server)</li>
-                            <li>В поле "Адрес сервера" введите:</li>
-                        </ul>
-                        <div class="code-block">visualvertexrp.wellduck.org</div>
-                        <p>В поле "Имя сервера" вы можете ввести "VisualVertexRP" или любое другое удобное название.</p>
+                <div class="faq-category">
+                    <h3 class="category-title">Игровой процесс</h3>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Как начать играть после подключения?</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>После первого подключения к серверу:</p>
+                            <ul>
+                                <li>Введите команду <code>/spawn</code> для телепортации на стартовую площадку</li>
+                                <li>Прочитайте правила сервера, которые появятся автоматически</li>
+                                <li>Выберите профессию для своего персонажа через специальное меню</li>
+                                <li>Получите стартовый набор (если предусмотрен)</li>
+                                <li>Начните исследовать мир или выполнять квесты</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Как работает экономика на сервере?</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>На нашем сервере реализована сложная экономическая система:</p>
+                            <ul>
+                                <li>Основная валюта - Vertex Coins (VC)</li>
+                                <li>Зарабатывать VC можно: выполняя квесты, продавая ресурсы другим игрокам, участвуя в экономических проектах</li>
+                                <li>Торговать можно через аукцион, магазины игроков или напрямую</li>
+                                <li>Действуют налоги на транзакции и собственность</li>
+                                <li>Регулярно происходят экономические события</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Как защитить свою территорию?</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Для защиты территории используйте следующие методы:</p>
+                            <ul>
+                                <li><strong>Приваты:</strong> Используйте плагин защиты территорий (команда <code>/region claim</code>)</li>
+                                <li><strong>Сундуки:</strong> Защищайте сундуки с помощью замков</li>
+                                <li><strong>Постройки:</strong> Стройте в охраняемых зонах или городах</li>
+                                <li><strong>Государства:</strong> Вступите в государство для коллективной защиты</li>
+                            </ul>
+                            <p>Подробные инструкции по использованию системы защиты вы найдёте на спавне сервера.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>Подключитесь к серверу</h3>
-                        <p>После добавления сервера в список:</p>
-                        <ul>
-                            <li>Выберите "VisualVertexRP" в списке серверов</li>
-                            <li>Нажмите "Подключиться" (Join Server)</li>
-                            <li>Дождитесь загрузки мира (это может занять несколько минут при первом подключении)</li>
-                        </ul>
-                        <p>При первом входе вы автоматически получите начальный набор для выживания и инструкции по началу игры.</p>
+                <div class="faq-category">
+                    <h3 class="category-title">Правила и модерация</h3>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Как сообщить о нарушителе правил?</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Если вы стали свидетелем нарушения правил:</p>
+                            <ul>
+                                <li>Сделайте скриншот или запись происходящего</li>
+                                <li>Обратитесь к модератору или администратору в игре (команда <code>/helpop</code>)</li>
+                                <li>Сообщите о нарушении в нашем Discord сервере в специальном канале</li>
+                                <li>Предоставьте доказательства (скриншоты, видео, логи чата)</li>
+                            </ul>
+                            <p>Пожалуйста, не пытайтесь решить проблему самостоятельно, чтобы не нарушить правила самим.</p>
+                        </div>
                     </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h3>Создайте своего персонажа</h3>
-                        <p>После подключения к серверу:</p>
-                        <ul>
-                            <li>Воспользуйтесь командой <code>/spawn</code> для телепортации на спавн</li>
-                            <li>Прочитайте правила сервера, которые отобразятся автоматически</li>
-                            <li>Выберите профессию для своего персонажа из доступных вариантов</li>
-                            <li>Начните своё приключение, выполняя квесты или строя свой дом</li>
-                        </ul>
-                        <p>Для связи с другими игроками используйте локальный чат (по умолчанию) или глобальный чат (префикс ! перед сообщением).</p>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Какие моды разрешены на сервере?</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Разрешены только клиентские моды, которые не дают игрового преимущества:</p>
+                            <ul>
+                                <li><strong>Оптимизация:</strong> OptiFine, Sodium, Lithium</li>
+                                <li><strong>Графика:</strong> шейдеры, моды на текстуры</li>
+                                <li><strong>Интерфейс:</strong> моды для улучшения HUD, мини-карты (без отметок игроков)</li>
+                                <li><strong>Информационные:</strong> моды, показывающие информацию о предметах</li>
+                            </ul>
+                            <p><strong>Запрещены:</strong> X-Ray, Fly, KillAura, AutoClicker и любые моды, дающие преимущество над другими игроками.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Можно ли играть с друзьями?</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Конечно! Мы приветствуем игру с друзьями:</p>
+                            <ul>
+                                <li>Создавайте совместные проекты и постройки</li>
+                                <li>Объединяйтесь в государства или гильдии</li>
+                                <li>Участвуйте в командных событиях</li>
+                                <li>Стройте совместный бизнес</li>
+                            </ul>
+                            <p>Для координации с друзьями рекомендуем использовать наш Discord сервер или внутриигровые системы связи.</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <h2 class="section-title">Системные требования</h2>
-            <p style="color: rgba(240, 244, 255, 0.75); margin-bottom: 2rem; font-size: 1rem;">Для комфортной игры на нашем сервере рекомендуем следующие системные требования:</p>
-            
-            <div class="requirements-grid">
-                <div class="requirement-card">
-                    <div class="requirement-icon"><i class="fas fa-desktop"></i></div>
-                    <h3>Минимальные</h3>
-                    <p>• Процессор: Intel Core i3 или аналогичный<br>• Оперативная память: 4 ГБ<br>• Видеокарта: Intel HD Graphics или аналогичная<br>• Интернет: 5 Мбит/с</p>
-                </div>
-                <div class="requirement-card">
-                    <div class="requirement-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    <h3>Рекомендуемые</h3>
-                    <p>• Процессор: Intel Core i5 или лучше<br>• Оперативная память: 8 ГБ или более<br>• Видеокарта: NVIDIA GTX 1050 или аналогичная<br>• Интернет: 10 Мбит/с или быстрее</p>
-                </div>
-                <div class="requirement-card">
-                    <div class="requirement-icon"><i class="fas fa-network-wired"></i></div>
-                    <h3>Сетевое соединение</h3>
-                    <p>• Стабильное подключение к интернету<br>• Пинг до сервера: до 100 мс<br>• Отсутствие потерь пакетов<br>• Рекомендуется проводное подключение</p>
-                </div>
+            <div class="contact-section">
+                <h3 class="contact-title">Не нашли ответ на свой вопрос?</h3>
+                <p class="contact-text">Если вы не нашли ответ на интересующий вас вопрос в этом списке, обратитесь за помощью к нашей службе поддержки через Discord или воспользуйтесь командой /help в игре.</p>
+                <a href="tech-support.html" class="btn zoomable">Перейти в техподдержку</a>
             </div>
         </section>
     </div>
@@ -492,6 +591,54 @@
             });
         }
 
+        // ========== FAQ АККОРДИОН ==========
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+                
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    if (item !== faqItem && item.classList.contains('active')) {
+                        item.classList.remove('active');
+                    }
+                });
+            });
+        });
+
+        // ========== ПОИСК ==========
+        const searchInput = document.getElementById('searchInput');
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+            
+            if (searchTerm.length === 0) {
+                faqItems.forEach(item => { item.style.display = 'block'; });
+                document.querySelectorAll('.faq-category').forEach(category => { category.style.display = 'block'; });
+                return;
+            }
+            
+            let visibleCategories = new Set();
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question h3').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    const category = item.closest('.faq-category');
+                    visibleCategories.add(category);
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            document.querySelectorAll('.faq-category').forEach(category => {
+                category.style.display = visibleCategories.has(category) ? 'block' : 'none';
+            });
+        });
+
+        // ========== МОБИЛЬНОЕ МЕНЮ ==========
         document.addEventListener('DOMContentLoaded', function() {
             const toggle = document.getElementById('menuToggle');
             const mobileNav = document.getElementById('mobileNav');
