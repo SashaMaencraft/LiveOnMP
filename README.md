@@ -1,10 +1,13 @@
 # ⛔ VisualVertexRP — ЗАКРЫТЫЙ ПРОЕКТ
 
+**Сайт:** https://sashamaencraft.github.io/VisualVertexRP/  
+**Игровой сервер:** visualvertexrp.wellduck.org (Minecraft 1.21.1 Neoforge)
+
 **Этот репозиторий создан ТОЛЬКО для демонстрации. Копирование, модификация, распространение ЗАПРЕЩЕНЫ.**
 
 ---
 
-## 📌 О проекте
+## ✨ О проекте
 
 **VisualVertexRP** — это уникальный Minecraft RolePlay сервер с глубокой экономикой, политическими механизмами и современным стеклянным (Glassmorphism) веб-интерфейсом.
 
@@ -14,7 +17,7 @@
 - 📱 **Адаптивность** — корректное отображение на всех устройствах (ПК, планшеты, телефоны)
 - ⚡ **Быстрая работа** — оптимизированные CSS и JS без потери функциональности
 - 🎯 **Эффект масштабирования** — плавное увеличение элементов при наведении
-- 🛡️ **Защита** — все права защищены, копирование запрещено
+- 🛡️ **Защита авторских прав** — все права защищены, копирование запрещено
 
 ### Страницы сайта:
 | Страница | Файл | Описание |
@@ -33,9 +36,10 @@
 ## 🎮 Игровой сервер
 
 - **IP сервера:** `visualvertexrp.wellduck.org`
-- **Версия:** Minecraft 1.21.1 Neoforge
+- **Версия Minecraft:** 1.21.1 Neoforge
 - **Тип:** RolePlay / Экономика / Политика
 - **Статус:** 🟢 Онлайн 24/7
+- **Покупка проходки:** https://pay.cloudtips.ru/p/0df70dac
 
 ---
 
@@ -61,13 +65,34 @@
 
 ---
 
+## 📄 Лицензия
+
+**All Rights Reserved** — все права защищены.
+
+Нарушение авторских прав влечёт ответственность согласно:
+- **ГК РФ** — Статьи 1252, 1301, 1250, 1229
+- **УК РФ** — Статьи 146, 272
+
+Подробнее см. в [LICENSE.md](LICENSE.md) и на странице [license.html](https://sashamaencraft.github.io/VisualVertexRP/license.html).
+
+---
+
 ## 🔗 Полезные ссылки
 
-- **Сайт:** https://visualvertexrp.wellduck.org
+- **Сайт:** https://sashamaencraft.github.io/VisualVertexRP/
+- **Игровой сервер:** visualvertexrp.wellduck.org
 - **Форум:** https://visualvertex.forumes.ru/
 - **Telegram бот поддержки:** @VisualVertexbot
 - **Купить Проходку:** https://pay.cloudtips.ru/p/0df70dac
 - **Лицензионное соглашение:** [LICENSE.md](LICENSE.md)
+
+---
+
+## 📞 Контакты
+
+- **Email:** drakon.karol@yandex.ru
+- **Telegram:** @VisualVertexbot
+- **Форум:** https://visualvertex.forumes.ru/
 
 ---
 
