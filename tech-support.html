@@ -181,6 +181,10 @@
         .menu-toggle.active span:nth-child(2) { opacity: 0; }
         .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
+        @media (max-width: 767px) {
+            .menu-toggle { display: flex; }
+        }
+
         .mobile-nav {
             display: none;
             width: 100%;
@@ -200,6 +204,26 @@
             border-bottom: 1px solid rgba(138, 43, 226, 0.1);
         }
         .mobile-nav a.active { color: var(--accent); }
+
+        /* ========== ЭФФЕКТ МАСШТАБИРОВАНИЯ ========== */
+        .zoomable {
+            display: inline-block;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                        color 0.2s, 
+                        text-shadow 0.2s,
+                        box-shadow 0.3s ease;
+            transform: scale(1);
+            transform-origin: center;
+            will-change: transform;
+        }
+
+        .zoomable.zoomed {
+            transform: scale(1.2);
+        }
+
+        .zoomable.zoomed.btn {
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.4);
+        }
 
         .page-header { padding: 4rem 0 2rem; text-align: center; background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(0, 255, 255, 0.05)); margin-bottom: 2rem; }
         .page-title { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1rem; background: linear-gradient(90deg, var(--primary), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -334,7 +358,7 @@
         .footer-column a:hover { color: var(--accent); }
         .copyright { text-align: center; color: var(--gray); padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.85rem; }
 
-        @media (max-width: 768px) {
+        @media (max-width: 767px) {
             .nav-links, .desktop-btn { display: none; }
             .menu-toggle { display: flex; }
             .container { padding: 0 15px; }
@@ -345,7 +369,7 @@
             .troubleshooting { padding: 1.5rem; }
         }
 
-        @media (min-width: 769px) and (max-width: 1024px) {
+        @media (min-width: 768px) and (max-width: 1024px) {
             .nav-links { gap: 1rem; }
             .nav-links a { font-size: 0.9rem; }
         }
@@ -360,24 +384,24 @@
                     <div class="logo-text">VisualVertexRP</div>
                 </a>
                 <ul class="nav-links">
-                    <li><a href="index.html">Главная</a></li>
-                    <li><a href="how-to-play.html">Как играть</a></li>
-                    <li><a href="rules.html">Правила</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="tech-support.html" class="active">Поддержка</a></li>
+                    <li><a href="index.html" class="zoomable">Главная</a></li>
+                    <li><a href="how-to-play.html" class="zoomable">Как играть</a></li>
+                    <li><a href="rules.html" class="zoomable">Правила</a></li>
+                    <li><a href="faq.html" class="zoomable">FAQ</a></li>
+                    <li><a href="tech-support.html" class="zoomable active">Поддержка</a></li>
                 </ul>
-                <a href="index.html#home" class="btn desktop-btn">На главную</a>
+                <a href="index.html#home" class="btn desktop-btn zoomable">На главную</a>
                 <button class="menu-toggle" id="menuToggle" aria-label="Меню">
                     <span></span><span></span><span></span>
                 </button>
             </nav>
             <div class="mobile-nav" id="mobileNav">
-                <a href="index.html">Главная</a>
-                <a href="how-to-play.html">Как играть</a>
-                <a href="rules.html">Правила</a>
-                <a href="faq.html">FAQ</a>
-                <a href="tech-support.html" class="active">Поддержка</a>
-                <a href="index.html#home" class="btn" style="margin-top: 0.5rem;">На главную</a>
+                <a href="index.html" class="zoomable">Главная</a>
+                <a href="how-to-play.html" class="zoomable">Как играть</a>
+                <a href="rules.html" class="zoomable">Правила</a>
+                <a href="faq.html" class="zoomable">FAQ</a>
+                <a href="tech-support.html" class="zoomable active">Поддержка</a>
+                <a href="index.html#home" class="btn zoomable" style="margin-top: 0.5rem;">На главную</a>
             </div>
         </div>
     </header>
@@ -492,7 +516,7 @@
                 <h2 class="telegram-title">Обратиться в поддержку</h2>
                 <p class="telegram-subtitle">Для быстрой и удобной связи с нашей службой поддержки используйте нашего Telegram-бота. Мы отвечаем в течение нескольких минут!</p>
                 
-                <a href="https://t.me/VisualVertexbot" target="_blank" class="btn btn-telegram">
+                <a href="https://t.me/VisualVertexbot" target="_blank" class="btn btn-telegram zoomable">
                     <i class="fab fa-telegram"></i> Написать в поддержку
                 </a>
                 
@@ -538,9 +562,9 @@
                 <h3 style="font-size: 1.4rem; margin-bottom: 0.8rem; color: var(--light);">Дополнительные способы связи</h3>
                 <p style="color: rgba(240, 244, 255, 0.7); max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.7; font-size: 0.95rem;">Если у вас нет Telegram, вы можете обратиться к нам через внутриигровую систему тикетов (команда /helpop).</p>
                 <div style="display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap;">
-                    <a href="faq.html" class="btn"><i class="fas fa-question-circle"></i> Частые вопросы</a>
-                    <a href="rules.html" class="btn"><i class="fas fa-book"></i> Правила сервера</a>
-                    <a href="how-to-play.html" class="btn"><i class="fas fa-gamepad"></i> Как начать играть</a>
+                    <a href="faq.html" class="btn zoomable"><i class="fas fa-question-circle"></i> Частые вопросы</a>
+                    <a href="rules.html" class="btn zoomable"><i class="fas fa-book"></i> Правила сервера</a>
+                    <a href="how-to-play.html" class="btn zoomable"><i class="fas fa-gamepad"></i> Как начать играть</a>
                 </div>
             </div>
         </section>
@@ -560,26 +584,26 @@
                     <div class="footer-column">
                         <h3>Навигация</h3>
                         <ul>
-                            <li><a href="index.html">Главная</a></li>
-                            <li><a href="how-to-play.html">Как играть</a></li>
-                            <li><a href="rules.html">Правила</a></li>
-                            <li><a href="faq.html">Частые вопросы</a></li>
+                            <li><a href="index.html" class="zoomable">Главная</a></li>
+                            <li><a href="how-to-play.html" class="zoomable">Как играть</a></li>
+                            <li><a href="rules.html" class="zoomable">Правила</a></li>
+                            <li><a href="faq.html" class="zoomable">Частые вопросы</a></li>
                         </ul>
                     </div>
                     <div class="footer-column">
                         <h3>Поддержка</h3>
                         <ul>
-                            <li><a href="how-to-play.html">Как начать играть</a></li>
-                            <li><a href="rules.html">Правила сервера</a></li>
-                            <li><a href="faq.html">Частые вопросы</a></li>
-                            <li><a href="tech-support.html">Техническая помощь</a></li>
+                            <li><a href="how-to-play.html" class="zoomable">Как начать играть</a></li>
+                            <li><a href="rules.html" class="zoomable">Правила сервера</a></li>
+                            <li><a href="faq.html" class="zoomable">Частые вопросы</a></li>
+                            <li><a href="tech-support.html" class="zoomable">Техническая помощь</a></li>
                         </ul>
                     </div>
                     <div class="footer-column">
                         <h3>Сообщество</h3>
                         <ul>
-                            <li><a href="https://visualvertex.forumes.ru/" target="_blank">Форум</a></li>
-                            <li><a href="javascript:void(0)" onclick="alert('Галерея построек находится в разработке. Скоро будет доступна!')">Галерея построек</a></li>
+                            <li><a href="https://visualvertex.forumes.ru/" target="_blank" class="zoomable">Форум</a></li>
+                            <li><a href="javascript:void(0)" onclick="alert('Галерея построек находится в разработке. Скоро будет доступна!')" class="zoomable">Галерея построек</a></li>
                         </ul>
                     </div>
                 </div>
@@ -592,6 +616,16 @@
     </footer>
 
     <script>
+        // ========== ЭФФЕКТ МАСШТАБИРОВАНИЯ ==========
+        function initZoomEffect() {
+            document.querySelectorAll('.zoomable').forEach(el => {
+                el.addEventListener('mouseenter', function() { this.classList.add('zoomed'); });
+                el.addEventListener('mouseleave', function() { this.classList.remove('zoomed'); });
+                el.addEventListener('touchstart', function() { this.classList.add('zoomed'); }, { passive: true });
+                el.addEventListener('touchend', function() { setTimeout(() => this.classList.remove('zoomed'), 300); }, { passive: true });
+            });
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             const toggle = document.getElementById('menuToggle');
             const mobileNav = document.getElementById('mobileNav');
@@ -616,6 +650,8 @@
                     link.classList.remove('active');
                 }
             });
+
+            initZoomEffect();
         });
     </script>
 </body>
