@@ -187,7 +187,6 @@
             border-color: var(--accent);
         }
 
-        /* ===== БУРГЕР-МЕНЮ — СКРЫТО НА ПК, ВИДНО ТОЛЬКО НА МОБИЛЬНЫХ ===== */
         .mobile-menu-btn {
             display: none;
             background: rgba(255, 255, 255, 0.1);
@@ -200,7 +199,6 @@
             padding: 8px 12px;
         }
 
-        /* Только для экранов меньше 768px (телефоны и планшеты) */
         @media (max-width: 767px) {
             .mobile-menu-btn {
                 display: block;
@@ -744,12 +742,14 @@
             backdrop-filter: blur(20px);
             border-radius: 28px;
             padding: 40px 45px;
-            max-width: 420px;
+            max-width: 460px;
             width: 90%;
             text-align: center;
             border: 1px solid rgba(138, 43, 226, 0.5);
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
             animation: scaleIn 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
         }
         .modal-window .modal-icon {
             font-size: 3rem;
@@ -802,7 +802,6 @@
             to { transform: scale(1); opacity: 1; }
         }
 
-        /* Admin card styles */
         .admin-card {
             background: rgba(13, 10, 26, 0.7);
             backdrop-filter: blur(12px);
@@ -846,7 +845,6 @@
             padding-left: 14px;
         }
 
-        /* Админ кнопка */
         .btn-admin {
             background: rgba(255, 215, 0, 0.15);
             border-color: rgba(255, 215, 0, 0.35);
@@ -857,7 +855,6 @@
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
         }
 
-        /* ===== УНИВЕРСАЛЬНЫЙ ЭФФЕКТ МАСШТАБИРОВАНИЯ ===== */
         .zoomable {
             display: inline-block;
             transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), 
@@ -919,7 +916,6 @@
             transform: scale(1.3) rotate(90deg);
         }
 
-        /* ===== АДАПТИВ ===== */
         @media (max-width: 767px) {
             .nav-links, .header-buttons {
                 display: none;
@@ -957,6 +953,125 @@
                 text-align: left;
             }
         }
+
+        .auth-form {
+            text-align: left;
+            margin-top: 10px;
+        }
+        .auth-form .form-group {
+            margin-bottom: 18px;
+        }
+        .auth-form label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: rgba(240, 244, 255, 0.9);
+            font-size: 0.95rem;
+        }
+        .auth-form input {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            font-size: 1rem;
+            transition: border 0.3s;
+            outline: none;
+        }
+        .auth-form input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.15);
+        }
+        .auth-form .btn-submit {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            border: none;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        .auth-form .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.3);
+        }
+        .auth-form .auth-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(138, 43, 226, 0.2);
+            padding-bottom: 12px;
+        }
+        .auth-form .auth-tab {
+            background: none;
+            border: none;
+            padding: 8px 20px;
+            color: var(--gray);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .auth-form .auth-tab.active {
+            color: white;
+            background: rgba(138, 43, 226, 0.3);
+        }
+        .auth-form .auth-tab:hover {
+            color: white;
+            background: rgba(138, 43, 226, 0.15);
+        }
+        .auth-form .auth-panel {
+            display: none;
+        }
+        .auth-form .auth-panel.active {
+            display: block;
+        }
+        .auth-form .status-msg {
+            margin-top: 15px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            text-align: left;
+            font-weight: 500;
+            display: none;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        .auth-form .status-msg.show {
+            display: block;
+        }
+        .auth-form .status-msg.error {
+            background: rgba(255, 0, 0, 0.15);
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            color: #ff6b6b;
+        }
+        .auth-form .status-msg.success {
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid rgba(0, 255, 0, 0.2);
+            color: #69db7c;
+        }
+        .auth-form .status-msg.info {
+            background: rgba(0, 255, 255, 0.08);
+            border: 1px solid rgba(0, 255, 255, 0.15);
+            color: var(--accent);
+        }
+        .auth-form .status-msg .msg-line {
+            display: block;
+            padding: 3px 0;
+        }
+        .auth-form .status-msg .msg-line:not(:last-child) {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 4px;
+            padding-bottom: 6px;
+        }
+        .auth-form .status-msg .msg-icon {
+            margin-right: 8px;
+        }
     </style>
 </head>
 <body>
@@ -989,7 +1104,6 @@
                     <a href="https://pay.cloudtips.ru/p/0df70dac" target="_blank" class="btn zoomable">Купить Проходку</a>
                     <button class="btn btn-login zoomable" id="loginBtn"><i class="fas fa-sign-in-alt"></i> Вход</button>
                 </div>
-                <!-- ===== БУРГЕР-МЕНЮ — ПОЯВЛЯЕТСЯ ТОЛЬКО НА ЭКРАНАХ МЕНЬШЕ 768px ===== -->
                 <button class="mobile-menu-btn zoomable" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
             </nav>
         </div>
@@ -1033,12 +1147,58 @@
         </div>
     </div>
 
-    <div class="modal-overlay" id="devModal">
-        <div class="modal-window">
-            <div class="modal-icon"><i class="fas fa-tools"></i></div>
-            <h2>В разработке</h2>
-            <p>Функция входа временно недоступна. Мы работаем над её улучшением, чтобы вы могли получить лучший опыт!</p>
-            <button class="btn-close-modal zoomable" id="closeModalBtn"><i class="fas fa-times"></i> Закрыть</button>
+    <!-- АВТОРИЗАЦИЯ (регистрация/вход) - иконка ОКНО -->
+    <div class="modal-overlay" id="authModal">
+        <div class="modal-window" style="max-width: 480px;">
+            <div class="modal-icon" style="color: var(--gold); border-color: rgba(255,215,0,0.4);">
+                <i class="fas fa-window-maximize"></i> <!-- Иконка окна вместо кошечки -->
+            </div>
+            <h2 style="background: linear-gradient(90deg, var(--gold), #ffb347); -webkit-background-clip: text; background-clip: text; color: transparent;">Добро пожаловать!</h2>
+            <p style="font-size: 0.95rem; margin-bottom: 5px; color: rgba(240,244,255,0.7);">📋 Регистрация и вход в игру</p>
+            <div style="margin-top: 5px; padding: 8px 14px; background: rgba(255,215,0,0.08); border-radius: 30px; border: 1px solid rgba(255,215,0,0.15); display: inline-block; font-size: 0.85rem; color: var(--gold);">
+                <i class="fas fa-code"></i> Функция в разработке
+            </div>
+
+            <div class="auth-form" id="authForm">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-tab="register">Регистрация</button>
+                    <button class="auth-tab" data-tab="login">Вход</button>
+                </div>
+
+                <!-- Панель регистрации -->
+                <div class="auth-panel active" id="panelRegister">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Никнейм</label>
+                        <input type="text" id="regUsername" placeholder="Введите ваш никнейм">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-lock"></i> Пароль</label>
+                        <input type="password" id="regPassword" placeholder="Введите пароль">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-check-circle"></i> Повторите пароль</label>
+                        <input type="password" id="regPasswordRepeat" placeholder="Повторите пароль">
+                    </div>
+                    <button class="btn-submit" id="registerBtn"><i class="fas fa-user-plus"></i> Зарегистрироваться</button>
+                </div>
+
+                <!-- Панель входа -->
+                <div class="auth-panel" id="panelLogin">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Никнейм</label>
+                        <input type="text" id="loginUsername" placeholder="Введите ваш никнейм">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-lock"></i> Пароль</label>
+                        <input type="password" id="loginPassword" placeholder="Введите пароль">
+                    </div>
+                    <button class="btn-submit" id="loginBtnSubmit"><i class="fas fa-sign-in-alt"></i> Войти</button>
+                </div>
+
+                <div class="status-msg" id="authStatus"></div>
+            </div>
+
+            <button class="btn-close-modal zoomable" id="closeAuthModal" style="margin-top: 15px;"><i class="fas fa-times"></i> Закрыть</button>
         </div>
     </div>
 
@@ -1309,11 +1469,136 @@
             }
         }
 
-        // ========== 5. ОСНОВНАЯ ИНИЦИАЛИЗАЦИЯ ==========
+        // ========== 5. АВТОРИЗАЦИЯ (в разработке) ==========
+        function initAuth() {
+            const authModal = document.getElementById('authModal');
+            const closeAuthBtn = document.getElementById('closeAuthModal');
+            const loginBtns = ['loginBtn', 'loginBtnHero'];
+            const statusMsg = document.getElementById('authStatus');
+
+            function showStatus(messages, type = 'info') {
+                statusMsg.className = 'status-msg show ' + type;
+                let html = '';
+                const msgs = Array.isArray(messages) ? messages : [messages];
+                msgs.forEach((msg) => {
+                    // Убираем эмодзи из текста, чтобы не дублировать иконки
+                    const cleanMsg = msg.replace(/[🐱✅ℹ️📋🔐]/g, '').trim();
+                    const icon = msg.includes('📋') ? '📋' : (msg.includes('🔐') ? '🔐' : 'ℹ️');
+                    html += `<span class="msg-line"><span class="msg-icon">${icon}</span> ${cleanMsg}</span>`;
+                });
+                statusMsg.innerHTML = html;
+            }
+
+            function clearStatus() {
+                statusMsg.className = 'status-msg';
+                statusMsg.innerHTML = '';
+            }
+
+            // Открытие модалки
+            loginBtns.forEach(id => {
+                document.getElementById(id)?.addEventListener('click', () => {
+                    authModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    clearStatus();
+                });
+            });
+
+            // Закрытие
+            closeAuthBtn.addEventListener('click', () => {
+                authModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                clearStatus();
+            });
+            authModal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    authModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                    clearStatus();
+                }
+            });
+
+            // Переключение вкладок
+            document.querySelectorAll('.auth-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    const target = this.dataset.tab;
+                    document.querySelectorAll('.auth-panel').forEach(p => p.classList.remove('active'));
+                    document.getElementById('panel' + target.charAt(0).toUpperCase() + target.slice(1)).classList.add('active');
+                    clearStatus();
+                });
+            });
+
+            // Регистрация
+            document.getElementById('registerBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                const username = document.getElementById('regUsername').value.trim();
+                const pass = document.getElementById('regPassword').value;
+                const passRepeat = document.getElementById('regPasswordRepeat').value;
+
+                const errors = [];
+                if (!username || !pass || !passRepeat) {
+                    errors.push('📋 Пожалуйста, заполните все поля!');
+                }
+                if (pass !== passRepeat && pass && passRepeat) {
+                    errors.push('📋 Пароли не совпадают!');
+                }
+                if (pass.length > 0 && pass.length < 4) {
+                    errors.push('📋 Пароль должен быть не менее 4 символов!');
+                }
+
+                if (errors.length > 0) {
+                    showStatus(errors, 'error');
+                    return;
+                }
+
+                const messages = [
+                    '📋 Данная функция находится в разработке.',
+                    '📋 Нет базы данных для хранения аккаунтов.',
+                    '📋 Пока всё визуально и демонстрационно.',
+                    `📋 Проверка: пользователь "${username}" (гипотетически) мог бы существовать.`,
+                    '📋 Но это только демо-версия регистрации.'
+                ];
+                showStatus(messages, 'info');
+            });
+
+            // Вход
+            document.getElementById('loginBtnSubmit').addEventListener('click', function(e) {
+                e.preventDefault();
+                const username = document.getElementById('loginUsername').value.trim();
+                const pass = document.getElementById('loginPassword').value;
+
+                if (!username || !pass) {
+                    showStatus(['📋 Заполните все поля!'], 'error');
+                    return;
+                }
+
+                const messages = [
+                    '📋 Функция входа в разработке.',
+                    '📋 Нет базы данных для проверки аккаунтов.',
+                    '📋 Всё визуально и демонстрационно.',
+                    `📋 Вы пытаетесь войти как "${username}".`,
+                    '📋 Но это только демо-версия входа.'
+                ];
+                showStatus(messages, 'info');
+            });
+
+            // Закрытие по ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && authModal.classList.contains('active')) {
+                    authModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                    clearStatus();
+                }
+            });
+        }
+
+        // ========== 6. ОСНОВНАЯ ИНИЦИАЛИЗАЦИЯ ==========
         document.addEventListener('DOMContentLoaded', () => {
             rebuildFullContent();
             initTypewriters();
             initZoomEffect();
+            initAuth();
             
             // Копирование IP
             document.getElementById('copyIpBtn')?.addEventListener('click', function() {
@@ -1398,7 +1683,7 @@
                 lastScroll = curr;
             });
 
-            // Модальные окна
+            // Модальные окна (админка)
             function openModal(id) {
                 document.getElementById(id).classList.add('active');
                 document.body.style.overflow = 'hidden';
@@ -1416,16 +1701,8 @@
             document.getElementById('adminModal')?.addEventListener('click', function(e) {
                 if (e.target === this) closeModal('adminModal');
             });
-
-            document.getElementById('loginBtn')?.addEventListener('click', () => openModal('devModal'));
-            document.getElementById('loginBtnHero')?.addEventListener('click', () => openModal('devModal'));
-            document.getElementById('closeModalBtn')?.addEventListener('click', () => closeModal('devModal'));
-            document.getElementById('devModal')?.addEventListener('click', function(e) {
-                if (e.target === this) closeModal('devModal');
-            });
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') {
-                    if (document.getElementById('devModal').classList.contains('active')) closeModal('devModal');
                     if (document.getElementById('adminModal').classList.contains('active')) closeModal('adminModal');
                 }
             });
