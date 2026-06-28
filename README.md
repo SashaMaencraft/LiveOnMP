@@ -79,10 +79,10 @@
 
 ## 🔗 Полезные ссылки
 
-- **Сайт:** https://sashamaencraft.github.io/VisualVertexRP/
-- **Игровой сервер:** visualvertexrp.wellduck.org
+- **Сайт:** https://sashamaencraft.github.io/LiveOnMP/
+- **Игровой сервер:** play.LiveOnMP.wellduck.org
 - **Форум:** https://visualvertex.forumes.ru/
-- **Telegram бот поддержки:** @VisualVertexbot
+- **Telegram бот поддержки:** @LiveOnMP_SupportBot
 - **Купить Проходку:** https://pay.cloudtips.ru/p/0df70dac
 - **Лицензионное соглашение:** [LICENSE.md](LICENSE.md)
 
