@@ -81,7 +81,7 @@
 
 - **Сайт:** https://sashamaencraft.github.io/LiveOnMP/
 - **Игровой сервер:** play.LiveOnMP.wellduck.org
-- **Форум:** https://visualvertex.forumes.ru/
+- **Форум:** http://liveonmp.forumes.ru/
 - **Telegram бот поддержки:** @LiveOnMP_SupportBot
 - **Купить Проходку:** https://pay.cloudtips.ru/p/0df70dac
 - **Лицензионное соглашение:** [LICENSE.md](LICENSE.md)
@@ -92,7 +92,7 @@
 
 - **Email:** drakon.karol@yandex.ru
 - **Telegram:** @LiveOnMP_SupportBot
-- **Форум:** https://LiveOnMP.forumes.ru/
+- **Форум:** http://liveonmp.forumes.ru/
 
 ---
 
