@@ -1,9 +1,9 @@
-# Лицензионное соглашение VisualVertexRP / VisualVertex
+# Лицензионное соглашение MP: Life / VisualVertex
 
 **Версия 3.0 — Закрытый код (All Rights Reserved + УК РФ)**  
-© 2025-2026 VisualVertexRP / Александр Константинович (ИП)  
+© 2025-2026 MP: Life / Александр Константинович (ИП)  
 Контакт для юридических обращений: drakon.karol@yandex.ru  
-Телеграм: @VisualVertexbot
+Телеграм: @LiveOnMP_SupportBot
 
 ---
 
@@ -106,7 +106,7 @@
 Если вы хотите использовать код или любую часть сайта (например, для коммерческого проекта, обучения, форка), вы **ОБЯЗАНЫ**:
 
 1. Написать на email: `drakon.karol@yandex.ru`
-2. Или в Telegram: `@VisualVertexbot`
+2. Или в Telegram: `@LiveOnMP_SupportBot`
 3. Описать цель использования и объём кода
 4. Получить **письменное разрешение** (лицензионный договор)
 
@@ -125,12 +125,11 @@
 
 ## 8. ИНФОРМАЦИЯ О ПРОЕКТЕ
 
-- **IP сервера:** visualvertexrp.wellduck.org
+- **IP сервера:** play.LiveOnMP.wellduck.org
 - **Версия Minecraft:** 1.21.1 Neoforge
-- **Сайт:** https://visualvertexrp.wellduck.org
-- **Форум:** https://visualvertex.forumes.ru/
-- **Telegram бот поддержки:** @VisualVertexbot
+- **Форум:** https://LiveOnMP.forumes.ru/
+- **Telegram бот поддержки:** @LiveOnMP_SupportBot
 
 ---
 
-**© 2025-2026 VisualVertexRP · Все права защищены. Код — не для копирования.**
+**© 2025-2026 MP: Life · Все права защищены. Код — не для копирования.**
