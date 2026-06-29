@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Правила экономики | MP: Life</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+        :root {
+            --primary: #8a2be2;
+            --secondary: #4169e1;
+            --dark: #0d0a1a;
+            --darker: #070510;
+            --light: #f0f4ff;
+            --accent: #00ffff;
+            --gray: #8a8ca5;
+            --warning: #ff6b6b;
+            --success: #51cf66;
+            --gold: #ffd700;
+        }
+
+        body {
+            background: radial-gradient(circle at 20% 30%, rgba(138, 43, 226, 0.12), var(--dark) 70%);
+            color: var(--light);
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDQwIDQwIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxIiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDMiLz48L3N2Zz4=');
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+
+        header {
+            background: rgba(13, 10, 26, 0.65);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(138, 43, 226, 0.25);
+            padding: 1rem 0;
+            position: sticky;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: white;
+            box-shadow: 0 4px 12px rgba(138, 43, 226, 0.3);
+            flex-shrink: 0;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            position: relative;
+            transition: color 0.3s;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover { color: var(--accent); text-shadow: 0 0 8px rgba(0, 255, 255, 0.5); }
+        .nav-links a.active { color: var(--accent); }
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .btn {
+            display: inline-block;
+            background: rgba(138, 43, 226, 0.2);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(138, 43, 226, 0.5);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: rgba(138, 43, 226, 0.4);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.3);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background: var(--light);
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+        .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .menu-toggle.active span:nth-child(2) { opacity: 0; }
+        .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        @media (max-width: 767px) {
+            .menu-toggle { display: flex; }
+        }
+
+        .mobile-nav {
+            display: none;
+            width: 100%;
+            flex-direction: column;
+            padding: 1rem 0;
+            border-top: 1px solid rgba(138, 43, 226, 0.2);
+            margin-top: 1rem;
+            gap: 0.8rem;
+        }
+        .mobile-nav.open { display: flex; }
+        .mobile-nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(138, 43, 226, 0.1);
+        }
+        .mobile-nav a.active { color: var(--accent); }
+
+        /* ========== ЭФФЕКТ МАСШТАБИРОВАНИЯ ========== */
+        .zoomable {
+            display: inline-block;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                        color 0.2s, 
+                        text-shadow 0.2s,
+                        box-shadow 0.3s ease;
+            transform: scale(1);
+            transform-origin: center;
+            will-change: transform;
+        }
+
+        .zoomable.zoomed {
+            transform: scale(1.2);
+        }
+
+        .zoomable.zoomed.btn {
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.4);
+        }
+
+        .page-header { padding: 4rem 0 2rem; text-align: center; background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(0, 255, 255, 0.05)); margin-bottom: 2rem; }
+        .page-title { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1rem; background: linear-gradient(90deg, var(--gold), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .page-subtitle { font-size: 1rem; color: rgba(240, 244, 255, 0.8); max-width: 700px; margin: 0 auto; padding: 0 10px; }
+        .content-section { padding: 2rem 0 4rem; }
+        .section-title { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 2rem; color: var(--light); position: relative; padding-bottom: 10px; }
+        .section-title::after { content: ''; position: absolute; bottom: 0; left: 0; width: 80px; height: 4px; background: linear-gradient(90deg, var(--gold), var(--accent)); border-radius: 2px; }
+
+        .rules-warning {
+            background: rgba(255, 215, 0, 0.08);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .warning-icon { font-size: 2.5rem; color: var(--gold); margin-bottom: 0.8rem; }
+        .rules-warning h3 { font-size: 1.5rem; margin-bottom: 0.8rem; color: var(--light); }
+        .rules-warning p { color: rgba(240, 244, 255, 0.7); line-height: 1.6; font-size: 0.95rem; }
+
+        .rules-container { display: flex; flex-direction: column; gap: 2rem; }
+        .rule-category {
+            background: rgba(13, 10, 26, 0.45);
+            backdrop-filter: blur(16px);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid rgba(138, 43, 226, 0.25);
+            transition: all 0.3s;
+        }
+        .rule-category:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); }
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .category-icon {
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.3), rgba(0, 255, 255, 0.15));
+            backdrop-filter: blur(8px);
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            flex-shrink: 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .category-title { font-size: 1.5rem; color: var(--accent); }
+        .rules-list { display: flex; flex-direction: column; gap: 1.2rem; }
+        .rule-item {
+            display: flex;
+            gap: 1rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 1px solid rgba(138, 43, 226, 0.1);
+        }
+        .rule-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .rule-number {
+            background: rgba(138, 43, 226, 0.25);
+            backdrop-filter: blur(8px);
+            color: var(--accent);
+            min-width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1rem;
+            flex-shrink: 0;
+            border: 1px solid rgba(138, 43, 226, 0.3);
+        }
+        .rule-content h4 { font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--light); }
+        .rule-content p { color: rgba(240, 244, 255, 0.75); line-height: 1.7; margin-bottom: 0.5rem; font-size: 0.95rem; }
+        .punishment {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 0.3rem;
+            margin-right: 0.3rem;
+        }
+        .punishment.warning { background: rgba(255, 193, 7, 0.15); backdrop-filter: blur(4px); color: #ffc107; border: 1px solid rgba(255, 193, 7, 0.3); }
+        .punishment.ban { background: rgba(220, 53, 69, 0.15); backdrop-filter: blur(4px); color: #dc3545; border: 1px solid rgba(220, 53, 69, 0.3); }
+        .punishment.mute { background: rgba(108, 117, 125, 0.15); backdrop-filter: blur(4px); color: #adb5bd; border: 1px solid rgba(108, 117, 125, 0.3); }
+        .punishment.success { background: rgba(81, 207, 102, 0.15); backdrop-filter: blur(4px); color: var(--success); border: 1px solid rgba(81, 207, 102, 0.3); }
+
+        .exceptions-table {
+            background: rgba(13, 10, 26, 0.45);
+            backdrop-filter: blur(16px);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+        .exceptions-table h3 { font-size: 1.5rem; margin-bottom: 1.2rem; color: var(--gold); }
+        .exceptions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.8rem;
+        }
+        .exception-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .exception-item:last-child { border-bottom: none; }
+        .exception-action { font-size: 0.95rem; font-weight: 500; }
+        .exception-status { font-weight: bold; font-size: 1rem; }
+        .exception-status.yes { color: var(--success); }
+        .exception-status.no { color: var(--warning); }
+
+        .vk-btn {
+            display: inline-block;
+            background: rgba(74, 118, 168, 0.2);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(74, 118, 168, 0.4);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 10px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .vk-btn:hover {
+            background: rgba(74, 118, 168, 0.4);
+            border-color: #4a76a8;
+        }
+
+        .telegram-btn {
+            display: inline-block;
+            background: rgba(0, 136, 204, 0.2);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 136, 204, 0.4);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 10px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .telegram-btn:hover {
+            background: rgba(0, 136, 204, 0.4);
+            border-color: #0088cc;
+        }
+
+        footer {
+            background: rgba(7, 5, 16, 0.8);
+            backdrop-filter: blur(16px);
+            padding: 3rem 0 1.5rem;
+            border-top: 1px solid rgba(138, 43, 226, 0.3);
+            margin-top: 3rem;
+        }
+        .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem; margin-bottom: 2rem; }
+        .footer-logo { flex: 1; min-width: 250px; }
+        .footer-links { flex: 2; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1.5rem; }
+        .footer-column h3 { color: var(--light); margin-bottom: 1rem; font-size: 1.1rem; position: relative; padding-bottom: 8px; }
+        .footer-column h3::after { content: ''; position: absolute; bottom: 0; left: 0; width: 40px; height: 3px; background: linear-gradient(90deg, var(--primary), var(--accent)); }
+        .footer-column ul { list-style: none; }
+        .footer-column li { margin-bottom: 0.6rem; }
+        .footer-column a { color: var(--gray); text-decoration: none; transition: color 0.3s; }
+        .footer-column a:hover { color: var(--accent); }
+        .copyright { text-align: center; color: var(--gray); padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.85rem; }
+
+        @media (max-width: 767px) {
+            .nav-links, .desktop-btn { display: none; }
+            .menu-toggle { display: flex; }
+            .rule-item { flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+            .category-header { flex-direction: column; text-align: center; }
+            .exceptions-grid { grid-template-columns: 1fr; }
+            .container { padding: 0 15px; }
+            .page-header { padding: 3rem 0 1.5rem; }
+        }
+
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .nav-links { gap: 1rem; }
+            .nav-links a { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">VV</div>
+                    <div class="logo-text">MP: Life</div>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="zoomable">Главная</a></li>
+                    <li><a href="how-to-play.html" class="zoomable">Как играть</a></li>
+                    <li><a href="rules.html" class="zoomable">Правила</a></li>
+                    <li><a href="economy-rules.html" class="zoomable active">Экономика</a></li>
+                    <li><a href="faq.html" class="zoomable">FAQ</a></li>
+                    <li><a href="tech-support.html" class="zoomable">Поддержка</a></li>
+                </ul>
+                <a href="index.html#home" class="btn desktop-btn zoomable">На главную</a>
+                <button class="menu-toggle" id="menuToggle" aria-label="Меню">
+                    <span></span><span></span><span></span>
+                </button>
+            </nav>
+            <div class="mobile-nav" id="mobileNav">
+                <a href="index.html" class="zoomable">Главная</a>
+                <a href="how-to-play.html" class="zoomable">Как играть</a>
+                <a href="rules.html" class="zoomable">Правила</a>
+                <a href="economy-rules.html" class="zoomable active">Экономика</a>
+                <a href="faq.html" class="zoomable">FAQ</a>
+                <a href="tech-support.html" class="zoomable">Поддержка</a>
+                <a href="index.html#home" class="btn zoomable" style="margin-top: 0.5rem;">На главную</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">💰 Правила экономики</h1>
+            <p class="page-subtitle">Официальные правила экономической системы сервера MP: Life. Алмазы, изумруды, коины и ферма опыта.</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <section class="content-section">
+            <div class="rules-warning">
+                <div class="warning-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                <h3>⚠️ ВАЖНАЯ ИНФОРМАЦИЯ</h3>
+                <p>Нарушение экономических правил карается баном. Незнание правил не освобождает от ответственности. Администрация в праве забанить за любые действия, нарушающие баланс экономики.</p>
+            </div>
+
+            <h2 class="section-title">📊 Основные валюты сервера</h2>
+            
+            <div class="rules-container">
+                <div class="rule-category">
+                    <div class="category-header">
+                        <div class="category-icon"><i class="fas fa-gem"></i></div>
+                        <div class="category-title">1️⃣ АЛМАЗЫ — Основная валюта шахтёров 💎</div>
+                    </div>
+                    <div class="rules-list">
+                        <div class="rule-item">
+                            <div class="rule-number">📍</div>
+                            <div class="rule-content">
+                                <h4>Где хранятся</h4>
+                                <p>Инвентарь, сундуки.</p>
+                            </div>
+                        </div>
+                        <div class="rule-item">
+                            <div class="rule-number">⛏️</div>
+                            <div class="rule-content">
+                                <h4>Как получить</h4>
+                                <p>Найти в шахте, купить у игрока, получить с сайта.</p>
+                            </div>
+                        </div>
+                        <div class="rule-item">
+                            <div class="rule-number">🔨</div>
+                            <div class="rule-content">
+                                <h4>Крафт</h4>
+                                <p>Алмазную броню, оружие и инструменты можно крафтить из руды. Это не нарушает экономику.</p>
+                                <span class="punishment success">✅ РАЗРЕШЕНО</span>
+                            </div>
+                        </div>
+                        <div class="rule-item">
+                            <div class="rule-number">🚫</div>
+                            <div class="rule-content">
+                                <h4>Запрещено</h4>
+                                <p>Использовать баги, дупликаты, схемы обмана.</p>
+                                <span class="punishment ban">Бан 7-30 дней</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rule-category">
+                    <div class="category-header">
+                        <div class="category-icon"><i class="fas fa-leaf"></i></div>
+                        <div class="category-title">2️⃣ ИЗУМРУДЫ — Торговая валюта 🟢</div>
+                    </div>
+                    <div class="rules-list">
+                        <div class="rule-item">
+                            <div class="rule-number">❌</div>
+                            <div class="rule-content">
+                                <h4>Изумрудной брони, мечей или кирок в Minecraft не существует</h4>
+                                <p>Крафтить их невозможно.</p>
+                            </div>
+                        </div>
+                        <div class="rule-item">
+                            <div class="rule-number">🏪</div>
+                            <div class="rule-content">
+                                <h4>Назначение</h4>
+                                <p>Торговля с жителями, покупка зелий, книг, еды в магазинах сервера.</p>
+                            </div>
+                        </div>
+                        <div class="rule-item">
+                            <div class="rule-number">🚫</div>
+                            <div class="rule-content">
+                                <h4>Запрещено</h4>
+                                <p>Баги с жителями, бесконечный обмен.</p>
+                                <span class="punishment ban">Бан 3-14 дней</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rule-category">
+                    <div class="category-header">
+                        <div class="category-icon"><i class="fas fa-coins"></i></div>
+                        <div class="category-title">3️⃣ КОИНЫ (ЧИЗКОЙНЫ) — Сайтовая валюта 💰</div>
+                    </div>
+                    <div class="rules-list">
+                        <div class="rule-item">
+                            <div class="rule-number">💻</div>
+                            <div class="rule-content">
+                                <h4>Где хранятся</h4>
+                                <p>Только на официальном сайте, в личном кабинете.</p>
+                            </div>
+                        </div>
+                        <div class="rule-item">
+                            <div class="rule-number">💳</div>
+                            <div class="rule-content">
+                                <h4>Как получить</h4>
+                                <p>Покупка за реальные деньги.</p>
+                            </div>
+                        </div>
+                        <div class="rule-item">
+                            <div class="rule-number">🎯</div>
+                            <div class="rule-content">
+                                <h4>На что тратить</h4>
+                                <p>В игровом шопе (/shop, /market) — алмазная броня, оружие, ресурсы. У других игроков за коины. Доступ к ферме опыта.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rule-category">
+                    <div class="category-header">
+                        <div class="category-icon"><i class="fas fa-star-of-life"></i></div>
+                        <div class="category-title">4️⃣ ФЕРМА ОПЫТА МОБОВ — Услуга с телепортом по заявке 🔥</div>
+                    </div>
+                    <div class="rules-list">
+                        <div class="rule-item">
+                            <div class="rule-number">1</div>
+                            <div class="rule-content">
+                                <h4>Пишешь в глобальный чат</h4>
+                                <p>Например: «Ищу ферму опыта, готов заплатить».</p>
+                            </div>
+                        </div>
+                        <div class="rule-item">
+                            <div class="rule-number">2</div>
+                            <div class="rule-content">
+                                <h4>Владелец фермы отвечает тебе в чате</h4>
+                                <p>Называет свою цену (алмазы, изумруды или коины — сколько захочет).</p>
+                            </div>
+                        </div>
+                        <div class="rule-item">
+                            <div class="rule-number">3</div>
+                            <div class="rule-content">
+                                <h4>Вы договариваетесь о сумме</h4>
+                                <p>Ограничения по цене нет — владелец ставит цену сам.</p>
+                            </div>
+                        </div>
+                        <div class="rule-item">
+                            <div class="rule-number">4</div>
+                            <div class="rule-content">
+                                <h4>Владелец кидает тебе заявку на телепорт</h4>
+                                <p>Через плагин /tpa или /call.</p>
+                            </div>
+                        </div>
+                        <div class="rule-item">
+                            <div class="rule-number">5</div>
+                            <div class="rule-content">
+                                <h4>Ты телепортируешься к нему на ферму</h4>
+                                <p>Передаёшь деньги лично в руки (бросаешь на землю или через /pay).</p>
+                            </div>
+                        </div>
+                        <div class="rule-item">
+                            <div class="rule-number">6</div>
+                            <div class="rule-content">
+                                <h4>После оплаты ты имеешь право фармить опыт столько, сколько тебе нужно</h4>
+                                <p>Никаких жёстких лимитов по времени, если не оговорено иное. Если владелец хочет ограничить время — он обязан предупредить ДО телепорта.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rule-category">
+                    <div class="category-header">
+                        <div class="category-icon"><i class="fas fa-gavel"></i></div>
+                        <div class="category-title">⚖️ За что можно наказать</div>
+                    </div>
+                    <div class="rules-list">
+                        <div class="rule-item">
+                            <div class="rule-number">🚫</div>
+                            <div class="rule-content">
+                                <h4>Игрок не заплатил, но начал фармить</h4>
+                                <span class="punishment ban">Бан фермы на 3 дня</span>
+                            </div>
+                        </div>
+                        <div class="rule-item">
+                            <div class="rule-number">💔</div>
+                            <div class="rule-content">
+                                <h4>Игрок сломал механизмы фермы</h4>
+                                <span class="punishment ban">Штраф (50 алмазов) или бан</span>
+                            </div>
+                        </div>
+                        <div class="rule-item">
+                            <div class="rule-number">💰</div>
+                            <div class="rule-content">
+                                <h4>Владелец взял деньги, но не дал фармить</h4>
+                                <span class="punishment ban">Лишение права строить фермы навсегда</span>
+                            </div>
+                        </div>
+                        <div class="rule-item">
+                            <div class="rule-number">💡</div>
+                            <div class="rule-content">
+                                <h4>Важно</h4>
+                                <p>Владелец сам называет цену. Если она тебе не нравится — ищи другую ферму.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exceptions-table">
+                <h3><i class="fas fa-check-circle"></i> ГЛАВНЫЕ ИСКЛЮЧЕНИЯ</h3>
+                <div class="exceptions-grid">
+                    <div class="exception-item">
+                        <span class="exception-action">Крафтить алмазную броню/оружие</span>
+                        <span class="exception-status yes">✅ ДА</span>
+                    </div>
+                    <div class="exception-item">
+                        <span class="exception-action">Крафтить изумрудную броню/оружие</span>
+                        <span class="exception-status no">❌ НЕТ (их нет в игре)</span>
+                    </div>
+                    <div class="exception-item">
+                        <span class="exception-action">Купить броню за коины в шопе</span>
+                        <span class="exception-status yes">✅ ДА</span>
+                    </div>
+                    <div class="exception-item">
+                        <span class="exception-action">Фармить на ферме без оплаты</span>
+                        <span class="exception-status no">❌ НЕТ (бан)</span>
+                    </div>
+                    <div class="exception-item">
+                        <span class="exception-action">Владельцу ставить любую цену</span>
+                        <span class="exception-status yes">✅ ДА</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem; padding: 1.5rem; background: rgba(81, 207, 102, 0.08); backdrop-filter: blur(12px); border-radius: 20px; border: 1px solid rgba(81, 207, 102, 0.3);">
+                <h3 style="color: var(--success); margin-bottom: 0.8rem; font-size: 1.3rem;"><i class="fas fa-check-circle"></i> Последнее обновление правил экономики</h3>
+                <p style="color: rgba(240, 244, 255, 0.7); font-size: 0.95rem;">Правила были обновлены 15 апреля 2025 года. Администрация оставляет за собой право вносить изменения в правила без предварительного уведомления.</p>
+                <p style="color: rgba(240, 244, 255, 0.7); margin-top: 0.8rem; font-size: 0.95rem;">По всем вопросам, связанным с экономикой и наказаниями, обращайтесь к администрации через Форум сервера или используйте команду /help в игре на <strong>play.LiveOnMP.wellduck.org</strong>.</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="index.html" class="logo">
+                        <div class="logo-icon">VV</div>
+                        <div class="logo-text">MP: Life</div>
+                    </a>
+                    <p style="color: var(--gray); margin-top: 1.5rem; line-height: 1.6; font-size: 0.95rem;">Уникальный Minecraft RolePlay сервер с глубокой экономикой, политикой и активным сообществом. Подключайтесь к play.LiveOnMP.wellduck.org</p>
+                    <a href="https://vk.com/LiveOnMP" target="_blank" class="vk-btn zoomable"><i class="fab fa-vk"></i> VK - LiveOnMP</a>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>Навигация</h3>
+                        <ul>
+                            <li><a href="index.html" class="zoomable">Главная</a></li>
+                            <li><a href="how-to-play.html" class="zoomable">Как играть</a></li>
+                            <li><a href="rules.html" class="zoomable">Правила</a></li>
+                            <li><a href="economy-rules.html" class="zoomable">Экономика</a></li>
+                            <li><a href="faq.html" class="zoomable">Частые вопросы</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Поддержка</h3>
+                        <ul>
+                            <li><a href="how-to-play.html" class="zoomable">Как начать играть</a></li>
+                            <li><a href="rules.html" class="zoomable">Правила сервера</a></li>
+                            <li><a href="economy-rules.html" class="zoomable">Правила экономики</a></li>
+                            <li><a href="faq.html" class="zoomable">Частые вопросы</a></li>
+                            <li><a href="tech-support.html" class="zoomable">Техническая помощь</a></li>
+                            <li><a href="http://liveonmp.forumes.ru/" target="_blank" class="zoomable">Форум</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Сообщество</h3>
+                        <ul>
+                            <li><a href="https://vk.com/LiveOnMP" target="_blank" class="vk-btn zoomable"><i class="fab fa-vk"></i> VK - LiveOnMP</a></li>
+                            <li><a href="https://t.me/LiveOnMP_SupportBot" target="_blank" class="telegram-btn zoomable"><i class="fab fa-telegram"></i> Application - MP: Life</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2025 MP: Life. Все права защищены.</p>
+                <p style="margin-top: 0.5rem; font-size: 0.8rem;">Minecraft является товарным знаком Mojang AB. Данный проект не аффилирован с Mojang или Microsoft. Адрес сервера: play.LiveOnMP.wellduck.org</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ========== ЭФФЕКТ МАСШТАБИРОВАНИЯ ==========
+        function initZoomEffect() {
+            document.querySelectorAll('.zoomable').forEach(el => {
+                el.addEventListener('mouseenter', function() { this.classList.add('zoomed'); });
+                el.addEventListener('mouseleave', function() { this.classList.remove('zoomed'); });
+                el.addEventListener('touchstart', function() { this.classList.add('zoomed'); }, { passive: true });
+                el.addEventListener('touchend', function() { setTimeout(() => this.classList.remove('zoomed'), 300); }, { passive: true });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggle = document.getElementById('menuToggle');
+            const mobileNav = document.getElementById('mobileNav');
+            
+            toggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                mobileNav.classList.toggle('open');
+            });
+
+            mobileNav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    toggle.classList.remove('active');
+                    mobileNav.classList.remove('open');
+                });
+            });
+
+            const currentPage = window.location.pathname.split('/').pop();
+            document.querySelectorAll('.nav-links a, .mobile-nav a').forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+
+            initZoomEffect();
+        });
+    </script>
+</body>
+</html>

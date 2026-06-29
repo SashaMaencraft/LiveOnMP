@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Лицензионное соглашение | MP: Life</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #8a2be2;
+            --secondary: #4169e1;
+            --dark: #0d0a1a;
+            --darker: #070510;
+            --light: #f0f4ff;
+            --accent: #00ffff;
+            --gray: #8a8ca5;
+        }
+
+        body {
+            background: radial-gradient(circle at 20% 30%, rgba(138, 43, 226, 0.12), var(--dark) 70%);
+            color: var(--light);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDQwIDQwIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxIiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDMiLz48L3N2Zz4=');
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            background: rgba(13, 10, 26, 0.65);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(138, 43, 226, 0.25);
+            padding: 1rem 0;
+            position: sticky;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            box-shadow: 0 4px 12px rgba(138, 43, 226, 0.3);
+            flex-shrink: 0;
+        }
+
+        .logo-text {
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            font-family: 'Courier New', 'Fira Code', monospace;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: 0.2s;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+        }
+
+        .btn {
+            display: inline-block;
+            background: rgba(138, 43, 226, 0.2);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(138, 43, 226, 0.5);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: rgba(138, 43, 226, 0.4);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.3);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background: var(--light);
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+        .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .menu-toggle.active span:nth-child(2) { opacity: 0; }
+        .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        @media (max-width: 767px) {
+            .menu-toggle { display: flex; }
+        }
+
+        .mobile-nav {
+            display: none;
+            width: 100%;
+            flex-direction: column;
+            padding: 1rem 0;
+            border-top: 1px solid rgba(138, 43, 226, 0.2);
+            margin-top: 1rem;
+            gap: 0.8rem;
+        }
+        .mobile-nav.open { display: flex; }
+        .mobile-nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(138, 43, 226, 0.1);
+        }
+        .mobile-nav a.active { color: var(--accent); }
+
+        /* ========== ЭФФЕКТ МАСШТАБИРОВАНИЯ ========== */
+        .zoomable {
+            display: inline-block;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                        color 0.2s, 
+                        text-shadow 0.2s,
+                        box-shadow 0.3s ease;
+            transform: scale(1);
+            transform-origin: center;
+            will-change: transform;
+        }
+
+        .zoomable.zoomed {
+            transform: scale(1.2);
+        }
+
+        .zoomable.zoomed.btn {
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.4);
+        }
+
+        .license-hero {
+            padding: 100px 0 40px;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(0, 255, 255, 0.05));
+        }
+
+        .license-hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .license-hero p {
+            font-size: 1rem;
+            color: rgba(240, 244, 255, 0.8);
+            max-width: 800px;
+            line-height: 1.6;
+        }
+
+        .license-badge {
+            display: inline-block;
+            background: rgba(0, 255, 255, 0.1);
+            backdrop-filter: blur(4px);
+            border: 1px solid var(--accent);
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--accent);
+            margin-right: 8px;
+            margin-top: 10px;
+        }
+
+        .license-content {
+            padding: 40px 0;
+        }
+
+        .license-card {
+            background: rgba(13, 10, 26, 0.45);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(138, 43, 226, 0.25);
+            border-radius: 24px;
+            margin-bottom: 25px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .license-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .license-card-header {
+            background: linear-gradient(90deg, rgba(138, 43, 226, 0.12), rgba(0, 255, 255, 0.05));
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid rgba(138, 43, 226, 0.2);
+        }
+
+        .license-card-header h2 {
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .license-card-header h2 i {
+            color: var(--accent);
+            font-size: 1.4rem;
+        }
+
+        .license-card-body {
+            padding: 1.5rem;
+        }
+
+        .license-card-body h3 {
+            color: var(--accent);
+            margin: 1.2rem 0 0.8rem 0;
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+        }
+
+        .license-card-body h3:first-of-type {
+            margin-top: 0;
+        }
+
+        .license-card-body p {
+            line-height: 1.7;
+            margin-bottom: 0.8rem;
+            color: rgba(240, 244, 255, 0.8);
+            font-size: 0.95rem;
+        }
+
+        .license-card-body ul, .license-card-body ol {
+            margin: 0.8rem 0 1.2rem 1.5rem;
+            line-height: 1.7;
+        }
+
+        .license-card-body li {
+            margin-bottom: 0.4rem;
+            color: rgba(240, 244, 255, 0.8);
+            font-size: 0.95rem;
+        }
+
+        .legal-note {
+            background: rgba(138, 43, 226, 0.1);
+            backdrop-filter: blur(8px);
+            border-left: 4px solid var(--primary);
+            padding: 1rem 1.2rem;
+            border-radius: 12px;
+            margin: 1.2rem 0;
+            font-size: 0.95rem;
+        }
+
+        .legal-note i {
+            color: var(--accent);
+            margin-right: 8px;
+        }
+
+        .footer-links-section {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links-section a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links-section a:hover {
+            color: var(--light);
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+
+        .vk-btn {
+            display: inline-block;
+            background: rgba(74, 118, 168, 0.2);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(74, 118, 168, 0.4);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 10px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .vk-btn:hover {
+            background: rgba(74, 118, 168, 0.4);
+            border-color: #4a76a8;
+        }
+
+        .telegram-btn {
+            display: inline-block;
+            background: rgba(0, 136, 204, 0.2);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 136, 204, 0.4);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 10px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .telegram-btn:hover {
+            background: rgba(0, 136, 204, 0.4);
+            border-color: #0088cc;
+        }
+
+        footer {
+            background: rgba(7, 5, 16, 0.8);
+            backdrop-filter: blur(16px);
+            padding: 3rem 0 1.5rem;
+            border-top: 1px solid rgba(138, 43, 226, 0.3);
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .copyright {
+            color: var(--gray);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        .copyright p {
+            margin-bottom: 0.3rem;
+        }
+
+        @media (max-width: 767px) {
+            .nav-links, .desktop-btn {
+                display: none;
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            .container {
+                padding: 0 15px;
+            }
+            .license-hero {
+                padding: 80px 0 30px;
+            }
+            .license-card-body {
+                padding: 1rem;
+            }
+            .license-card-header {
+                padding: 1rem;
+            }
+            .license-card-header h2 {
+                gap: 8px;
+            }
+            .footer-links-section {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .nav-links {
+                gap: 1rem;
+            }
+            .nav-links a {
+                font-size: 0.85rem;
+            }
+            .logo-text {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <img class="logo-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%238a2be2'/%3E%3Cstop offset='100%25' stop-color='%2300ffff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='40' height='40' rx='8' fill='url(%23grad)'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='white' font-size='20' font-family='Arial, sans-serif' font-weight='bold'%3EVV%3C/text%3E%3C/svg%3E" alt="MP: Life">
+                    <div class="logo-text">MP: Life</div>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html#home" class="zoomable">Главная</a></li>
+                    <li><a href="index.html#features" class="zoomable">Особенности</a></li>
+                    <li><a href="index.html#premium" class="zoomable">Проходка</a></li>
+                    <li><a href="license.html" class="zoomable active">Лицензия</a></li>
+                </ul>
+                <a href="https://pay.cloudtips.ru/p/0df70dac" target="_blank" class="btn desktop-btn zoomable">Купить Проходку</a>
+                <button class="menu-toggle" id="menuToggle" aria-label="Меню">
+                    <span></span><span></span><span></span>
+                </button>
+            </nav>
+            <div class="mobile-nav" id="mobileNav">
+                <a href="index.html#home" class="zoomable">Главная</a>
+                <a href="index.html#features" class="zoomable">Особенности</a>
+                <a href="index.html#premium" class="zoomable">Проходка</a>
+                <a href="license.html" class="zoomable active">Лицензия</a>
+                <a href="https://pay.cloudtips.ru/p/0df70dac" target="_blank" class="btn zoomable" style="margin-top: 0.5rem;">Купить Проходку</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="license-hero">
+        <div class="container">
+            <h1><i class="fas fa-file-contract"></i> Лицензионное соглашение</h1>
+            <p>Официальные правовые документы MP: Life. Использование сайта, форума и игрового сервера регулируется настоящим соглашением в соответствии с законодательством Российской Федерации.</p>
+            <p style="margin-top: 12px;">
+                <span class="license-badge"><i class="fas fa-balance-scale"></i> Версия 2.0</span>
+                <span class="license-badge"><i class="fas fa-calendar-alt"></i> Актуально: 29 апреля 2026 г.</span>
+            </p>
+        </div>
+    </section>
+
+    <div class="license-content">
+        <div class="container">
+            <div class="license-card">
+                <div class="license-card-header">
+                    <h2><i class="fas fa-globe"></i> 1. Лицензия на использование Сайта и Форума</h2>
+                </div>
+                <div class="license-card-body">
+                    <p><strong>1.1.</strong> Официальный сайт MP: Life (далее — «Сайт») и форум (далее — «Форум») являются интеллектуальной собственностью Администрации проекта. Все авторские права на дизайн, тексты, логотипы, графические элементы и программный код защищены законодательством РФ.</p>
+                    <p><strong>1.2.</strong> Пользователям предоставляется <strong>ограниченная, неисключительная лицензия</strong> на доступ к Сайту и Форуму в личных, некоммерческих целях. Запрещается:</p>
+                    <ul>
+                        <li>Копирование, модификация или распространение любых материалов Сайта без письменного разрешения Администрации;</li>
+                        <li>Использование автоматизированных скриптов (парсинг, боты) для сбора данных с Сайта или Форума;</li>
+                        <li>Размещение на Форуме запрещённой информации (экстремистской, оскорбительной, нарушающей законодательство РФ).</li>
+                    </ul>
+                    <p><strong>1.3.</strong> Форум работает на основе лицензионного движка. Права на исходное программное обеспечение принадлежат его правообладателям. Администрация не несёт ответственности за содержание сообщений пользователей, но оставляет за собой право удалять нарушающий контент в соответствии с ФЗ «Об информации, информационных технологиях и о защите информации».</p>
+                    <div class="legal-note">
+                        <i class="fas fa-gavel"></i>
+                        <strong>Правовая основа:</strong> Гражданский кодекс РФ (часть 4), Федеральный закон № 149-ФЗ «Об информации, информационных технологиях и о защите информации».
+                    </div>
+                </div>
+            </div>
+
+            <div class="license-card">
+                <div class="license-card-header">
+                    <h2><i class="fas fa-cube"></i> 2. Лицензия на игровой сервер Minecraft</h2>
+                </div>
+                <div class="license-card-body">
+                    <p><strong>2.1.</strong> Игровой сервер MP: Life является некоммерческим проектом и не связан с компанией Mojang AB или Microsoft. Minecraft является товарным знаком Mojang AB, используемым в соответствии с <strong>Minecraft End User License Agreement (EULA)</strong> и <strong>Brand and Asset Usage Guidelines</strong>.</p>
+                    <p><strong>2.2.</strong> Администрация сервера гарантирует соблюдение официальной EULA Minecraft в части коммерческого использования и распространения контента.</p>
+                    <p><strong>2.3.</strong> Сервер открыт для всех игроков вне зависимости от типа приобретённой версии игры. Доступ на сервер возможен как с лицензионной версией Minecraft Java Edition, так и с использованием сторонних лаунчеров («пиратских» клиентов), поскольку это не нарушает условия использования платформы и направлено на расширение сообщества.</p>
+                    <p><strong>2.4.</strong> При этом Администрация рекомендует использовать лицензионную версию игры, так как она обеспечивает большую стабильность, безопасность и доступ ко всем официальным функциям Minecraft. Вопросы технической поддержки для нелицензионных клиентов могут решаться в индивидуальном порядке.</p>
+                    <p><strong>2.5.</strong> Все игровые материалы (постройки, скины, текстуры), созданные игроками на сервере, остаются их интеллектуальной собственностью, однако Администрация получает неисключительное право на их демонстрацию в promotional-материалах.</p>
+                    <div class="legal-note">
+                        <i class="fab fa-minecraft" style="color: #5f9c43;"></i>
+                        <strong>Важно:</strong> Сервер не распространяет пиратские версии игры, не требует взлома и не нарушает авторские права. Игроки самостоятельно выбирают способ доступа к игре. Администрация не несёт ответственности за проблемы, связанные с использованием нелицензионного программного обеспечения.
+                    </div>
+                </div>
+            </div>
+
+            <div class="license-card">
+                <div class="license-card-header">
+                    <h2><i class="fas fa-landmark"></i> 3. Пункты в соответствии с законодательством РФ</h2>
+                </div>
+                <div class="license-card-body">
+                    <h3><i class="fas fa-user-secret"></i> 3.1. Обработка персональных данных (ФЗ-152)</h3>
+                    <p>При регистрации на Форуме или на Сайте Администрация может собирать следующие данные: IP-адрес, никнейм, адрес электронной почты. Все данные обрабатываются с согласия пользователя, хранятся на серверах, расположенных на территории РФ, и не передаются третьим лицам, кроме случаев, предусмотренных законом. Пользователь вправе запросить удаление своих данных, направив заявление на почту drakon.karol@yandex.ru.</p>
+                    
+                    <h3><i class="fas fa-shopping-cart"></i> 3.2. Правила оказания платных услуг (ЗоЗПП)</h3>
+                    <p>Платные «Проходки» и донаты являются <strong>добровольными пожертвованиями</strong> с возвратом согласно ст. 32 Закона РФ «О защите прав потребителей». Возврат средств возможен в течение 14 дней при условии, что услуга (доступ к серверу) не была оказана в полном объёме. Для возврата необходимо обратиться в техподдержку с чеком об оплате. Администрация вправе отказать в возврате, если игрок получил услугу (например, игровые преимущества) или нарушал правила сервера.</p>
+                    
+                    <h3><i class="fas fa-ban"></i> 3.3. Ответственность за нарушения</h3>
+                    <p>За нарушение правил сервера, форума или лицензионного соглашения Администрация вправе применить санкции: предупреждение, временная или постоянная блокировка аккаунта, удаление сообщений, ограничение доступа к сайту. Все действия обжалуются через обращение в техническую поддержку.</p>
+                    
+                    <h3><i class="fas fa-file-alt"></i> 3.4. Уведомления об изменениях</h3>
+                    <p>Администрация обязуется уведомлять пользователей об изменении лицензионного соглашения путём публикации новой версии на Сайте. Использование сервера, форума или сайта после опубликования изменений означает согласие с новой редакцией.</p>
+                    
+                    <h3><i class="fas fa-gavel"></i> 3.5. Применимое право и судебная юрисдикция</h3>
+                    <p>Настоящее соглашение регулируется законодательством Российской Федерации. Все споры подлежат рассмотрению в суде по месту нахождения Администрации проекта (г. Мурманск, Российская Федерация).</p>
+                    
+                    <div class="legal-note">
+                        <i class="fas fa-envelope"></i> <strong>Контактные данные Администрации для юридически значимых обращений:</strong><br>
+                        E-mail: drakon.karol@yandex.ru | Telegram: @VisualVertexbot<br>
+                        Юридический адрес (для корреспонденции): 101000, г. Мурманск, ул. ...., д. . (проект работает онлайн).
+                    </div>
+                </div>
+            </div>
+
+            <div class="license-card">
+                <div class="license-card-header">
+                    <h2><i class="fas fa-check-double"></i> 4. Акцепт лицензионного соглашения</h2>
+                </div>
+                <div class="license-card-body">
+                    <p>Нажимая «Зарегистрироваться» на Форуме, входя на игровой сервер или используя Сайт, вы автоматически принимаете условия настоящей Лицензии, Правил сервера и Политики обработки персональных данных.</p>
+                    <p>Если вы не согласны с каким-либо пунктом, вам запрещается использовать ресурсы MP: Life. Лица, не достигшие 16 лет, обязаны получить согласие родителей или законных представителей на обработку персональных данных и ознакомиться с условиями соглашения вместе с ними.</p>
+                    <p><strong>Дата последнего обновления:</strong> 29 апреля 2026 года. Предыдущие версии утрачивают силу с момента публикации текущей редакции.</p>
+                </div>
+            </div>
+
+            <div class="license-card">
+                <div class="license-card-header">
+                    <h2><i class="fas fa-link"></i> 5. Официальные лицензии и внешние источники</h2>
+                </div>
+                <div class="license-card-body">
+                    <p>Ниже приведены ссылки на официальные лицензии используемого программного обеспечения и правовые документы платформ, с которыми взаимодействует проект:</p>
+                    <ul>
+                        <li><i class="fab fa-minecraft"></i> <strong>Minecraft EULA</strong> — <a href="https://www.minecraft.net/ru-ru/terms" target="_blank" style="color: var(--accent);">https://www.minecraft.net/ru-ru/terms</a></li>
+                        <li><i class="fas fa-crown"></i> <strong>CloudTips (платёжная система)</strong> — <a href="https://cloudtips.ru/terms" target="_blank" style="color: var(--accent);">https://cloudtips.ru/terms</a></li>
+                        <li><i class="fab fa-telegram"></i> <strong>Telegram API Terms</strong> — условия использования ботов и связи с мессенджером</li>
+                    </ul>
+                    <p style="margin-top: 1rem;">Любое цитирование материалов MP: Life допускается только с обязательной активной гиперссылкой на источник. Коммерческое использование материалов без согласования с Администрацией запрещено.</p>
+                </div>
+            </div>
+
+            <div class="footer-links-section">
+                <a href="index.html" class="zoomable"><i class="fas fa-home"></i> Вернуться на главную</a>
+                <a href="rules.html" class="zoomable"><i class="fas fa-book"></i> Правила сервера</a>
+                <a href="tech-support.html" class="zoomable"><i class="fas fa-headset"></i> Техническая поддержка</a>
+                <a href="http://liveonmp.forumes.ru/" target="_blank" class="zoomable"><i class="fas fa-comments"></i> Официальный форум</a>
+                <a href="https://vk.com/LiveOnMP" target="_blank" class="vk-btn zoomable"><i class="fab fa-vk"></i> VK - LiveOnMP</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                <p>© 2025-2026 MP: Life. Все права защищены.</p>
+                <p style="margin-top: 5px; font-size: 0.8rem;">Minecraft является товарным знаком Mojang AB. MP: Life не аффилирован с Mojang AB или Microsoft.</p>
+                <p style="margin-top: 8px; font-size: 0.8rem;">Данный документ является официальным лицензионным соглашением и действует на территории Российской Федерации.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ========== ЭФФЕКТ МАСШТАБИРОВАНИЯ ==========
+        function initZoomEffect() {
+            document.querySelectorAll('.zoomable').forEach(el => {
+                el.addEventListener('mouseenter', function() { this.classList.add('zoomed'); });
+                el.addEventListener('mouseleave', function() { this.classList.remove('zoomed'); });
+                el.addEventListener('touchstart', function() { this.classList.add('zoomed'); }, { passive: true });
+                el.addEventListener('touchend', function() { setTimeout(() => this.classList.remove('zoomed'), 300); }, { passive: true });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggle = document.getElementById('menuToggle');
+            const mobileNav = document.getElementById('mobileNav');
+            
+            toggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                mobileNav.classList.toggle('open');
+            });
+
+            mobileNav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    toggle.classList.remove('active');
+                    mobileNav.classList.remove('open');
+                });
+            });
+
+            const currentPage = window.location.pathname.split('/').pop();
+            document.querySelectorAll('.nav-links a, .mobile-nav a').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+
+            initZoomEffect();
+        });
+    </script>
+</body>
+</html>
